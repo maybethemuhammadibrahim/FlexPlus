@@ -1,1 +1,1361 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   TABLE OF CONTENTS
+   ═══════════════════════════════════════════════════════════════════════════
+   1. CSS VARIABLES & THEMES
+      1.1 Light Mode (Default)
+      1.2 Dark Mode
+      1.3 Midnight Mode
+      1.4 Forest Mode
+      1.5 Sunset Mode
+   
+   2. GLOBAL RESETS & BASE STYLES
+      2.1 Body & Root
+      2.2 Custom Scrollbars
+   
+   3. LAYOUT & GRID
+      3.1 Modern Root Grid
+      3.2 Main Content Area
+      3.3 Responsive Layout
+   
+   4. SIDEBAR
+      4.1 Sidebar Base
+      4.2 Brand & Logo
+      4.3 Navigation Links
+      4.4 Dropdown Menus
+      4.5 User Footer
+   
+   5. MOBILE & RESPONSIVE
+      5.1 Mobile Top Bar
+      5.2 Mobile Overlay
+      5.3 Mobile Breakpoints
+   
+   6. CARDS
+      6.1 Dashboard Header Card
+      6.2 Dashboard Cards
+      6.3 Empty States
+      6.4 Alert Cards
+   
+   7. BUTTONS
+      7.1 Base Button Styles
+      7.2 Button Variants
+      7.3 Icon Buttons
+      7.4 Special Buttons
+   
+   8. MODALS & OVERLAYS
+      8.1 Modal Overlay
+      8.2 Modal Container
+      8.3 Modal Header/Body
+      8.4 Modern Modal Variant
+   
+   9. TABLES
+      9.1 Modal Tables
+      9.2 Modern Tables
+   
+   10. BADGES & STATUS INDICATORS
+       10.1 Status Badges
+       10.2 Modern Badges
+   
+   11. UTILITIES & HELPERS
+   ═══════════════════════════════════════════════════════════════════════════ */
 
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   1. CSS VARIABLES & THEMES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ---------------------------------------------------------------------------
+   1.1 Light Mode (Default)
+   --------------------------------------------------------------------------- */
+:root {
+    /* Backgrounds */
+    --bg-main:  #F4F5F7;
+    --bg-card: #FFFFFF;
+    --bg-sidebar: #FFFFFF;
+    --bg-hover:  #EDF2F7;
+    
+    /* Typography */
+    --text-main:  #2D3748;
+    --text-muted: #718096;
+    --text-light: #A0AEC0;
+    
+    /* Borders */
+    --border-color: #E2E8F0;
+    --border-light: #F0F0F0;
+    
+    /* Accent Colors */
+    --accent-color: #1A1A1A;
+    --accent-blue: #3182CE;
+    
+    /* Status Colors */
+    --success-bg: #C6F6D5;
+    --success-text: #22543D;
+    --warn-bg:  #FEFCBF;
+    --warn-text: #744210;
+    --danger-bg: #FED7D7;
+    --danger-text: #822727;
+    
+    /* Timeline */
+    --timeline-track: #EDF2F7;
+    --timeline-fill: #CBD5E0;
+    
+    /* Scrollbar */
+    --scrollbar-track: transparent;
+    --scrollbar-thumb: #CBD5E0;
+    --scrollbar-thumb-hover: #A0AEC0;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+
+    /* Buttons */
+    --btn-color:  #EDF2F7; 
+    --btn-text: #2D3748; 
+}
+
+/* ---------------------------------------------------------------------------
+   1.2 Dark Mode
+   --------------------------------------------------------------------------- */
+body.dark-mode {
+    /* Backgrounds */
+    --bg-main: #121212;
+    --bg-card: #1E1E1E;
+    --bg-sidebar: #181818;
+    --bg-hover: #2D2D2D;
+    
+    /* Typography */
+    --text-main: #E2E8F0;
+    --text-muted: #A0AEC0;
+    --text-light: #718096;
+    
+    /* Borders */
+    --border-color: #2D2D2D;
+    --border-light: #2D2D2D;
+    
+    /* Accent Colors */
+    --accent-color: #FFFFFF;
+    --accent-blue: #63B3ED;
+    
+    /* Status Colors */
+    --success-bg: #22543D;
+    --success-text: #C6F6D5;
+    --warn-bg: #744210;
+    --warn-text: #FEFCBF;
+    --danger-bg:  #822727;
+    --danger-text: #FED7D7;
+    
+    /* Timeline */
+    --timeline-track:  #2D2D2D;
+    --timeline-fill: #4A5568;
+
+    /* Scrollbar */
+    --scrollbar-track: rgba(255, 255, 255, 0.05);
+    --scrollbar-thumb: #4A5568;
+    --scrollbar-thumb-hover: #718096;
+
+    /* Buttons */
+    --btn-color:  #2D2D2D;
+    --btn-text: #E2E8F0;
+}
+
+/* ---------------------------------------------------------------------------
+   1.3 Midnight Mode (Deep Blue/Slate)
+   --------------------------------------------------------------------------- */
+body.midnight-mode {
+    /* Backgrounds */
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-sidebar: #020617;
+    --bg-hover: #334155;
+    
+    /* Typography */
+    --text-main:  #f1f5f9;
+    --text-muted: #94a3b8;
+    --text-light: #64748b;
+    
+    /* Borders */
+    --border-color: #334155;
+    --border-light: #334155;
+    
+    /* Accent Colors */
+    --accent-color: #38bdf8;
+    --accent-blue: #38bdf8;
+    
+    /* Status Colors */
+    --success-bg: #064e3b;
+    --success-text: #34d399;
+    --warn-bg: #451a03;
+    --warn-text: #fbbf24;
+    --danger-bg: #450a0a;
+    --danger-text: #f87171;
+    
+    /* Timeline */
+    --timeline-track:  #1e293b;
+    --timeline-fill: #475569;
+    
+    /* Scrollbar */
+    --scrollbar-track:  rgba(0, 0, 0, 0.2);
+    --scrollbar-thumb: #475569;
+    --scrollbar-thumb-hover: #64748b;
+
+    /* Buttons */
+    --btn-color: #334155;
+    --btn-text: #f1f5f9;
+}
+
+/* ---------------------------------------------------------------------------
+   1.4 Forest Mode (Dark Natural Greens)
+   --------------------------------------------------------------------------- */
+body.forest-mode {
+    /* Backgrounds */
+    --bg-main: #1a1d1a;
+    --bg-card:  #242724;
+    --bg-sidebar:  #131613;
+    --bg-hover:  #2e332e;
+    
+    /* Typography */
+    --text-main: #e2e8e2;
+    --text-muted: #8ba690;
+    --text-light:  #5f7360;
+    
+    /* Borders */
+    --border-color:  #343a34;
+    --border-light:  #343a34;
+    
+    /* Accent Colors */
+    --accent-color: #4ade80;
+    --accent-blue: #4ade80;
+    
+    /* Status Colors */
+    --success-bg: #14532d;
+    --success-text: #86efac;
+    --warn-bg: #422006;
+    --warn-text:  #fde047;
+    --danger-bg: #450a0a;
+    --danger-text: #fca5a5;
+    
+    /* Timeline */
+    --timeline-track: #242724;
+    --timeline-fill: #3f4d3f;
+    
+    /* Scrollbar */
+    --scrollbar-track: rgba(0, 0, 0, 0.2);
+    --scrollbar-thumb: #3f4d3f;
+    --scrollbar-thumb-hover: #5f7360;
+
+    /* Buttons */
+    --btn-color: #2e332e;
+    --btn-text: #e2e8e2;
+}
+
+/* ---------------------------------------------------------------------------
+   1.5 Sunset Mode (Warm Dark/Orange)
+   --------------------------------------------------------------------------- */
+body.sunset-mode {
+    /* Backgrounds */
+    --bg-main: #231815;
+    --bg-card:  #2e211e;
+    --bg-sidebar:  #1a100d;
+    --bg-hover:  #3f2e2a;
+    
+    /* Typography */
+    --text-main: #f5e6e0;
+    --text-muted: #bcaaa4;
+    --text-light: #8d7b75;
+    
+    /* Borders */
+    --border-color:  #443330;
+    --border-light:  #443330;
+    
+    /* Accent Colors */
+    --accent-color: #fb923c;
+    --accent-blue: #fb923c;
+    
+    /* Status Colors */
+    --success-bg: #14532d;
+    --success-text: #86efac;
+    --warn-bg: #451a03;
+    --warn-text: #fbbf24;
+    --danger-bg: #450a0a;
+    --danger-text: #fda4af;
+    
+    /* Timeline */
+    --timeline-track: #2e211e;
+    --timeline-fill: #5d4037;
+    
+    /* Scrollbar */
+    --scrollbar-track: rgba(0, 0, 0, 0.2);
+    --scrollbar-thumb: #5d4037;
+    --scrollbar-thumb-hover: #8d7b75;
+
+    /* Buttons */
+    --btn-color: #3f2e2a;
+    --btn-text: #f5e6e0;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   2. GLOBAL RESETS & BASE STYLES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ---------------------------------------------------------------------------
+   2.1 Body & Root
+   --------------------------------------------------------------------------- */
+body { 
+    margin: 0; 
+    padding: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+    background:  var(--bg-main); 
+    color: var(--text-main);
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+/* Safe Mode Hiding */
+body.modern-active > .m-grid { 
+    display: none ! important; 
+}
+
+body.modern-active { 
+    overflow: hidden !important; 
+}
+
+/* ---------------------------------------------------------------------------
+   2.2 Custom Scrollbars
+   --------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius:  10px;
+    border:  2px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   3. LAYOUT & GRID
+   ════════════════════════════════════════════════════════════════��══════════ */
+
+/* ---------------------------------------------------------------------------
+   3.1 Modern Root Grid
+   --------------------------------------------------------------------------- */
+#modern-root { 
+    display: none; 
+} 
+
+body.modern-active #modern-root { 
+    display: grid; 
+    grid-template-columns: 260px minmax(0, 1fr); 
+    grid-template-rows: 100vh;
+    height: 100vh; 
+    width: 100vw; 
+    overflow: hidden; 
+}
+
+/* ---------------------------------------------------------------------------
+   3.2 Main Content Area
+   --------------------------------------------------------------------------- */
+.modern-main { 
+    padding: 32px; 
+    overflow-y: auto; 
+    height: 100%; 
+    box-sizing: border-box; 
+    scroll-behavior: smooth; 
+    position: relative;
+    background: var(--bg-main);
+}
+
+.header-row { 
+    margin-bottom: 32px; 
+}
+
+.page-title { 
+    font-size: 28px; 
+    font-weight: 700; 
+    margin:  0; 
+    color:  var(--text-main);
+    text-align: left; 
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   4. SIDEBAR
+   ══════════════════════════════════════════════════════════════════════���════ */
+
+/* ---------------------------------------------------------------------------
+   4.1 Sidebar Base
+   --------------------------------------------------------------------------- */
+.modern-sidebar { 
+    background: var(--bg-sidebar); 
+    border-right: 1px solid var(--border-color); 
+    padding: 24px; 
+    display: flex; 
+    flex-direction: column;
+    height: 100%; 
+    box-sizing: border-box; 
+    overflow-y: auto;
+}
+
+.nav-scroll { 
+    flex: 1; 
+    overflow-y:  auto; 
+}
+
+/* ---------------------------------------------------------------------------
+   4.2 Brand & Logo
+   --------------------------------------------------------------------------- */
+.brand-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.brand { 
+    font-size: 24px; 
+    font-weight: 800; 
+    color: var(--accent-color); 
+    margin: 0; 
+}
+
+.brand span { 
+    color: var(--accent-blue); 
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    width: 32px; 
+    height: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.theme-toggle-btn:hover { 
+    background: var(--bg-hover); 
+    color: var(--text-main); 
+}
+
+/* ---------------------------------------------------------------------------
+   4.3 Navigation Links
+   --------------------------------------------------------------------------- */
+.nav-link { 
+    display: flex; 
+    align-items: center; 
+    padding: 12px 16px; 
+    color: var(--text-muted); 
+    text-decoration: none; 
+    border-radius: 8px; 
+    margin-bottom: 4px; 
+    font-weight: 500; 
+    transition: var(--transition-fast); 
+}
+
+.nav-link:hover, 
+.nav-link.active { 
+    background: var(--bg-hover); 
+    color: var(--accent-color); 
+}
+
+.nav-icon { 
+    margin-right:  12px; 
+    width: 20px; 
+    text-align: center; 
+}
+
+.nav-divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 12px 16px;
+    opacity: 0.5;
+}
+
+/* ---------------------------------------------------------------------------
+   4.4 Dropdown Menus
+   --------------------------------------------------------------------------- */
+details.nav-group {
+    margin-bottom: 4px;
+    transition: all var(--transition-fast);
+}
+
+summary.nav-link {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+}
+
+summary.nav-link::-webkit-details-marker { 
+    display: none; 
+}
+
+details[open] > summary.nav-link {
+    color: var(--accent-color);
+    background: var(--bg-hover);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.dropdown-content {
+    background:  var(--bg-sidebar);
+    margin:  0 8px 4px 16px;
+    padding: 4px 0;
+    border-left: 1.5px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.nav-link.sub-link {
+    font-size: 13px;
+    padding: 10px 16px;
+    margin:  0 0 0 8px;
+    color: var(--text-muted);
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.nav-link.sub-link:hover {
+    color: var(--text-main);
+    background: var(--bg-hover);
+    padding-left: 20px;
+}
+
+.nav-link.sub-link.active {
+    color: var(--accent-blue);
+    background: rgba(49, 130, 206, 0.08);
+    font-weight: 700;
+}
+
+.nav-link.sub-link.active::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: var(--accent-blue);
+    border-radius: 50%;
+    margin-right: 8px;
+    display: inline-block;
+}
+
+.arrow-icon {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    opacity: 0.7;
+}
+
+details[open].arrow-icon {
+    transform:  rotate(180deg);
+    color: var(--accent-blue);
+    opacity: 1;
+}
+
+details[open].dropdown-content {
+    animation: navFadeIn 0.3s ease-out;
+}
+
+@keyframes navFadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.others-group summary { 
+    opacity: 0.7; 
+}
+
+/* ---------------------------------------------------------------------------
+   4.5 User Footer
+   --------------------------------------------------------------------------- */
+.user-footer { 
+    border-top: 1px solid var(--border-color); 
+    padding-top: 20px; 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    margin-top: auto; 
+}
+
+.user-img { 
+    width: 36px; 
+    height: 36px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid var(--border-color); 
+}
+
+.user-name { 
+    font-size:  13px; 
+    font-weight: 600; 
+    color: var(--text-main); 
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   5. MOBILE & RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ---------------------------------------------------------------------------
+   5.1 Mobile Top Bar
+   --------------------------------------------------------------------------- */
+.mobile-topbar {
+    display: none;
+    position: fixed;
+    top:  0; 
+    left: 0; 
+    right: 0;
+    height: 60px;
+    background: var(--bg-sidebar);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 900;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.mobile-brand {
+    font-size: 20px; 
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--text-main);
+}
+
+.mobile-brand span { 
+    color: var(--accent-blue); 
+}
+
+.mobile-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ---------------------------------------------------------------------------
+   5.2 Mobile Overlay
+   --------------------------------------------------------------------------- */
+.mobile-overlay {
+    display:  none;
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 950;
+    opacity: 0;
+    transition:  opacity 0.3s ease;
+}
+
+.mobile-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Visibility Helpers */
+.mobile-only { 
+    display: none !important; 
+}
+
+.desk-only { 
+    display:  flex !important; 
+}
+
+/* ---------------------------------------------------------------------------
+   5.3 Mobile Breakpoints
+   --------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    /* Reset Main Grid */
+    body.modern-active #modern-root {
+        grid-template-columns: 1fr ! important;
+        grid-template-rows: 1fr !important;
+    }
+
+    /* Show Top Bar */
+    .mobile-topbar { 
+        display: flex; 
+    }
+
+    /* Sidebar Behavior */
+    .modern-sidebar {
+        position: fixed ! important;
+        top: 0; 
+        left: 0; 
+        bottom: 0;
+        width: 280px;
+        transform: translateX(-100%);
+        z-index: 1000;
+        box-shadow: 2px 0 20px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-right: none;
+    }
+
+    .modern-sidebar.mobile-open {
+        transform: translateX(0);
+    }
+
+    /* Main Content Adjustments */
+    .modern-main {
+        padding-top: 80px;
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+        margin:  0;
+    }
+
+    body.modern-active .modern-main {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding-top: 80px ! important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    /* Toggle Visibility */
+    .mobile-only { 
+        display: flex !important; 
+    }
+    
+    .desk-only { 
+        display: none !important; 
+    }
+
+    .sidebar-actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    /* Page Title */
+    .page-title {
+        text-align: center;
+    }
+
+    /* Hide Legacy Elements */
+    body.modern-active .m-grid__item.m-grid__item--fluid.m-grid.m-grid--ver-desktop.m-grid--desktop.m-body {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+    }
+    
+    body.modern-active {
+        background: var(--bg-main) !important;
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   6. CARDS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ---------------------------------------------------------------------------
+   6.1 Dashboard Header Card
+   --------------------------------------------------------------------------- */
+.dash-header-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    /* Effect Transitions */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.dash-header-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1);
+    border-color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   6.2 Dashboard Cards
+   --------------------------------------------------------------------------- */
+.dash-card {
+    background:  var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    height: 100%;
+    display:  flex;
+    flex-direction:  column;
+    /* Effect Transitions */
+    transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.2s ease;
+}
+
+.dash-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+    border-color: var(--text-muted); /* Optional: Highlights border slightly */
+}
+
+.dash-card-title {
+    font-size: 15px;
+    font-weight:  700;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom:  1px solid var(--border-color);
+    display: flex; 
+    align-items: center; 
+    gap: 8px;
+}
+
+.dash-card-title svg { 
+    color: var(--text-muted); 
+    transition: color 0.3s ease;
+}
+
+/* Subtle effect: Icon lights up when hovering the whole card */
+.dash-card:hover .dash-card-title svg {
+    color: var(--text-main);
+}
+
+/* ---------------------------------------------------------------------------
+   6.3 Empty States
+   --------------------------------------------------------------------------- */
+.empty-card,
+.empty-state { 
+    text-align: center; 
+    padding: 60px; 
+    background: var(--bg-card); 
+    border-radius: 12px; 
+    border: 1px solid var(--border-color); 
+    color: var(--text-muted); 
+    /* Effect Transitions */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+}
+
+.empty-card:hover,
+.empty-state:hover {
+    background-color: rgba(0, 0, 0, 0.01); /* Very subtle darken */
+    border-color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   6.4 Alert Cards
+   --------------------------------------------------------------------------- */
+.alert-card {
+    background:  var(--warn-bg) !important;
+    border: 1px solid rgba(116, 66, 16, 0.2) !important;
+    padding: 20px !important;
+    margin-bottom: 20px !important;
+    transition: transform 0.2s ease;
+}
+
+.alert-card:hover {
+    transform: scale(1.01); /* Slight grow to demand attention */
+}
+
+.alert-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.alert-icon {
+    font-size: 24px;
+}
+
+.alert-text {
+    color: var(--warn-text);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   7. BUTTONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ---------------------------------------------------------------------------
+   7.1 Base Button Styles
+   --------------------------------------------------------------------------- */
+.modern-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight:  600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    gap: 8px;
+    background-color: var(--btn-color);
+    color: var(--btn-text);
+}
+
+/* ---------------------------------------------------------------------------
+   7.2 Button Variants
+   --------------------------------------------------------------------------- */
+/* Primary Button */
+.modern-btn-primary {
+    background: var(--accent-blue);
+    color: white;
+}
+
+.modern-btn-primary:hover {
+    filter: brightness(1.1);
+}
+
+/* Outline Button */
+.modern-btn-outline {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+}
+
+.modern-btn-outline:hover {
+    background: var(--bg-hover);
+    border-color: var(--text-muted);
+}
+
+/* Ghost Button */
+.modern-btn-ghost {
+    background: transparent;
+    color: var(--text-muted);
+}
+
+.modern-btn-ghost:hover {
+    background: var(--bg-hover);
+    color: var(--text-main);
+}
+
+/* Small Button */
+.modern-btn-sm {
+    padding: 4px 10px;
+    font-size:  12px;
+}
+
+/* ---------------------------------------------------------------------------
+   7.3 Icon Buttons
+   --------------------------------------------------------------------------- */
+.icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.icon-btn:hover { 
+    background: var(--bg-hover); 
+}
+
+/* ---------------------------------------------------------------------------
+   7.4 Special Buttons
+   --------------------------------------------------------------------------- */
+/* Details Button */
+.btn-details {
+    width: 100%; 
+    border: none; 
+    background: transparent;
+    color: var(--accent-blue); 
+    padding: 8px; 
+    font-weight: 600; 
+    cursor: pointer;
+    font-size: 13px; 
+    margin-top: auto; 
+    border-top: 1px solid var(--border-light);
+    transition: background 0.2s;
+}
+
+.btn-details:hover { 
+    background: var(--bg-hover); 
+    color: var(--text-main); 
+}
+
+/* Modern Close Button */
+.modern-close-btn {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color, #e2e8f0) !important;
+    outline: none ! important;
+    border-radius: 12px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    color: var(--text-muted, #64748b);
+}
+
+.modern-close-btn:hover {
+    border-color: var(--accent-color, #3b82f6) !important;
+    transform: scale(1.1);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   8. MODALS & OVERLAYS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ---------------------------------------------------------------------------
+   8.1 Modal Overlay
+   --------------------------------------------------------------------------- */
+.modal-overlay {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    opacity: 0; 
+    pointer-events: none;
+    transition: opacity 0.2s;
+    backdrop-filter: blur(2px);
+}
+
+.modal-overlay.active { 
+    opacity: 1; 
+    pointer-events: auto; 
+}
+
+/* ---------------------------------------------------------------------------
+   8.2 Modal Container
+   --------------------------------------------------------------------------- */
+.modal,
+.att-modal {
+    position: fixed;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -48%) scale(0.95);
+    width: 90%; 
+    max-width: 500px;
+    max-height: 80vh;
+    background: var(--bg-card);
+    border-radius: 12px;
+    z-index: 9999;
+    opacity: 0; 
+    pointer-events: none;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+                0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    display: flex; 
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+}
+
+.modal.active,
+.att-modal.active {
+    opacity: 1; 
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* ---------------------------------------------------------------------------
+   8.3 Modal Header/Body
+   --------------------------------------------------------------------------- */
+.modal-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.modal-header h3 { 
+    margin: 0; 
+    font-size: 16px; 
+    color: var(--text-main); 
+}
+
+.close-btn { 
+    background: none; 
+    border: none; 
+    font-size: 24px; 
+    cursor: pointer; 
+    color: var(--text-light); 
+}
+
+.close-btn:hover { 
+    color: var(--text-main); 
+}
+
+.modal-body {
+    padding: 0;
+    overflow-y: auto;
+    flex: 1;
+    background: var(--bg-card);
+}
+
+/* ---------------------------------------------------------------------------
+   8.4 Modern Modal Variant
+   --------------------------------------------------------------------------- */
+ .modern-modal-overlay {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    background:  rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 9998;
+    opacity:  0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.modern-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modern-modal {
+    position:  fixed;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -48%) scale(0.95);
+    background: var(--bg-card);
+    width: 90%;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    max-height: 85vh;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modern-modal.active {
+    opacity: 1;
+    pointer-events:  auto;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modern-modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content:  space-between;
+    align-items: center;
+    color: var(--text-main);
+    font-weight: 500 !important;
+}
+
+.modern-modal-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight:  700;
+    color: var(--text-main);
+}
+
+.modern-modal-close {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.modern-modal-close:hover {
+    background: var(--bg-hover);
+    color: var(--danger-text);
+}
+
+.modern-modal-body {
+    padding: 24px;
+    overflow-y: auto;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   9. TABLES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ---------------------------------------------------------------------------
+   9.1 Modal Tables
+   --------------------------------------------------------------------------- */
+.modal-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    font-size: 13px; 
+}
+
+.modal-table th { 
+    background: var(--bg-hover); 
+    padding: 12px 20px; 
+    text-align: left; 
+    color: var(--text-muted); 
+    font-size: 11px; 
+    text-transform: uppercase; 
+    font-weight: 700;
+    position: sticky; 
+    top: 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-table td { 
+    padding: 12px 20px; 
+    border-bottom: 1px solid var(--bg-main); 
+    color: var(--text-main); 
+}
+
+/* ---------------------------------------------------------------------------
+   9.2 Modern Tables
+   --------------------------------------------------------------------------- */
+.modern-table-wrapper {
+    overflow-x:  auto;
+    border:  1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.modern-table th {
+    background: var(--bg-hover);
+    padding: 12px 16px;
+    text-align:  left;
+    font-weight: 600;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.modern-table td {
+    padding: 12px 16px;
+    border-bottom:  1px solid var(--border-color);
+    color: var(--text-main);
+}
+
+.modern-table tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   10. BADGES & STATUS INDICATORS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ---------------------------------------------------------------------------
+   10.1 Status Badges
+   --------------------------------------------------------------------------- */
+.status-badge {
+    padding: 4px 8px; 
+    border-radius: 4px; 
+    font-weight: 700; 
+    font-size: 11px;
+    display: inline-block;
+}
+
+.status-badge.present { 
+    background: var(--success-bg); 
+    color: var(--success-text); 
+}
+
+.status-badge.absent { 
+    background: var(--danger-bg); 
+    color: var(--danger-text); 
+}
+
+.status-badge.late { 
+    background: var(--warn-bg); 
+    color: var(--warn-text); 
+}
+
+/* ---------------------------------------------------------------------------
+   10.2 Modern Badges
+   --------------------------------------------------------------------------- */
+.modern-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius:  9999px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.modern-badge.success { 
+    background: var(--success-bg); 
+    color: var(--success-text); 
+}
+
+.modern-badge.warning { 
+    background: var(--warn-bg); 
+    color: var(--warn-text); 
+}
+
+.modern-badge.danger { 
+    background: var(--danger-bg); 
+    color: var(--danger-text); 
+}
+
+.modern-badge.info { 
+    background: rgba(66, 153, 225, 0.15); 
+    color: var(--accent-blue); 
+}
+
+.modern-badge.neutral { 
+    background: var(--bg-hover); 
+    color: var(--text-muted); 
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   11. UTILITIES & HELPERS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+ .w-full { 
+    width: 100% !important; 
+}
+
+.sidebar-warning {
+    font-size: 11px;
+    padding: 8px 16px;
+    color: var(--danger-text);
+    background: var(--danger-bg);
+    margin:  4px 12px;
+    border-radius:  6px;
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.disabled-link {
+    cursor: not-allowed ! important;
+    opacity: 0.5;
+    pointer-events: none;
+}
