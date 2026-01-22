@@ -1,0 +1,507 @@
+/* main page */
+.transcript-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px !important;
+    padding-bottom: 60px !important;
+    width: 100% !important;
+}
+
+@media (max-width: 900px) {
+    .transcript-grid { grid-template-columns: 1fr !important; }
+}
+
+
+.modern-btn {
+    border: 1px solid transparent !important;
+    border-radius: 6px !important;
+}
+
+
+/* --- SEM CARD STYLES --- */
+.sem-card {
+    padding: 10px;
+}
+
+.sem-header {
+    padding: 12px;
+    background: var(--bg-card);
+    flex: 1;
+}
+
+.sem-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.sem-title { font-size: 20px; font-weight: 800; color: var(--text-main); margin: 0; }
+
+.gpa-badge {
+    background: var(--bg-main);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+.gpa-badge span {
+    color: var(--text-light);
+    font-size: 11px;
+    margin-right: 4px;
+    text-transform: uppercase;
+}
+
+.sem-stats { display: flex; gap: 12px; flex-wrap: wrap; }
+.stat-item {
+    font-size: 13px;
+    color: var(--text-muted);
+    background: var(--bg-main);
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+.stat-item b { color: var(--text-main); }
+ 
+/* --- TOOL CARDS --- */
+.tool-card {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    padding: 24px !important;
+    flex: 1; display: flex !important; align-items: center !important; gap: 20px !important;
+    cursor: pointer !important; transition: all 0.2s ease !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02) !important;
+}
+.tool-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1) !important;
+    border-color: var(--text-muted) !important;
+}
+
+.tool-icon-box {
+    width: 48px; height: 48px; border-radius: 10px;
+    background: var(--bg-hover); display: flex; align-items: center; justify-content: center;
+    color: var(--accent-color); flex-shrink: 0;
+}
+.tool-info h4 { margin: 0 0 4px 0; font-size: 16px; font-weight: 700; color: var(--text-main); }
+.tool-info p { margin: 0; font-size: 13px; color: var(--text-muted); }
+
+/* --- TOP SPLIT LAYOUT --- */
+.top-split {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px !important;
+    margin-bottom: 32px !important;
+    width: 100% !important;
+}
+@media (max-width: 900px) { .top-split { grid-template-columns: 1fr !important; } }
+
+.graph-col .chart-card { margin-bottom: 0 !important; height: 100%; }
+.tools-col { display: flex !important; flex-direction: column !important; gap: 24px !important; }
+
+
+
+
+
+/* --- CHART STYLES --- */
+.chart-card {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    padding: 24px !important;
+    margin-bottom: 32px !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02) !important;
+}
+
+.chart-title {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: var(--text-muted) !important;
+    margin: 0 0 16px 0 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.chart-container {
+    width: 100% !important;
+    overflow: hidden !important;
+}
+
+.chart-svg {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 200px !important;
+    display: block !important;
+    overflow: visible !important;
+}
+
+/* SVG Elements */
+.grid-line { stroke: var(--border-color); stroke-width: 1; }
+.chart-area { fill: var(--accent-color); opacity: 0.1; }
+.chart-line { stroke: var(--accent-color); stroke-linejoin: round; stroke-linecap: round; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+
+.chart-dot {
+    fill: var(--bg-card);
+    stroke: var(--accent-color);
+    stroke-width: 2;
+    transition: r 0.2s ease, stroke-width 0.2s;
+    cursor: pointer;
+}
+.axis-text { font-size: 21px; fill: var(--text-muted); font-family: 'Inter', monospace; }
+
+/* Tooltips */
+.tooltip-box { fill: var(--text-main); opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.tooltip-text { fill: var(--bg-card); font-size: 11px; font-weight: 700; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+
+.chart-point-group:hover .chart-dot { r: 7; stroke-width: 3; }
+.chart-point-group:hover .tooltip-box,
+.chart-point-group:hover .tooltip-text { opacity: 1; }
+
+/* --- RESPONSIVE SVG CHART ADJUSTMENTS --- */
+@media (max-width: 768px) {
+    
+    /* 1. Make the chart taller on mobile so data isn't squashed */
+    .chart-svg {
+        min-height: 100px !important; 
+    }
+
+    /* 2. Counter-act shrinking: Make text HUGE in SVG units 
+       so it appears normal size when shrunk down on screen */
+    .axis-text {
+        font-size: 28px !important; /* Bumped up from 21px */
+    }
+
+    /* 3. Keep lines visible using vector-effect 
+       (This prevents lines from becoming hairlines) */
+    .chart-line, .grid-line {
+        vector-effect: non-scaling-stroke;
+        stroke-width: 2px !important; 
+    }
+
+    /* 4. Make dots tappable and visible */
+    /* Note: We use CSS to scale them because 'r' is sometimes hard to override */
+    .chart-dot {
+        r: 6 !important; /* Increase radius */
+        stroke-width: 3 !important;
+    }
+    
+    /* 5. Optional: Clean up clutter. 
+       If you have X-axis labels in a group, hide every second one on mobile
+       to prevent overlap. (Assumes text elements are siblings) */
+    .axis-text-y {
+        display: none;
+    }
+} 
+
+
+
+
+
+/* --- 1. ACTION BAR & ALERTS --- */
+.modal-actions { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    flex-wrap: wrap; /* Vital for mobile wrapping */
+}
+
+.sim-score-box {
+    background: var(--warn-bg); 
+    color: var(--warn-text);
+    padding: 6px 12px; 
+    border-radius: 8px; 
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 6px;
+    display: inline-flex; 
+    align-items: center; 
+    gap: 8px; 
+    border: 1px solid rgba(0,0,0,0.1); /* Softer border */
+    white-space: nowrap; 
+}
+
+.sim-score-box b { 
+    font-size: 15px; 
+    font-weight: 700;
+}
+
+/* Updated Select to match modern-input height */
+.calc-select {
+    padding: 0 12px; 
+    height: 40px; /* Taller for better touch target */
+    border-radius: 8px; 
+    border: 1px solid var(--border-color);
+    background: var(--bg-card); 
+    color: var(--text-main);
+    font-size: 13px; 
+    font-weight: 600; 
+    cursor: pointer; 
+    outline: none; 
+    min-width: 70px; /* Prevent it from being too thin */
+    transition: border-color 0.2s;
+}
+
+.calc-select:focus {
+    border-color: var(--accent-blue);
+}
+
+/* --- 2. STATS DASHBOARD --- */
+.planner-stats {
+    display: flex;
+    background: var(--bg-hover);       
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px 0;                   
+    margin-bottom: 24px;
+    width: 100%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+
+.planner-stats > div {
+    flex: 1;                           
+    text-align: center;
+    border-right: 1px solid var(--border-color);
+    min-width: 0; 
+    padding: 0 10px;
+}
+
+.planner-stats > div:last-child {
+    border-right: none;                
+}
+
+.planner-stats span {
+    display: block;
+    font-size: 11px;                 
+    font-weight: 700;
+    text-transform: uppercase;         
+    letter-spacing: 0.05em;             
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.planner-stats b {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1;
+    letter-spacing: -0.02em; /* Tighter tracking for numbers */
+}
+
+.planner-stats .text-accent {
+    color: var(--accent-blue);
+}
+
+/* --- 3. FORM LAYOUTS (Prereq & Controls) --- */
+/* Unified class for rows of controls */
+.controls-row {
+    display: flex;       
+    gap: 16px;           
+    width: 100%;         
+    margin-bottom: 16px;
+}
+
+.prereq-controls {
+    display: flex !important;
+    flex-direction: row !important; /* Forces horizontal line */
+    align-items: flex-end; /* Aligns inputs nicely with buttons */
+    gap: 16px;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+/* ⬇️ This is the fix: Forces the items inside to share the line equally */
+.prereq-controls > * {
+    flex: 1;
+    width: 100%; /* Ensures inputs fill their slot */
+    min-width: 0; /* Prevents layout break on small screens */
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    flex: 1;             
+    min-width: 0;        
+}
+
+.control-group label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    white-space: nowrap; 
+}
+
+/* --- 📱 UNIFIED MOBILE OPTIMIZATION --- */
+@media (max-width: 600px) {
+    
+    /* 1. Stack Form Controls */
+    .controls-row {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .prereq-controls {
+        flex-direction: column !important;
+        gap: 12px;
+    }
+
+    /* 2. Grid Layout for Stats */
+    .planner-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr; 
+        padding: 0; 
+        overflow: hidden; 
+    }
+
+    .planner-stats > div {
+        padding: 16px 8px; 
+        border-right: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color); 
+    }
+
+    .planner-stats > div:nth-child(even) { border-right: none; }
+    .planner-stats > div:nth-last-child(-n+2) { border-bottom: none; }
+
+    .planner-stats b { font-size: 1.35rem; }
+
+    /* 3. Input Adjustments */
+    .calc-select { width: 100%; } /* Full width select on mobile */
+    .sim-score-box { width: 100%; justify-content: center; }
+}
+
+
+
+
+
+
+/* --- PREREQ VISUALIZER (SEARCH) --- */
+
+.modern-input, .modern-select {
+    padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px;
+    background: var(--bg-main); color: var(--text-main); font-size: 14px; outline: none; transition: all 0.2s;
+}
+.modern-input:focus, .modern-select:focus {
+    border-color: var(--accent-blue); background: var(--bg-card); box-shadow: 0 0 0 3px var(--bg-hover);
+}
+
+.search-dropdown {
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--bg-card); border: 1px solid var(--border-color);
+    border-radius: 8px; margin-top: 4px; z-index: 10;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-height: 200px; overflow-y: auto; display: none;
+}
+.search-item {
+    padding: 10px 12px; font-size: 13px; color: var(--text-main); cursor: pointer;
+    border-bottom: 1px solid var(--bg-main);
+}
+.search-item:hover { background: var(--bg-hover); }
+
+.empty-chain-state {
+    color: var(--text-muted); font-size: 14px; text-align: center;
+}
+
+/* --- TREE DIAGRAM VISUALIZATION --- */
+.chain-container, .tree-diagram-container {
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    min-height: 150px;
+    display: flex;
+    overflow-x: auto;
+    align-items: flex-start;
+}
+.tree-diagram-container { flex-direction: column; }
+
+.chain-container > .tf-wrapper,
+.tree-diagram-container > .tf-wrapper {
+    margin: 0 auto; /* Magic centering: centers if room, aligns left if overflow */
+    min-width: min-content; /* Prevents squashing */
+}
+
+
+
+/* Recursive Node Wrapper */
+.tf-wrapper { display: flex; flex-direction: column; align-items: center; position: relative; }
+
+/* Individual Node Styling */
+.tf-node {
+    width: 140px; padding: 10px;
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    text-align: center; position: relative; z-index: 2;
+    transition: all 0.2s ease; cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.tf-node:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+
+/* ========================================================
+   TREE NODE COLORING (PRIORITY ORDER)
+   Priority: Blue (Target) > Green (Passed) > Grey (Default)
+   ======================================================== */
+
+/* 3. GREY (Default / Not Passed) */
+.tf-node {
+    border-color: var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-main);
+}
+
+/* 2. GREEN (Passed) */
+.tf-node.passed {
+    border-color: var(--success-text) !important;
+    background: var(--success-bg) !important;
+    color: var(--success-text) !important;
+}
+
+/* 1. BLUE (Current Target) - Highest Priority */
+.tf-node.current-target {
+    border-color: var(--accent-blue) !important;
+    background: rgba(0, 123, 255, 0.1) !important;
+    box-shadow: 0 0 0 4px rgba(0,123,255,0.2) !important;
+    font-weight: bold;
+    color: var(--accent-blue) !important;
+    transform: scale(1.05); /* Slight Emphasis */
+    z-index: 5;
+}
+
+/* -------------------------------------------------------- */
+
+.tf-node.missing { border-style: dashed; opacity: 0.6; }
+
+/* Node Text */
+.node-code { font-weight: bold; font-size: 14px; margin-bottom: 4px; color: inherit; }
+.node-name {
+    font-size: 11px; color: var(--text-muted);
+    line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+/* Ensure text inherits color from the parent node state */
+.tf-node.passed .node-name,
+.tf-node.current-target .node-name {
+    color: inherit; opacity: 0.9;
+}
+
+/* Tree Structure & Connectors */
+.tf-children { display: flex; margin-top: 20px; position: relative; }
+.tf-children.branch { flex-direction: row; gap: 20px; justify-content: center; }
+.tf-children.chain { 
+    flex-direction: column; gap: 20px; align-items: center; 
+    padding-top: 20px; /* Ensure connector visible for chains */
+}
+
+/* Connector Lines */
+.tf-children::before {
+    content: ''; position: absolute; top: -20px; left: 50%;
+    width: 2px; height: 20px;
+    background: var(--border-color); z-index: 1;
+}
+
+

@@ -1,0 +1,102 @@
+/* --- 1. Layout Adjustments --- */
+.feedback-view {
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 24px;
+}
+
+.dash-card.no-hover:hover {
+    transform: none !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02) !important; /* Resets to original static shadow */
+    border-color: var(--border-color) !important;
+    cursor: default;
+}
+
+/* --- 3. Main Card & Table --- */
+.feedback-main-card {
+    border-radius: 12px !important;
+    padding: 0 !important; /* Table touches edges vertically */
+    overflow: hidden;
+}
+
+.feedback-main-card .dash-card-title {
+    padding: 24px 24px 0 24px;
+    border-bottom: none;
+    margin-bottom: 10px;
+}
+
+.table-modern-wrapper {
+    overflow-x: auto;
+}
+
+.table-modern-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-modern-wrapper thead th {
+    background: var(--bg-main);
+    color: var(--text-light);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 16px 24px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table-modern-wrapper tbody td {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: middle;
+}
+
+.table-modern-wrapper tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* --- 4. Cell-Specific Styling --- */
+.course-code-cell {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--accent-blue);
+}
+
+.name-main {
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 14px;
+}
+
+.name-sub {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 2px;
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status-badge.pending {
+    background: var(--danger-bg);
+    color: var(--danger-text);
+}
+
+.status-badge.submitted {
+    background: var(--success-bg);
+    color: var(--success-text);
+}
+
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+
+/* Responsive */
+@media (max-width: 600px) {
+    .table-modern-wrapper table { min-width: 600px; }
+}

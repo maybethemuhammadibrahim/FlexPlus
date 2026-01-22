@@ -1,0 +1,207 @@
+/* =========================================
+   1. PAGE & LAYOUT RESET
+   ========================================= */
+   body.modern-login-active {
+    /* Base background from your theme */
+    background-color: var(--bg-main) !important;
+    
+    /* Optional: A subtle gradient using your accent color mixed with background */
+    background-image: radial-gradient(at 0% 0%, var(--bg-hover) 0, transparent 50%), 
+                      radial-gradient(at 100% 100%, var(--bg-hover) 0, transparent 50%) !important;
+    
+    height: 100vh !important;
+    width: 100vw !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
+    /* Font inheritance */
+    font-family: inherit !important;
+    color: var(--text-main) !important;
+}
+
+/* Hide original sidebar and clutter */
+body.modern-login-active .m-login__content,
+body.modern-login-active .m-grid__item:not(.m-login__wrapper) {
+    display: none !important;
+}
+
+/* =========================================
+   2. MAIN CARD WRAPPER
+   ========================================= */
+body.modern-login-active .m-login__wrapper {
+    position: relative !important;
+    top: auto !important; left: auto !important; transform: none !important;
+    
+    height:min-content;
+    width: 100% !important;
+    max-width: 400px !important;
+    padding: 40px !important;
+    
+    /* THEME VARIABLES APPLIED HERE */
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    
+    /* Subtle shadow using a generic dark color for depth */
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 20px !important;
+    
+    animation: fadeInUp 0.4s ease-out;
+}
+
+/* =========================================
+   3. LOGO AREA
+   ========================================= */
+body.modern-login-active .m-login__logo {
+    text-align: center;
+    margin-bottom: 30px !important;
+}
+
+body.modern-login-active .m-login__logo img { display: none !important; }
+
+body.modern-login-active .m-login__logo::after {
+    content: "FlexStudent";
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    
+    /* Gradient Text using Theme Colors */
+    background: linear-gradient(135deg, var(--text-main) 0%, var(--accent-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+}
+
+body.modern-login-active .m-login__head { display: none !important; }
+
+/* =========================================
+   4. FORM INPUTS
+   ========================================= */
+body.modern-login-active .form-group h5 { display: none !important; }
+
+body.modern-login-active .form-group {
+    margin-bottom: 24px !important;
+}
+
+body.modern-login-active .form-control {
+    display: block !important;
+    width: 100% !important;
+    height: 48px !important;
+    padding: 10px 16px !important;
+    font-size: 15px !important;
+    
+    /* THEME VARIABLES */
+    background: var(--bg-main) !important; /* Slightly distinct from card */
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-main) !important;
+    
+    border-radius: 10px !important;
+    box-shadow: none !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Focus State */
+body.modern-login-active .form-control:focus {
+    background: var(--bg-card) !important;
+    border-color: var(--accent-blue) !important;
+    /* Simulate a glow using the accent color */
+    box-shadow: 0 0 0 3px var(--bg-hover) !important; 
+    outline: none !important;
+}
+
+body.modern-login-active .input-group-addon { display: none !important; }
+
+body.modern-login-active .form-control::placeholder {
+    color: var(--text-muted) !important;
+    opacity: 0.7;
+}
+
+/* =========================================
+   5. RECAPTCHA
+   ========================================= */
+body.modern-login-active .g-recaptcha {
+    display: flex !important;
+    justify-content: center !important;
+    margin: 24px 0 !important;
+    transform: scale(0.9);
+}
+
+/* =========================================
+   6. FOOTER OPTIONS
+   ========================================= */
+body.modern-login-active .m-login__form-sub {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 24px !important;
+    padding: 0 4px !important;
+}
+
+body.modern-login-active .m-checkbox {
+    color: var(--text-muted) !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+body.modern-login-active #m_login_forget_password {
+    color: var(--accent-blue) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+body.modern-login-active #m_login_forget_password:hover {
+    color: var(--text-main) !important;
+}
+
+/* =========================================
+   7. SUBMIT BUTTON
+   ========================================= */
+body.modern-login-active #m_login_signin_submit {
+    width: 100% !important;
+    height: 50px !important;
+    
+    /* Use the Accent Blue from your palette */
+    background: var(--accent-blue) !important;
+    
+    /* Text color on button - assumed white for contrast on blue */
+    color: #ffffff !important; 
+    
+    border: none !important;
+    border-radius: 10px !important;
+    
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    
+    cursor: pointer !important;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+body.modern-login-active #m_login_signin_submit:hover {
+    opacity: 0.9 !important;
+    transform: translateY(-1px) !important;
+}
+
+body.modern-login-active #m_login_signin_submit:active {
+    transform: translateY(0) !important;
+}
+
+body.modern-login-active #m_login_signin_submit i { display: none !important; }
+
+/* =========================================
+   8. HIDE EXTRAS
+   ========================================= */
+body.modern-login-active .m-login__forget-password { display: none !important; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

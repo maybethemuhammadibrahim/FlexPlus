@@ -1,0 +1,414 @@
+/* =========================================
+   1. SEMESTER SELECTOR & TABS
+   ========================================= */
+
+/* Semester Card */
+.semester-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    width: fit-content;
+    min-width: 300px;
+}
+
+.semester-card form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+}
+
+.semester-card label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.sem-select {
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-main);
+    color: var(--text-main);
+    cursor: pointer;
+    flex: 1;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.sem-select:hover {
+    border-color: var(--text-light);
+    background: var(--bg-hover);
+}
+
+/* Course Tabs (Horizontal Scroll) */
+.course-tabs-container {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+/* Hide scrollbar but allow scrolling */
+.course-tabs-container::-webkit-scrollbar { height: 0; width: 0; display: none; }
+
+.course-tab-btn {
+    padding: 10px 20px;
+    border: none;
+    background: transparent;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 8px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-size: 13px;
+}
+.course-tab-btn:hover { background: var(--bg-hover); color: var(--text-main); }
+.course-tab-btn.active { background: var(--accent-color); color: var(--bg-card); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+
+/* =========================================
+   2. COURSE CARD & HEADER
+   ========================================= */
+
+.course-pane { display: none; animation: fadeIn 0.3s ease; }
+.course-pane.active { display: block; }
+
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(5px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+.course-card { 
+    background: var(--bg-card);
+    border: 1px solid var(--border-color); 
+    border-radius: 12px;
+    padding: 0; 
+    overflow: visible; /* Allows timeline tooltips to float outside */
+    margin-bottom: 32px; 
+}
+
+.course-header {
+    padding: 24px; 
+    background: var(--bg-card); 
+    display: flex; justify-content: space-between; align-items: center;
+}
+.course-title { margin: 0; font-size: 18px; color: var(--text-main); }
+.course-summary { display: flex; gap: 24px; }
+
+.sum-item { text-align: right; }
+.sum-item .lbl { display: block; font-size: 10px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+.sum-item .val { font-size: 18px; font-weight: 700; color: var(--text-main); }
+.val.pass { color: #38A169; }
+.val.fail { color: #E53E3E; }
+
+/* =========================================
+   3. SCORE TIMELINE GRAPHIC
+   ========================================= */
+
+.timeline-container {
+    padding: 40px 32px 30px 32px; /* Top padding for labels */
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    margin-bottom: 0;
+}
+
+.timeline-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--text-light);
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.timeline-track-wrapper {
+    position: relative;
+    height: 16px; /* Taller to accommodate grade lines */
+    margin-top: 10px;
+}
+
+/* Lines & Fills */
+.timeline-track {
+    position: absolute; top: 6px; left: 0; width: 100%; height: 4px;
+    background: var(--timeline-track); border-radius: 2px;
+}
+.timeline-fill-max {
+    position: absolute; top: 6px; left: 0; height: 4px;
+    background: var(--timeline-fill); border-radius: 2px;
+    transition: width 0.5s ease;
+}
+/* Blue Range Bar for Class Spread */
+.timeline-range-class {
+    position: absolute; top: 6px; height: 4px;
+    background: rgba(66, 153, 225, 0.4); 
+    z-index: 2;
+    border-radius: 2px;
+}
+
+/* Grade Markers (Dotted Lines) */
+.grade-line {
+    position: absolute;
+    top: -8px; bottom: -8px; /* Extend vertically */
+    width: 0;
+    border-left: 1px dashed;
+    opacity: 0.3;
+    z-index: 1;
+}
+.grade-line.grade-A { border-color: #48BB78; }
+.grade-line.grade-B { border-color: #38B2AC; }
+.grade-line.grade-C { border-color: #ED8936; }
+.grade-line.grade-D { border-color: #F56565; }
+
+/* --- MARKERS --- */
+.timeline-marker {
+    position: absolute;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: left 0.5s ease;
+}
+
+/* TOP MARKERS (Class Min/Max/Graded) */
+.marker-top {
+    top: -28px; /* Move Above Line */
+    z-index: 5;
+}
+.marker-top .marker-label {
+    font-size: 9px;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    background: var(--bg-card); /* Hide line behind text */
+    padding: 0 2px;
+}
+.marker-top b { color: var(--text-main); }
+
+.marker-tick-top {
+    width: 1px; height: 8px; background: var(--text-muted);
+}
+.marker-line-full {
+    width: 2px; height: 18px; background: var(--text-light); margin-top: 2px;
+}
+.marker-graded .marker-label { color: var(--text-main); font-weight: 700; }
+
+/* BOTTOM MARKERS (User) */
+.marker-user {
+    top: 2px; /* Align dot center with line */
+    z-index: 10;
+}
+.marker-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--bg-card);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    margin-bottom: 6px;
+}
+.marker-dot.pass { background: var(--accent-color); }
+.marker-dot.fail { background: #E53E3E; }
+
+.user-label {
+    background: var(--accent-color);
+    color: var(--bg-card);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.user-label b { color: var(--bg-card); }
+.marker-cls-min,
+.marker-cls-max,
+.marker-user {
+    top: 2px; /* Center dot on the 4px track line */
+    z-index: 10;
+}
+
+/* Base Dot Style */
+.marker-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    margin-bottom: 6px; /* Spacing between dot and card */
+}
+
+/* Dot Colors */
+.marker-dot.pass { background: #1A1A1A; z-index: 20; } /* You (Pass) - Highest priority */
+.marker-dot.fail { background: #E53E3E; z-index: 20; } /* You (Fail) */
+.dot-min { background: #718096; } /* Min - Grey */
+.dot-max { background: #3182CE; } /* Max - Blue */
+
+/* Base Card Style */
+.label-card {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    line-height: 1.2;
+}
+.label-card b { color: #fff; }
+
+/* Card Colors */
+.card-user { background: #1A1A1A; color: #fff; }
+.card-min { background: #718096; color: #fff; }
+.card-max { background: #3182CE; color: #fff; }
+
+/* Staggering Z-Index to ensure 'You' is always on top if they overlap */
+.marker-user { z-index: 30; }
+.marker-cls-max { z-index: 20; }
+.marker-cls-min { z-index: 10; }
+
+/* Axis Labels */
+.timeline-axis {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--text-light);
+    font-weight: 700;
+    margin-top: 25px; 
+}
+
+.grade-threshold {
+    position: absolute;
+    top: -15px; /* Pull it up above the track */
+    bottom: 0;
+    width: 0;
+    z-index: 1; /* Behind the User/Class markers */
+    pointer-events: none;
+}
+
+.grade-dashed-line {
+    position: absolute;
+    top: 20px; /* Start below the text */
+    bottom: -5px; /* Extend slightly below track */
+    left: 0;
+    border-left: 1px dashed #CBD5E0;
+    opacity: 0.7;
+}
+
+.grade-text-val {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    font-size: 9px;
+    font-weight: 700;
+    color: #A0AEC0;
+    white-space: nowrap;
+}
+
+/* =========================================
+   4. CATEGORIES (ACCORDION) & TABLES
+   ========================================= */
+
+.categories-list {
+    background: var(--bg-main); 
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.category-group {
+    background: var(--bg-card);
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+.category-header {
+    padding: 14px 16px;
+    background: var(--bg-card);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    border-bottom: 1px solid var(--border-color);
+    transition: background 0.2s;
+}
+.category-header:hover { background: var(--bg-hover); }
+
+/* Arrow Icon */
+.category-header::after {
+    content: "▼";
+    font-size: 10px;
+    color: var(--text-light);
+    transition: transform 0.3s ease;
+    margin-left: 12px;
+}
+
+.category-group.collapsed .category-header { border-bottom: none; }
+.category-group.collapsed .category-header::after { transform: rotate(-90deg); }
+
+.category-body {
+    max-height: 2000px;
+    opacity: 1;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+.category-group.collapsed .category-body {
+    max-height: 0;
+    opacity: 0;
+}
+
+/* Content Styles */
+.cat-title { font-size: 13px; font-weight: 700; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px; }
+.cat-score { font-size: 13px; font-weight: 600; color: var(--text-muted); background: var(--bg-main); padding: 4px 8px; border-radius: 6px; border: 1px solid var(--border-color); }
+.cat-score span { color: var(--text-main); }
+
+/* --- TABLE --- */
+.table-responsive { overflow-x: auto; }
+.modern-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.modern-table th {
+    background: var(--bg-card); color: var(--text-muted); font-weight: 600; font-size: 11px; text-transform: uppercase;
+    padding: 12px 16px; border-bottom: 1px solid var(--border-color);
+}
+.modern-table td { padding: 12px 16px; border-bottom: 1px solid var(--bg-main); color: var(--text-main); vertical-align: middle; }
+.modern-table tr:hover td { background: var(--bg-hover); }
+.modern-table tr:last-child td { border-bottom: none; }
+
+.text-center { text-align: center; }
+.stat { color: var(--text-light); font-family: monospace; font-size: 11px; }
+
+/* Status Badges */
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 8px; background: var(--text-light); }
+.status-dot.good { background: var(--success-text); }
+.status-dot.warn { background: var(--warn-text); }
+.status-dot.bad { background: var(--danger-text); }
+.status-dot.neutral { background: var(--text-light); }
+
+.obt-badge { padding: 4px 8px; border-radius: 6px; font-weight: 700; font-size: 12px; background: var(--bg-main); color: var(--text-main); }
+.obt-badge.good { background: var(--success-bg); color: var(--success-text); }
+.obt-badge.warn { background: var(--warn-bg); color: var(--warn-text); }
+.obt-badge.bad { background: var(--danger-bg); color: var(--danger-text); }
+.obt-badge.neutral { background: var(--bg-hover); color: var(--text-muted); }
+
+/* Dropped Rows */
+.row-dropped td { opacity: 0.5; background-color: var(--bg-hover); text-decoration: line-through; text-decoration-color: var(--text-light); }
+.dropped-badge { font-size: 9px; text-transform: uppercase; background: var(--bg-main); color: var(--text-muted); padding: 2px 4px; border-radius: 4px; margin-left: 6px; font-weight: 700; display: inline-block; text-decoration: none; }
+
+.empty-state { text-align: center; padding: 60px; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color); color: var(--text-muted); }

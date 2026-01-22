@@ -1,0 +1,151 @@
+/* --- Page Layout --- */
+.studyplan-view {
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 24px;
+}
+
+.studyplan-grid{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 15px !important;
+}
+
+/* --- Semester Card --- */
+.semester-card {
+    height: auto !important;
+    padding: 0 !important;
+    overflow: hidden;
+    transition: box-shadow var(--transition-fast);
+}
+
+/* --- Header (Trigger) --- */
+.semester-header {
+    background: var(--bg-card);
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid transparent; /* Invisible border initially */
+    transition: background var(--transition-fast);
+}
+
+.semester-header:hover {
+    background: var(--bg-hover);
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sem-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sem-subtitle {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+/* Chevron Rotation */
+.chevron-icon svg {
+    color: var(--text-light);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Expanded State Styles --- */
+.semester-card.is-open {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    border-color: var(--accent-blue);
+}
+
+.semester-card.is-open .semester-header {
+    border-bottom-color: var(--border-color); /* Show border when open */
+    background: var(--bg-main); /* Slight contrast when open */
+}
+
+.semester-card.is-open .chevron-icon svg {
+    transform: rotate(180deg);
+    color: var(--accent-blue);
+}
+
+/* --- Collapsible Content --- */
+.course-list-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--bg-card);
+}
+
+.semester-card.is-open .course-list-wrapper {
+    max-height: 1000px; /* Arbitrary height large enough to fit content */
+}
+
+.course-list {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* --- Course Items --- */
+.sp-course-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    background: var(--bg-main); /* Nested background */
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    transition: all var(--transition-fast);
+}
+
+.sp-course-item:hover {
+    border-color: var(--accent-blue);
+    background: var(--bg-card);
+}
+
+/* ... (Keep existing pill/icon styles below) ... */
+.session-tag {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-muted);
+    background: var(--bg-hover);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.sp-icon-box {
+    width: 36px;
+    height: 36px;
+    background: var(--bg-card);
+    color: var(--accent-blue);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.sp-details { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.sp-name { font-size: 13px; font-weight: 600; color: var(--text-main); line-height: 1.3; }
+.sp-sub { display: flex; align-items: center; gap: 8px; }
+
+.code-pill { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-light); font-weight: 600; }
+.type-pill { font-size: 9px; font-weight: 700; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; }
+.type-pill.core { background: rgba(49, 130, 206, 0.1); color: var(--accent-blue); }
+.type-pill.elective { background: var(--warn-bg); color: var(--warn-text); }
+
+.sp-credits { font-size: 12px; font-weight: 700; color: var(--text-main); }
+.no-border { border: none !important; margin: 0 !important; padding: 0 !important; }

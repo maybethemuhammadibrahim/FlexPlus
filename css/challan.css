@@ -1,0 +1,136 @@
+/* --- 1. Main Card Consistency --- */
+.challan-main-card {
+    padding: 0 !important;
+    border-radius: 12px 12px 0 0 !important; /* Flat bottom to meet drawer */
+    margin-bottom: 0 !important;
+    border-bottom: none !important;
+}
+
+.challan-card-header {
+    display: flex;
+    color: var(--text-main);
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.dash-card.no-hover:hover {
+    transform: none !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02) !important; /* Resets to original static shadow */
+    border-color: var(--border-color) !important;
+    cursor: default;
+}
+
+/* --- 2. Outer Drawer (Expanding Bottom) --- */
+.outer-drawer {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-top: 1px dashed var(--border-color);
+    border-radius: 0 0 12px 12px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.outer-drawer.is-open {
+    max-height: 800px; /* High enough to contain all text */
+}
+
+.drawer-content {
+    padding: 24px;
+}
+
+.drawer-header-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent-blue);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- 3. Legacy Text Theme Fix (DARK/LIGHT MODE) --- */
+.legacy-theme-fix {
+    color: var(--text-main) !important;
+    line-height: 1.6;
+}
+
+.legacy-theme-fix strong, 
+.legacy-theme-fix b {
+    color: var(--accent-blue) !important;
+}
+
+.legacy-theme-fix p, 
+.legacy-theme-fix span {
+    color: var(--text-muted) !important;
+    background: transparent !important; /* Removes ugly white background spans */
+}
+
+.legacy-theme-fix a {
+    color: var(--accent-blue) !important;
+    text-decoration: underline;
+}
+
+/* --- 4. Buttons & Badges --- */
+.instr-toggle-btn {
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--text-main);
+    transition: var(--transition-fast);
+}
+
+.instr-toggle-btn.active {
+    background: var(--accent-blue);
+    color: white;
+    border-color: var(--accent-blue);
+}
+
+.amount-cell {
+    font-weight: 800;
+    color: var(--accent-blue);
+    font-size: 15px;
+}
+
+.status-badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 800;
+    background: var(--success-bg);
+    color: var(--success-text);
+}
+
+/* --- 5. Table Layout --- */
+.table-modern-wrapper table { width: 100%; border-collapse: collapse; }
+.table-modern-wrapper thead th {
+    background: var(--bg-main);
+    color: var(--text-light);
+    font-size: 10px;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    text-align: left;
+}
+.table-modern-wrapper tbody td {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.text-right { text-align: right; }
+.btn-group-modern { display: flex; gap: 8px; justify-content: flex-end; }
+.btn-view, .btn-print {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+}
+.btn-view { background: var(--bg-main); color: var(--text-main); }
+.btn-print { background: var(--accent-blue); color: white; border: none; }

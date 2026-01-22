@@ -1,0 +1,133 @@
+/* =========================================
+   ATTENDANCE GRID & CARD STYLES
+   ========================================= */
+
+.att-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding-bottom: 40px;
+}
+
+.att-card {
+  padding: 20px;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.att-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+}
+
+.att-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.att-header .code {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.att-header .percent {
+  font-size: 28px;
+  font-weight: 800;
+  /* Color is applied inline via JS based on value */
+}
+
+.att-card .name {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 16px;
+  height: 38px; /* Fixed height for 2 lines */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* Progress Bar */
+.att-bar {
+  height: 6px;
+  background: var(--bg-hover);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.att-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.att-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.att-pill {
+  padding: 5px 25px 5px 25px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Modals, Stats Pills and Buttons have been moved to main.css (common components) */
+
+/* =========================================
+   SEMESTER CARD
+   ========================================= */
+.semester-card {
+  align-items: center;
+  height: fit-content;
+  padding: 16px 24px;
+  margin-bottom: 24px;
+  width: fit-content;
+}
+
+.semester-card form {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.semester-card label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin: 0;
+}
+.sem-select {
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-main);
+  color: var(--text-main);
+  cursor: pointer;
+}
+.sem-select:hover {
+  background: var(--bg-hover);
+}
+
+.modern-btn.w-full  {
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) { 
+  .modern-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+}
