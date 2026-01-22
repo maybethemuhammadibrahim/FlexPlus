@@ -127,7 +127,7 @@
       const inps = data.inputs
         .map((i) => `<input type="hidden" name="${i.name}" value="${i.value}">`)
         .join("");
-      return `<div class="dash-card semester-card"><form action="${data.action}" method="${data.method}">${inps}<label>Academic Session</label><select name="${data.selectName}" class="sem-select" onchange="this.form.submit()">${opts}</select></form></div>`;
+      return `<div class="semester-card"><form action="${data.action}" method="${data.method}">${inps}<label>Academic Session</label><select name="${data.selectName}" class="sem-select" onchange="this.form.submit()">${opts}</select></form></div>`;
     };
 
     //==================
@@ -177,16 +177,16 @@
               `</div>`;
 
             modalContent = `
-                        <div id="att-modal-overlay" class="modern-modal-overlay"></div>
+                        <div id="att-modal-overlay" class="modal-overlay"></div>
                         ${courses
                           .map(
                             (c) => `
-                            <div id="modal-${c.id}" class="modern-modal">
-                                <div class="modern-modal-header">
+                            <div id="modal-${c.id}" class="modal">
+                                <div class="modal-header">
                                     <h3>${c.code} History</h3>
                                     <button class="modern-close-btn" data-close="true">×</button>
                                 </div>
-                                <div class="modern-modal-body">
+                                <div class="modal-body">
                                     <table class="modern-table">
                                         <thead><tr><th>Date</th><th>Status</th></tr></thead>
                                         <tbody>
@@ -245,7 +245,7 @@
             .getElementById("att-modal-overlay")
             ?.classList.remove("active");
           document
-            .querySelectorAll(".modern-modal")
+            .querySelectorAll(".modal")
             .forEach((m) => m.classList.remove("active"));
         };
 

@@ -2,56 +2,7 @@
    1. SEMESTER SELECTOR & TABS
    ========================================= */
 
-/* Semester Card */
-.semester-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 16px 24px;
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-    width: fit-content;
-    min-width: 300px;
-}
-
-.semester-card form {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    gap: 16px;
-}
-
-.semester-card label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    white-space: nowrap;
-    margin: 0;
-}
-
-.sem-select {
-    padding: 8px 12px;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    background: var(--bg-main);
-    color: var(--text-main);
-    cursor: pointer;
-    flex: 1;
-    outline: none;
-    transition: border 0.2s;
-}
-
-.sem-select:hover {
-    border-color: var(--text-light);
-    background: var(--bg-hover);
-}
+/* Semester Card Styles moved to main.css */
 
 /* Course Tabs (Horizontal Scroll) */
 .course-tabs-container {
@@ -197,7 +148,8 @@
     text-align: center;
     white-space: nowrap;
     background: var(--bg-card); /* Hide line behind text */
-    padding: 0 2px;
+    padding: 2px;
+    
 }
 .marker-top b { color: var(--text-main); }
 
@@ -297,6 +249,11 @@
     pointer-events: none;
 }
 
+@media (max-width: 768px) { 
+    .grade-threshold { display: none; }
+}
+
+
 .grade-dashed-line {
     position: absolute;
     top: 20px; /* Start below the text */
@@ -382,26 +339,8 @@
 
 @media (max-width: 768px) {
 
-    /* --- A. SEMESTER CARD --- */
-    .semester-card {
-        flex-direction: column;
-        align-items: stretch; /* Full width */
-        min-width: 0; /* Override the fixed min-width */
-        width: 100%;
-        padding: 16px;
-        gap: 12px;
-    }
+/* Semester Card MQ moved to main.css */
 
-    .semester-card form {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-    }
-
-    .semester-card label {
-        align-self: flex-start; /* Keep labels on left */
-        margin-bottom: 4px;
-    }
 
     /* --- B. COURSE HEADER --- */
     .course-header {
@@ -421,13 +360,19 @@
 
     .course-summary {
         width: 100%;
-        justify-content: space-between; /* Spread stats across width */
+        justify-content: space-around;
         gap: 10px;
+    }
+
+    .sum-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     /* --- C. TIMELINE (The Hard Part) --- */
     .timeline-container {
-        padding: 40px 16px 24px 16px; /* Reduce side padding but keep enough for markers */
+        padding: 0px 16px 30px 16px; /* Reduce side padding but keep enough for markers */
         overflow: hidden; /* Prevent horizontal scrollbars from markers */
     }
 
@@ -467,49 +412,7 @@
         font-size: 11px; /* Smaller title to prevent wrapping */
     }
 
-    /* --- E. PREMIUM STICKY COLUMN TABLE --- 
-       This keeps the "Item" name visible while you scroll the numbers */
-    .table-responsive {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
-        margin: 0 -1px; /* Fix minor border glitches */
-        padding-bottom: 10px; /* Space for scrollbar */
-    }
-
-    .modern-table {
-        min-width: 500px; /* Force table to be wide enough to scroll */
-    }
-
-    /* Sticky First Column Logic */
-    .modern-table th:first-child,
-    .modern-table td:first-child {
-        position: sticky;
-        left: 0;
-        z-index: 2; /* Sit above other rows */
-        background: var(--bg-card); /* Opaque background so text doesn't show through */
-        border-right: 2px solid var(--border-color); /* Shadow line to indicate scroll */
-        max-width: 140px; /* Cap width of course name */
-    }
-
-    /* Adjust headers for sticky column */
-    .modern-table th:first-child {
-        z-index: 3; /* Sit above the sticky column rows */
-    }
-
-    /* Make table text smaller */
-    .modern-table th, 
-    .modern-table td {
-        padding: 10px 8px;
-        font-size: 12px;
-    }
-
-    /* Hide less important badges on mobile if crowded */
-    .dropped-badge {
-        display: block; /* Stack "Dropped" below name */
-        margin-left: 0;
-        margin-top: 4px;
-        width: fit-content;
-    }
+/* Sticky Table MQ moved to main.css */
 }
 
 /* Content Styles */
@@ -517,35 +420,4 @@
 .cat-score { font-size: 13px; font-weight: 600; color: var(--text-muted); background: var(--bg-main); padding: 4px 8px; border-radius: 6px; border: 1px solid var(--border-color); }
 .cat-score span { color: var(--text-main); }
 
-/* --- TABLE --- */
-.table-responsive { overflow-x: auto; }
-.modern-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.modern-table th {
-    background: var(--bg-card); color: var(--text-muted); font-weight: 600; font-size: 11px; text-transform: uppercase;
-    padding: 12px 16px; border-bottom: 1px solid var(--border-color);
-}
-.modern-table td { padding: 12px 16px; border-bottom: 1px solid var(--bg-main); color: var(--text-main); vertical-align: middle; }
-.modern-table tr:hover td { background: var(--bg-hover); }
-.modern-table tr:last-child td { border-bottom: none; }
-
-.text-center { text-align: center; }
-.stat { color: var(--text-light); font-family: monospace; font-size: 11px; }
-
-/* Status Badges */
-.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 8px; background: var(--text-light); }
-.status-dot.good { background: var(--success-text); }
-.status-dot.warn { background: var(--warn-text); }
-.status-dot.bad { background: var(--danger-text); }
-.status-dot.neutral { background: var(--text-light); }
-
-.obt-badge { padding: 4px 8px; border-radius: 6px; font-weight: 700; font-size: 12px; background: var(--bg-main); color: var(--text-main); }
-.obt-badge.good { background: var(--success-bg); color: var(--success-text); }
-.obt-badge.warn { background: var(--warn-bg); color: var(--warn-text); }
-.obt-badge.bad { background: var(--danger-bg); color: var(--danger-text); }
-.obt-badge.neutral { background: var(--bg-hover); color: var(--text-muted); }
-
-/* Dropped Rows */
-.row-dropped td { opacity: 0.5; background-color: var(--bg-hover); text-decoration: line-through; text-decoration-color: var(--text-light); }
-.dropped-badge { font-size: 9px; text-transform: uppercase; background: var(--bg-main); color: var(--text-muted); padding: 2px 4px; border-radius: 4px; margin-left: 6px; font-weight: 700; display: inline-block; text-decoration: none; }
-
-.empty-state { text-align: center; padding: 60px; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color); color: var(--text-muted); }
+/* Table Styles moved to main.css */

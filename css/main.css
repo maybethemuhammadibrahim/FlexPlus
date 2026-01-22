@@ -1359,3 +1359,200 @@ details[open].dropdown-content {
     opacity: 0.5;
     pointer-events: none;
 }
+
+/* =========================================
+   9. COMMON COMPONENTS (Refactored)
+   ========================================= */
+
+/* --- SEMESTER CARD --- */
+.semester-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    width: fit-content;
+    min-width: 300px;
+}
+
+.semester-card form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+}
+
+.semester-card label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.sem-select {
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-main);
+    color: var(--text-main);
+    cursor: pointer;
+    flex: 1;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.sem-select:hover {
+    border-color: var(--text-light);
+    background: var(--bg-hover);
+}
+
+@media (max-width: 768px) {
+    .semester-card {
+        flex-direction: column;
+        align-items: stretch;
+        min-width: 0;
+        width: 100%;
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .semester-card form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .semester-card label {
+        align-self: flex-start;
+        margin-bottom: 4px;
+    }
+}
+
+
+/* --- MODERN TABLES --- */
+.table-responsive { overflow-x: auto; }
+
+.modern-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    font-size: 13px; 
+}
+
+.modern-table th {
+    background: var(--bg-card); 
+    color: var(--text-muted); 
+    font-weight: 600; 
+    font-size: 11px; 
+    text-transform: uppercase;
+    padding: 12px 16px; 
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.modern-table td { 
+    padding: 12px 16px; 
+    border-bottom: 1px solid var(--bg-main); 
+    color: var(--text-main); 
+    vertical-align: middle; 
+}
+
+.modern-table tr:hover td { background: var(--bg-hover); }
+.modern-table tr:last-child td { border-bottom: none; }
+
+.text-center { text-align: center; }
+.modern-table th.text-center { text-align: center; }
+
+.stat { color: var(--text-light); font-family: monospace; font-size: 11px; }
+
+/* Sticky Columns for Mobile */
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -1px;
+        padding-bottom: 10px;
+    }
+    
+    .modern-table { min-width: 500px; }
+
+    .modern-table th:first-child,
+    .modern-table td:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 2;
+        background: var(--bg-card);
+        border-right: 2px solid var(--border-color);
+        max-width: 140px;
+    }
+    .modern-table th:first-child { z-index: 3; }
+    
+    .modern-table th, .modern-table td {
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+}
+
+/* --- BADGES & STATUS INDICATORS --- */
+
+/* Status Dots */
+.status-dot { 
+    width: 8px; height: 8px; 
+    border-radius: 50%; 
+    display: inline-block; 
+    margin-right: 8px; 
+    background: var(--text-light); 
+}
+.status-dot.good { background: var(--success-text); }
+.status-dot.warn { background: var(--warn-text); }
+.status-dot.bad { background: var(--danger-text); }
+.status-dot.neutral { background: var(--text-light); }
+
+/* Obt Badges */
+.obt-badge { 
+    padding: 4px 8px; 
+    border-radius: 6px; 
+    font-weight: 700; 
+    font-size: 12px; 
+    background: var(--bg-main); 
+    color: var(--text-main); 
+}
+.obt-badge.good { background: var(--success-bg); color: var(--success-text); }
+.obt-badge.warn { background: var(--warn-bg); color: var(--warn-text); }
+.obt-badge.bad { background: var(--danger-bg); color: var(--danger-text); }
+.obt-badge.neutral { background: var(--bg-hover); color: var(--text-muted); }
+
+/* Dropped Items */
+.row-dropped td { 
+    opacity: 0.5; 
+    background-color: var(--bg-hover); 
+    text-decoration: line-through; 
+    text-decoration-color: var(--text-light); 
+}
+.dropped-badge { 
+    font-size: 9px; 
+    text-transform: uppercase; 
+    background: var(--bg-main); 
+    color: var(--text-muted); 
+    padding: 2px 4px; 
+    border-radius: 4px; 
+    margin-left: 6px; 
+    font-weight: 700; 
+    display: inline-block; 
+    text-decoration: none; 
+}
+
+/* Modal Body Helper */
+.modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 60vh;
+}
