@@ -1,0 +1,7152 @@
+{
+  "CS": {
+    "CS1002": {
+      "name": "Programming Fundamentals",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CS1004"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CS1004",
+        "CS2001",
+        "CS2005",
+        "CS2006",
+        "CS2009",
+        "CS3001",
+        "CS3006",
+        "EE3002"
+      ],
+      "visual_tree": {
+        "code": "CS1002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS1004",
+            "type": "branch",
+            "children": [
+              {
+                "code": "CS2001",
+                "type": "branch",
+                "children": [
+                  {
+                    "code": "CS2005",
+                    "type": "leaf",
+                    "children": []
+                  },
+                  {
+                    "code": "CS2006",
+                    "type": "chain",
+                    "children": [
+                      {
+                        "code": "CS3006",
+                        "type": "leaf",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "code": "CS2009",
+                    "type": "leaf",
+                    "children": []
+                  },
+                  {
+                    "code": "CS3001",
+                    "type": "leaf",
+                    "children": []
+                  },
+                  {
+                    "code": "CS3006",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "code": "EE3002",
+                "missing": true,
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "CS1004": {
+      "name": "Object Oriented Programming",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1002"
+      ],
+      "postreqs_immediate": [
+        "CS2001",
+        "EE3002"
+      ],
+      "full_prereq_chain": [
+        "CS1002"
+      ],
+      "full_unlock_tree": [
+        "CS2001",
+        "CS2005",
+        "CS2006",
+        "CS2009",
+        "CS3001",
+        "CS3006",
+        "EE3002"
+      ],
+      "visual_tree": {
+        "code": "CS1004",
+        "type": "branch",
+        "children": [
+          {
+            "code": "CS2001",
+            "type": "branch",
+            "children": [
+              {
+                "code": "CS2005",
+                "type": "leaf",
+                "children": []
+              },
+              {
+                "code": "CS2006",
+                "type": "chain",
+                "children": [
+                  {
+                    "code": "CS3006",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "code": "CS2009",
+                "type": "leaf",
+                "children": []
+              },
+              {
+                "code": "CS3001",
+                "type": "leaf",
+                "children": []
+              },
+              {
+                "code": "CS3006",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "EE3002",
+            "missing": true,
+            "children": []
+          }
+        ]
+      }
+    },
+    "MT1003": {
+      "name": "Calculus and Analytical Geometry",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MT2008",
+        "MT1006"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MT1006",
+        "MT2008"
+      ],
+      "visual_tree": {
+        "code": "MT1003",
+        "type": "branch",
+        "children": [
+          {
+            "code": "MT2008",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "MT1006",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "EE1005": {
+      "name": "Digital Logic Design",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "EE2003"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "EE2003",
+        "EE3009"
+      ],
+      "visual_tree": {
+        "code": "EE1005",
+        "type": "chain",
+        "children": [
+          {
+            "code": "EE2003",
+            "type": "chain",
+            "children": [
+              {
+                "code": "EE3009",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MT2008": {
+      "name": "Multivariable Calculus",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1003"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MT1003"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MT2008",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MT1006": {
+      "name": "Multivariable Calculus",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1003"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MT1003"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MT1006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE2003": {
+      "name": "Computer Organization and Assembly Language",
+      "credits": 3,
+      "prereqs_immediate": [
+        "EE1005"
+      ],
+      "postreqs_immediate": [
+        "EE3009"
+      ],
+      "full_prereq_chain": [
+        "EE1005"
+      ],
+      "full_unlock_tree": [
+        "EE3009"
+      ],
+      "visual_tree": {
+        "code": "EE2003",
+        "type": "chain",
+        "children": [
+          {
+            "code": "EE3009",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CS2001": {
+      "name": "Data Structures",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1004"
+      ],
+      "postreqs_immediate": [
+        "CS2005",
+        "CS2006",
+        "CS2009",
+        "CS3001",
+        "CS3006"
+      ],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004"
+      ],
+      "full_unlock_tree": [
+        "CS2005",
+        "CS2006",
+        "CS2009",
+        "CS3001",
+        "CS3006"
+      ],
+      "visual_tree": {
+        "code": "CS2001",
+        "type": "branch",
+        "children": [
+          {
+            "code": "CS2005",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "CS2006",
+            "type": "chain",
+            "children": [
+              {
+                "code": "CS3006",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "CS2009",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "CS3001",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "CS3006",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CS2005": {
+      "name": "Database Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS2005",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS2006": {
+      "name": "Operating Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [
+        "CS3006"
+      ],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [
+        "CS3006"
+      ],
+      "visual_tree": {
+        "code": "CS2006",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS3006",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CS2009": {
+      "name": "Design and Analysis of Algorithms",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS2009",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AI2002": {
+      "name": "Artificial Intelligence",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AI2002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS3001": {
+      "name": "Computer Networks",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS3001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS3006": {
+      "name": "Parallel and Distributed Computing",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2006"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001",
+        "CS2006"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS3006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE3009": {
+      "name": "Computer Architecture",
+      "credits": 3,
+      "prereqs_immediate": [
+        "EE2003"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "EE1005",
+        "EE2003"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE3009",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS3005": {
+      "name": "Theory of Automata",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CS4031"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CS4031"
+      ],
+      "visual_tree": {
+        "code": "CS3005",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS4031",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CS4031": {
+      "name": "Compiler Construction",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS3005"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS3005"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS4031",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS3014": {
+      "name": "Applied Human Computer Interaction",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS3014",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS3009": {
+      "name": "Software Engineering",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS3009",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS4091": {
+      "name": "Final Year Project - I",
+      "credits": 0,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CS4092"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CS4092"
+      ],
+      "visual_tree": {
+        "code": "CS4091",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS4092",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CS4092": {
+      "name": "Final Year Project - II",
+      "credits": 0,
+      "prereqs_immediate": [
+        "CS4091"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS4091"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS4092",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS3002": {
+      "name": "Information Security",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS3002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS4001": {
+      "name": "Professional Practices in IT",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS4001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS4087": {
+      "name": "Advanced DBMS",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2005"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001",
+        "CS2005"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS4087",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "SS1014": {
+      "name": "Expository Writing",
+      "credits": 2,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "SS2007"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "SS2007"
+      ],
+      "visual_tree": {
+        "code": "SS1014",
+        "type": "chain",
+        "children": [
+          {
+            "code": "SS2007",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "SS2007": {
+      "name": "Technical and Business Writing",
+      "credits": 3,
+      "prereqs_immediate": [
+        "SS1014"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "SS1014"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "SS2007",
+        "type": "leaf",
+        "children": []
+      }
+    }
+  },
+  "AI": {
+    "CS1002": {
+      "name": "Programming Fundamentals",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CS1004"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CS1004",
+        "CS2001",
+        "CS2005",
+        "CS2006",
+        "CS2009"
+      ],
+      "visual_tree": {
+        "code": "CS1002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS1004",
+            "type": "chain",
+            "children": [
+              {
+                "code": "CS2001",
+                "type": "branch",
+                "children": [
+                  {
+                    "code": "CS2005",
+                    "type": "leaf",
+                    "children": []
+                  },
+                  {
+                    "code": "CS2006",
+                    "type": "leaf",
+                    "children": []
+                  },
+                  {
+                    "code": "CS2009",
+                    "missing": true,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "CS1004": {
+      "name": "Object Oriented Programming",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1002"
+      ],
+      "postreqs_immediate": [
+        "CS2001"
+      ],
+      "full_prereq_chain": [
+        "CS1002"
+      ],
+      "full_unlock_tree": [
+        "CS2001",
+        "CS2005",
+        "CS2006",
+        "CS2009"
+      ],
+      "visual_tree": {
+        "code": "CS1004",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS2001",
+            "type": "branch",
+            "children": [
+              {
+                "code": "CS2005",
+                "type": "leaf",
+                "children": []
+              },
+              {
+                "code": "CS2006",
+                "type": "leaf",
+                "children": []
+              },
+              {
+                "code": "CS2009",
+                "missing": true,
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MT1003": {
+      "name": "Calculus and Analytical Geometry",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MT2008"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MT2008"
+      ],
+      "visual_tree": {
+        "code": "MT1003",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MT2008",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "EE1005": {
+      "name": "Digital Logic Design",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "EE2003"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "EE2003"
+      ],
+      "visual_tree": {
+        "code": "EE1005",
+        "type": "chain",
+        "children": [
+          {
+            "code": "EE2003",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MT2008": {
+      "name": "Multivariable Calculus",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1003"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MT1003"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MT2008",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE2003": {
+      "name": "Computer Organization and Assembly Language",
+      "credits": 3,
+      "prereqs_immediate": [
+        "EE1005"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "EE1005"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE2003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS2001": {
+      "name": "Data Structures",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1004"
+      ],
+      "postreqs_immediate": [
+        "CS2005",
+        "CS2006",
+        "CS2009"
+      ],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004"
+      ],
+      "full_unlock_tree": [
+        "CS2005",
+        "CS2006",
+        "CS2009"
+      ],
+      "visual_tree": {
+        "code": "CS2001",
+        "type": "branch",
+        "children": [
+          {
+            "code": "CS2005",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "CS2006",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "CS2009",
+            "missing": true,
+            "children": []
+          }
+        ]
+      }
+    },
+    "CS2005": {
+      "name": "Database Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS2005",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS2006": {
+      "name": "Operating Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS2006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AI2001": {
+      "name": "Programming for AI",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "AI3002",
+        "AI3003"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "AI3002",
+        "AI3003",
+        "AI4002"
+      ],
+      "visual_tree": {
+        "code": "AI2001",
+        "type": "branch",
+        "children": [
+          {
+            "code": "AI3002",
+            "type": "chain",
+            "children": [
+              {
+                "code": "AI4002",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "AI3003",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "AI2002": {
+      "name": "Artificial Intelligence",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AI2002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AI3001": {
+      "name": "Knowledge Representation and Reasoning",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AI2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AI2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AI3001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AI3002": {
+      "name": "Machine Learning",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AI2001"
+      ],
+      "postreqs_immediate": [
+        "AI4002"
+      ],
+      "full_prereq_chain": [
+        "AI2001"
+      ],
+      "full_unlock_tree": [
+        "AI4002"
+      ],
+      "visual_tree": {
+        "code": "AI3002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "AI4002",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "AI3003": {
+      "name": "Artificial Neural Networks",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AI2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AI2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AI3003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AI4002": {
+      "name": "Computer Vision",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AI3002"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AI2001",
+        "AI3002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AI4002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS3001": {
+      "name": "Computer Networks",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS3001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AI4091": {
+      "name": "Final Year Project - I",
+      "credits": 0,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "AI4092"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "AI4092"
+      ],
+      "visual_tree": {
+        "code": "AI4091",
+        "type": "chain",
+        "children": [
+          {
+            "code": "AI4092",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "AI4092": {
+      "name": "Final Year Project - II",
+      "credits": 0,
+      "prereqs_immediate": [
+        "AI4091"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AI4091"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AI4092",
+        "type": "leaf",
+        "children": []
+      }
+    }
+  },
+  "SE": {
+    "CS1002": {
+      "name": "Programming Fundamentals",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CS1004"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CS1004",
+        "CS2001",
+        "CS2005",
+        "CS2006",
+        "CS2009",
+        "CS3006",
+        "SE2002",
+        "SE3004"
+      ],
+      "visual_tree": {
+        "code": "CS1002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS1004",
+            "type": "branch",
+            "children": [
+              {
+                "code": "CS2001",
+                "type": "branch",
+                "children": [
+                  {
+                    "code": "CS2005",
+                    "type": "leaf",
+                    "children": []
+                  },
+                  {
+                    "code": "CS2006",
+                    "type": "chain",
+                    "children": [
+                      {
+                        "code": "CS3006",
+                        "type": "leaf",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "code": "CS2009",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "code": "SE2002",
+                "type": "chain",
+                "children": [
+                  {
+                    "code": "SE3004",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "CS1004": {
+      "name": "Object Oriented Programming",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1002"
+      ],
+      "postreqs_immediate": [
+        "CS2001",
+        "SE2002"
+      ],
+      "full_prereq_chain": [
+        "CS1002"
+      ],
+      "full_unlock_tree": [
+        "CS2001",
+        "CS2005",
+        "CS2006",
+        "CS2009",
+        "CS3006",
+        "SE2002",
+        "SE3004"
+      ],
+      "visual_tree": {
+        "code": "CS1004",
+        "type": "branch",
+        "children": [
+          {
+            "code": "CS2001",
+            "type": "branch",
+            "children": [
+              {
+                "code": "CS2005",
+                "type": "leaf",
+                "children": []
+              },
+              {
+                "code": "CS2006",
+                "type": "chain",
+                "children": [
+                  {
+                    "code": "CS3006",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "code": "CS2009",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "SE2002",
+            "type": "chain",
+            "children": [
+              {
+                "code": "SE3004",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MT1003": {
+      "name": "Calculus and Analytical Geometry",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MT1006"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MT1006"
+      ],
+      "visual_tree": {
+        "code": "MT1003",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MT1006",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "EE1005": {
+      "name": "Digital Logic Design",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "EE2003"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "EE2003"
+      ],
+      "visual_tree": {
+        "code": "EE1005",
+        "type": "chain",
+        "children": [
+          {
+            "code": "EE2003",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MT1006": {
+      "name": "Multivariable Calculus",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1003"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MT1003"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MT1006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE2003": {
+      "name": "Computer Organization and Assembly Language",
+      "credits": 3,
+      "prereqs_immediate": [
+        "EE1005"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "EE1005"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE2003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS2001": {
+      "name": "Data Structures",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1004"
+      ],
+      "postreqs_immediate": [
+        "CS2005",
+        "CS2006",
+        "CS2009"
+      ],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004"
+      ],
+      "full_unlock_tree": [
+        "CS2005",
+        "CS2006",
+        "CS2009",
+        "CS3006"
+      ],
+      "visual_tree": {
+        "code": "CS2001",
+        "type": "branch",
+        "children": [
+          {
+            "code": "CS2005",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "CS2006",
+            "type": "chain",
+            "children": [
+              {
+                "code": "CS3006",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "CS2009",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "SE1001": {
+      "name": "Introduction to Software Engineering",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "SE2001",
+        "SE3002"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "SE2001",
+        "SE3002"
+      ],
+      "visual_tree": {
+        "code": "SE1001",
+        "type": "branch",
+        "children": [
+          {
+            "code": "SE2001",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "SE3002",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "SE2001": {
+      "name": "Software Requirements Engineering",
+      "credits": 3,
+      "prereqs_immediate": [
+        "SE1001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "SE1001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "SE2001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "SE2002": {
+      "name": "Software Design and Architecture",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1004"
+      ],
+      "postreqs_immediate": [
+        "SE3004"
+      ],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004"
+      ],
+      "full_unlock_tree": [
+        "SE3004"
+      ],
+      "visual_tree": {
+        "code": "SE2002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "SE3004",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "SE3002": {
+      "name": "Software Quality Engineering",
+      "credits": 3,
+      "prereqs_immediate": [
+        "SE1001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "SE1001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "SE3002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "SE3004": {
+      "name": "Software Construction and Development",
+      "credits": 3,
+      "prereqs_immediate": [
+        "SE2002"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "SE2002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "SE3004",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS2005": {
+      "name": "Database Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS2005",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS2006": {
+      "name": "Operating Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [
+        "CS3006"
+      ],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [
+        "CS3006"
+      ],
+      "visual_tree": {
+        "code": "CS2006",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS3006",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "AI2002": {
+      "name": "Artificial Intelligence",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AI2002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS2009": {
+      "name": "Design and Analysis of Algorithms",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS2009",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS3001": {
+      "name": "Computer Networks",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS3001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS3006": {
+      "name": "Parallel and Distributed Computing",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2006"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001",
+        "CS2006"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS3006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "SE4002": {
+      "name": "Fundamentals of Software Project Management",
+      "credits": 3,
+      "prereqs_immediate": [
+        "SE2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "SE1001",
+        "SE2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "SE4002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "SE4091": {
+      "name": "Final Year Project - I",
+      "credits": 0,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "SE4092"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "SE4092"
+      ],
+      "visual_tree": {
+        "code": "SE4091",
+        "type": "chain",
+        "children": [
+          {
+            "code": "SE4092",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "SE4092": {
+      "name": "Final Year Project - II",
+      "credits": 0,
+      "prereqs_immediate": [
+        "SE4091"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "SE4091"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "SE4092",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "SS1014": {
+      "name": "Expository Writing",
+      "credits": 2,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "SS2007"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "SS2007"
+      ],
+      "visual_tree": {
+        "code": "SS1014",
+        "type": "chain",
+        "children": [
+          {
+            "code": "SS2007",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "SS2007": {
+      "name": "Technical and Business Writing",
+      "credits": 3,
+      "prereqs_immediate": [
+        "SS1014"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "SS1014"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "SS2007",
+        "type": "leaf",
+        "children": []
+      }
+    }
+  },
+  "DS": {
+    "CS1002": {
+      "name": "Programming Fundamentals",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CS1004"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CS1004",
+        "CS2001",
+        "CS2005",
+        "CS2006",
+        "CS2009",
+        "DS3003"
+      ],
+      "visual_tree": {
+        "code": "CS1002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS1004",
+            "type": "chain",
+            "children": [
+              {
+                "code": "CS2001",
+                "type": "branch",
+                "children": [
+                  {
+                    "code": "CS2005",
+                    "type": "chain",
+                    "children": [
+                      {
+                        "code": "DS3003",
+                        "type": "leaf",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "code": "CS2006",
+                    "type": "leaf",
+                    "children": []
+                  },
+                  {
+                    "code": "CS2009",
+                    "missing": true,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "CS1004": {
+      "name": "Object Oriented Programming",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1002"
+      ],
+      "postreqs_immediate": [
+        "CS2001"
+      ],
+      "full_prereq_chain": [
+        "CS1002"
+      ],
+      "full_unlock_tree": [
+        "CS2001",
+        "CS2005",
+        "CS2006",
+        "CS2009",
+        "DS3003"
+      ],
+      "visual_tree": {
+        "code": "CS1004",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS2001",
+            "type": "branch",
+            "children": [
+              {
+                "code": "CS2005",
+                "type": "chain",
+                "children": [
+                  {
+                    "code": "DS3003",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "code": "CS2006",
+                "type": "leaf",
+                "children": []
+              },
+              {
+                "code": "CS2009",
+                "missing": true,
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MT1003": {
+      "name": "Calculus and Analytical Geometry",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MT2008"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MT2008"
+      ],
+      "visual_tree": {
+        "code": "MT1003",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MT2008",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "EE1005": {
+      "name": "Digital Logic Design",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE1005",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MT2008": {
+      "name": "Multivariable Calculus",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1003"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MT1003"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MT2008",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS2001": {
+      "name": "Data Structures",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1004"
+      ],
+      "postreqs_immediate": [
+        "CS2005",
+        "CS2006",
+        "CS2009"
+      ],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004"
+      ],
+      "full_unlock_tree": [
+        "CS2005",
+        "CS2006",
+        "CS2009",
+        "DS3003"
+      ],
+      "visual_tree": {
+        "code": "CS2001",
+        "type": "branch",
+        "children": [
+          {
+            "code": "CS2005",
+            "type": "chain",
+            "children": [
+              {
+                "code": "DS3003",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "CS2006",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "CS2009",
+            "missing": true,
+            "children": []
+          }
+        ]
+      }
+    },
+    "DS2001": {
+      "name": "Introduction to Data Science",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "DS3001"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "DS3001"
+      ],
+      "visual_tree": {
+        "code": "DS2001",
+        "type": "chain",
+        "children": [
+          {
+            "code": "DS3001",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "DS2003": {
+      "name": "Advanced Statistics",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "DS2003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS2005": {
+      "name": "Database Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [
+        "DS3003"
+      ],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [
+        "DS3003"
+      ],
+      "visual_tree": {
+        "code": "CS2005",
+        "type": "chain",
+        "children": [
+          {
+            "code": "DS3003",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CS2006": {
+      "name": "Operating Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS2006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AI2002": {
+      "name": "Artificial Intelligence",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AI2002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "DS3001": {
+      "name": "Data Analysis and Visualization",
+      "credits": 3,
+      "prereqs_immediate": [
+        "DS2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "DS2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "DS3001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "DS3002": {
+      "name": "Data Mining",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "DS3002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "DS3003": {
+      "name": "Data Warehousing and Business Intelligence",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2005"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001",
+        "CS2005"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "DS3003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS3001": {
+      "name": "Computer Networks",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS3001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS3006": {
+      "name": "Parallel and Distributed Computing",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2006"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001",
+        "CS2006"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS3006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS3004": {
+      "name": "Data Structures Elective",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1004"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS3004",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "DS4091": {
+      "name": "Final Year Project - I",
+      "credits": 0,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "DS4092"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "DS4092"
+      ],
+      "visual_tree": {
+        "code": "DS4091",
+        "type": "chain",
+        "children": [
+          {
+            "code": "DS4092",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "DS4092": {
+      "name": "Final Year Project - II",
+      "credits": 0,
+      "prereqs_immediate": [
+        "DS4091"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "DS4091"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "DS4092",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "SS1014": {
+      "name": "Expository Writing",
+      "credits": 2,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "SS2007"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "SS2007"
+      ],
+      "visual_tree": {
+        "code": "SS1014",
+        "type": "chain",
+        "children": [
+          {
+            "code": "SS2007",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "SS2007": {
+      "name": "Technical and Business Writing",
+      "credits": 3,
+      "prereqs_immediate": [
+        "SS1014"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "SS1014"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "SS2007",
+        "type": "leaf",
+        "children": []
+      }
+    }
+  },
+  "CY": {
+    "CS1002": {
+      "name": "Programming Fundamentals",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CS1004"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CS1004",
+        "CS2001",
+        "CS2005",
+        "CS2006"
+      ],
+      "visual_tree": {
+        "code": "CS1002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS1004",
+            "type": "chain",
+            "children": [
+              {
+                "code": "CS2001",
+                "type": "branch",
+                "children": [
+                  {
+                    "code": "CS2005",
+                    "type": "leaf",
+                    "children": []
+                  },
+                  {
+                    "code": "CS2006",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "CS1004": {
+      "name": "Object Oriented Programming",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1002"
+      ],
+      "postreqs_immediate": [
+        "CS2001"
+      ],
+      "full_prereq_chain": [
+        "CS1002"
+      ],
+      "full_unlock_tree": [
+        "CS2001",
+        "CS2005",
+        "CS2006"
+      ],
+      "visual_tree": {
+        "code": "CS1004",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS2001",
+            "type": "branch",
+            "children": [
+              {
+                "code": "CS2005",
+                "type": "leaf",
+                "children": []
+              },
+              {
+                "code": "CS2006",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MT1003": {
+      "name": "Calculus and Analytical Geometry",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MT2008"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MT2008"
+      ],
+      "visual_tree": {
+        "code": "MT1003",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MT2008",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "EE1005": {
+      "name": "Digital Logic Design",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "EE2003"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "EE2003"
+      ],
+      "visual_tree": {
+        "code": "EE1005",
+        "type": "chain",
+        "children": [
+          {
+            "code": "EE2003",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MT2008": {
+      "name": "Multivariable Calculus",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1003"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MT1003"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MT2008",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE2003": {
+      "name": "Computer Organization and Assembly Language",
+      "credits": 3,
+      "prereqs_immediate": [
+        "EE1005"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "EE1005"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE2003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS2001": {
+      "name": "Data Structures",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1004"
+      ],
+      "postreqs_immediate": [
+        "CS2005",
+        "CS2006"
+      ],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004"
+      ],
+      "full_unlock_tree": [
+        "CS2005",
+        "CS2006"
+      ],
+      "visual_tree": {
+        "code": "CS2001",
+        "type": "branch",
+        "children": [
+          {
+            "code": "CS2005",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "CS2006",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CS2005": {
+      "name": "Database Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS2005",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS2006": {
+      "name": "Operating Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS2006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CY2004": {
+      "name": "Cyber Security Fundamentals",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CY3001",
+        "CY3006"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CY3001",
+        "CY3006"
+      ],
+      "visual_tree": {
+        "code": "CY2004",
+        "type": "branch",
+        "children": [
+          {
+            "code": "CY3001",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "CY3006",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CS3001": {
+      "name": "Computer Networks",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [
+        "CY3001"
+      ],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001"
+      ],
+      "full_unlock_tree": [
+        "CY3001"
+      ],
+      "visual_tree": {
+        "code": "CS3001",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CY3001",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CY3001": {
+      "name": "Network Security",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS3001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001",
+        "CS3001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CY3001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CY3006": {
+      "name": "Digital Forensics",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CY2004"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CY2004"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CY3006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS3009": {
+      "name": "Software Engineering",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CY4001"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CY4001"
+      ],
+      "visual_tree": {
+        "code": "CS3009",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CY4001",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CY4001": {
+      "name": "Secure Software Design and Development",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS3009"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS3009"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CY4001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS3006": {
+      "name": "Parallel and Distributed Computing",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2006"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS2001",
+        "CS2006"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS3006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CY4091": {
+      "name": "Final Year Project - I",
+      "credits": 0,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CY4092"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CY4092"
+      ],
+      "visual_tree": {
+        "code": "CY4091",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CY4092",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CY4092": {
+      "name": "Final Year Project - II",
+      "credits": 0,
+      "prereqs_immediate": [
+        "CY4091"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CY4091"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CY4092",
+        "type": "leaf",
+        "children": []
+      }
+    }
+  },
+  "CE": {
+    "CS1009": {
+      "name": "Applications of ICT",
+      "credits": 2,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CS1002"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CS1002",
+        "CS1004",
+        "CS2002",
+        "EE3002"
+      ],
+      "visual_tree": {
+        "code": "CS1009",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS1002",
+            "type": "chain",
+            "children": [
+              {
+                "code": "CS1004",
+                "type": "branch",
+                "children": [
+                  {
+                    "code": "CS2002",
+                    "type": "leaf",
+                    "children": []
+                  },
+                  {
+                    "code": "EE3002",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "CS1002": {
+      "name": "Programming Fundamentals",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1009"
+      ],
+      "postreqs_immediate": [
+        "CS1004"
+      ],
+      "full_prereq_chain": [
+        "CS1009"
+      ],
+      "full_unlock_tree": [
+        "CS1004",
+        "CS2002",
+        "EE3002"
+      ],
+      "visual_tree": {
+        "code": "CS1002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS1004",
+            "type": "branch",
+            "children": [
+              {
+                "code": "CS2002",
+                "type": "leaf",
+                "children": []
+              },
+              {
+                "code": "EE3002",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "CS1004": {
+      "name": "Object Oriented Programming",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1002"
+      ],
+      "postreqs_immediate": [
+        "CS2002",
+        "EE3002"
+      ],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1009"
+      ],
+      "full_unlock_tree": [
+        "CS2002",
+        "EE3002"
+      ],
+      "visual_tree": {
+        "code": "CS1004",
+        "type": "branch",
+        "children": [
+          {
+            "code": "CS2002",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "EE3002",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MT1001": {
+      "name": "Applied Calculus",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MT1006"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "EE2008",
+        "EE3031",
+        "MT1006",
+        "MT2003"
+      ],
+      "visual_tree": {
+        "code": "MT1001",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MT1006",
+            "type": "chain",
+            "children": [
+              {
+                "code": "MT2003",
+                "type": "chain",
+                "children": [
+                  {
+                    "code": "EE2008",
+                    "type": "chain",
+                    "children": [
+                      {
+                        "code": "EE3031",
+                        "type": "leaf",
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MT1006": {
+      "name": "Differential Equations",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1001"
+      ],
+      "postreqs_immediate": [
+        "MT2003"
+      ],
+      "full_prereq_chain": [
+        "MT1001"
+      ],
+      "full_unlock_tree": [
+        "EE2008",
+        "EE3031",
+        "MT2003"
+      ],
+      "visual_tree": {
+        "code": "MT1006",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MT2003",
+            "type": "chain",
+            "children": [
+              {
+                "code": "EE2008",
+                "type": "chain",
+                "children": [
+                  {
+                    "code": "EE3031",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MT1004": {
+      "name": "Linear Algebra",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MT1001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MT1004",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MT2003": {
+      "name": "Complex Variables and Transforms",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1006"
+      ],
+      "postreqs_immediate": [
+        "EE2008"
+      ],
+      "full_prereq_chain": [
+        "MT1001",
+        "MT1006"
+      ],
+      "full_unlock_tree": [
+        "EE2008",
+        "EE3031"
+      ],
+      "visual_tree": {
+        "code": "MT2003",
+        "type": "chain",
+        "children": [
+          {
+            "code": "EE2008",
+            "type": "chain",
+            "children": [
+              {
+                "code": "EE3031",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "EE1001": {
+      "name": "Linear Circuit Analysis",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "EE1004",
+        "EE2004"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "EE1004",
+        "EE2004"
+      ],
+      "visual_tree": {
+        "code": "EE1001",
+        "type": "branch",
+        "children": [
+          {
+            "code": "EE1004",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "EE2004",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "EE1004": {
+      "name": "Electronic Devices and Circuits",
+      "credits": 3,
+      "prereqs_immediate": [
+        "EE1001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "EE1001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE1004",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE2004": {
+      "name": "Electrical Network Analysis",
+      "credits": 3,
+      "prereqs_immediate": [
+        "EE1001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "EE1001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE2004",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE1002": {
+      "name": "Basic Electrical Engineering",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "EE2003"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "EE2003",
+        "EE3002"
+      ],
+      "visual_tree": {
+        "code": "EE1002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "EE2003",
+            "type": "chain",
+            "children": [
+              {
+                "code": "EE3002",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "EE2003": {
+      "name": "Computer Organization and Architecture",
+      "credits": 3,
+      "prereqs_immediate": [
+        "EE1002"
+      ],
+      "postreqs_immediate": [
+        "EE3002"
+      ],
+      "full_prereq_chain": [
+        "EE1002"
+      ],
+      "full_unlock_tree": [
+        "EE3002"
+      ],
+      "visual_tree": {
+        "code": "EE2003",
+        "type": "chain",
+        "children": [
+          {
+            "code": "EE3002",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "EE2008": {
+      "name": "Signals and Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT2003"
+      ],
+      "postreqs_immediate": [
+        "EE3031"
+      ],
+      "full_prereq_chain": [
+        "MT1001",
+        "MT1006",
+        "MT2003"
+      ],
+      "full_unlock_tree": [
+        "EE3031"
+      ],
+      "visual_tree": {
+        "code": "EE2008",
+        "type": "chain",
+        "children": [
+          {
+            "code": "EE3031",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "EE1005": {
+      "name": "Digital Logic Design",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "EE3002",
+        "EE3033"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "EE3002",
+        "EE3033"
+      ],
+      "visual_tree": {
+        "code": "EE1005",
+        "type": "branch",
+        "children": [
+          {
+            "code": "EE3002",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "EE3033",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CS2002": {
+      "name": "Data Structures and Algorithms",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1002"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1009"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS2002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS2005": {
+      "name": "Database Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS2005",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS2006": {
+      "name": "Operating Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2002"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1009",
+        "CS2002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS2006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE3002": {
+      "name": "Microprocessor Interfacing and Programming",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1004",
+        "EE1005"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1002",
+        "CS1004",
+        "CS1009",
+        "EE1005"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE3002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE3031": {
+      "name": "Digital Signal Processing",
+      "credits": 3,
+      "prereqs_immediate": [
+        "EE2008"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "EE2008",
+        "MT1001",
+        "MT1006",
+        "MT2003"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE3031",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE3033": {
+      "name": "Digital Design",
+      "credits": 3,
+      "prereqs_immediate": [
+        "EE1005"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "EE1005"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE3033",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE2007": {
+      "name": "Data Communication and Networks",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE2007",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE4091": {
+      "name": "Final Year Project - I",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "EE4092"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "EE4092"
+      ],
+      "visual_tree": {
+        "code": "EE4091",
+        "type": "chain",
+        "children": [
+          {
+            "code": "EE4092",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "EE4092": {
+      "name": "Final Year Project - II",
+      "credits": 3,
+      "prereqs_immediate": [
+        "EE4091"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "EE4091"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE4092",
+        "type": "leaf",
+        "children": []
+      }
+    }
+  },
+  "EE": {
+    "CS1009": {
+      "name": "Applications of ICT",
+      "credits": 2,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CS1011"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CS1011",
+        "CS2021"
+      ],
+      "visual_tree": {
+        "code": "CS1009",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS1011",
+            "type": "chain",
+            "children": [
+              {
+                "code": "CS2021",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "CS1011": {
+      "name": "Programming for Engineers",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1009"
+      ],
+      "postreqs_immediate": [
+        "CS2021"
+      ],
+      "full_prereq_chain": [
+        "CS1009"
+      ],
+      "full_unlock_tree": [
+        "CS2021"
+      ],
+      "visual_tree": {
+        "code": "CS1011",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS2021",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MT1001": {
+      "name": "Applied Calculus",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MT1006",
+        "MT1004"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "EE3005",
+        "MT1004",
+        "MT1006",
+        "MT2003",
+        "MT2008"
+      ],
+      "visual_tree": {
+        "code": "MT1001",
+        "type": "branch",
+        "children": [
+          {
+            "code": "MT1006",
+            "type": "branch",
+            "children": [
+              {
+                "code": "MT2003",
+                "type": "chain",
+                "children": [
+                  {
+                    "code": "EE3005",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "code": "MT2008",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "MT1004",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MT1006": {
+      "name": "Differential Equations",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1001"
+      ],
+      "postreqs_immediate": [
+        "MT2003",
+        "MT2008"
+      ],
+      "full_prereq_chain": [
+        "MT1001"
+      ],
+      "full_unlock_tree": [
+        "EE3005",
+        "MT2003",
+        "MT2008"
+      ],
+      "visual_tree": {
+        "code": "MT1006",
+        "type": "branch",
+        "children": [
+          {
+            "code": "MT2003",
+            "type": "chain",
+            "children": [
+              {
+                "code": "EE3005",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "MT2008",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MT1004": {
+      "name": "Linear Algebra",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MT1001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MT1004",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MT2003": {
+      "name": "Complex Variables and Transforms",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1006"
+      ],
+      "postreqs_immediate": [
+        "EE3005"
+      ],
+      "full_prereq_chain": [
+        "MT1001",
+        "MT1006"
+      ],
+      "full_unlock_tree": [
+        "EE3005"
+      ],
+      "visual_tree": {
+        "code": "MT2003",
+        "type": "chain",
+        "children": [
+          {
+            "code": "EE3005",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MT2008": {
+      "name": "Multivariable Calculus",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1006"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MT1001",
+        "MT1006"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MT2008",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE1001": {
+      "name": "Linear Circuit Analysis",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "EE1004",
+        "EE2004"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "EE1004",
+        "EE2004",
+        "EE3003"
+      ],
+      "visual_tree": {
+        "code": "EE1001",
+        "type": "branch",
+        "children": [
+          {
+            "code": "EE1004",
+            "type": "chain",
+            "children": [
+              {
+                "code": "EE3003",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "EE2004",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "EE1004": {
+      "name": "Electronic Devices and Circuits",
+      "credits": 3,
+      "prereqs_immediate": [
+        "EE1001"
+      ],
+      "postreqs_immediate": [
+        "EE3003"
+      ],
+      "full_prereq_chain": [
+        "EE1001"
+      ],
+      "full_unlock_tree": [
+        "EE3003"
+      ],
+      "visual_tree": {
+        "code": "EE1004",
+        "type": "chain",
+        "children": [
+          {
+            "code": "EE3003",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "EE2004": {
+      "name": "Electrical Network Analysis",
+      "credits": 3,
+      "prereqs_immediate": [
+        "EE1001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "EE1001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE2004",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE1005": {
+      "name": "Digital Logic Design",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "EE3002"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "EE3002"
+      ],
+      "visual_tree": {
+        "code": "EE1005",
+        "type": "chain",
+        "children": [
+          {
+            "code": "EE3002",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CS2021": {
+      "name": "Object Oriented Data Structures",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1011"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1009",
+        "CS1011"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS2021",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE2008": {
+      "name": "Signals and Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT2003"
+      ],
+      "postreqs_immediate": [
+        "EE3004",
+        "EE3003",
+        "EE3005"
+      ],
+      "full_prereq_chain": [
+        "MT1001",
+        "MT1006",
+        "MT2003"
+      ],
+      "full_unlock_tree": [
+        "EE3003",
+        "EE3004",
+        "EE3005"
+      ],
+      "visual_tree": {
+        "code": "EE2008",
+        "type": "branch",
+        "children": [
+          {
+            "code": "EE3004",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "EE3003",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "EE3005",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "EE2010": {
+      "name": "Electro-Mechanical Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "NS1002",
+        "EE2004"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "EE1001",
+        "EE2004",
+        "NS1002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE2010",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE2011": {
+      "name": "Instrumentation and Measurement",
+      "credits": 3,
+      "prereqs_immediate": [
+        "EE2008"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "EE2008",
+        "MT1001",
+        "MT1006",
+        "MT2003"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE2011",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE3002": {
+      "name": "Microprocessor Interfacing and Programming",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1004",
+        "EE1005"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1004",
+        "EE1005"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE3002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE3003": {
+      "name": "Analogue and Digital Communication",
+      "credits": 3,
+      "prereqs_immediate": [
+        "EE2011",
+        "EE2008"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "EE2008",
+        "EE2011",
+        "MT1001",
+        "MT1006",
+        "MT2003"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE3003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE3004": {
+      "name": "Feedback Control Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "EE2008"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "EE2008",
+        "MT1001",
+        "MT1006",
+        "MT2003"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE3004",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE3005": {
+      "name": "Electromagnetic Theory",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT2008"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MT1001",
+        "MT1006",
+        "MT2008"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE3005",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE2038": {
+      "name": "Power Distribution and Utilization",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE2038",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "EE4091": {
+      "name": "Final Year Project - I",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "EE4092"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "EE4092"
+      ],
+      "visual_tree": {
+        "code": "EE4091",
+        "type": "chain",
+        "children": [
+          {
+            "code": "EE4092",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "EE4092": {
+      "name": "Final Year Project - II",
+      "credits": 0,
+      "prereqs_immediate": [
+        "EE4091"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "EE4091"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "EE4092",
+        "type": "leaf",
+        "children": []
+      }
+    }
+  },
+  "CV": {
+    "CV1001": {
+      "name": "Civil Engineering Materials",
+      "credits": 2,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CV1001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CV1002": {
+      "name": "Engineering Drawing",
+      "credits": 1,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CV2009"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CV2009"
+      ],
+      "visual_tree": {
+        "code": "CV1002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CV2009",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CV1003": {
+      "name": "Engineering Surveying",
+      "credits": 2,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CV2001"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CV2001"
+      ],
+      "visual_tree": {
+        "code": "CV1003",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CV2001",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MT2007": {
+      "name": "Numerical Analysis",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MT2007",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CV2001": {
+      "name": "Advanced Engineering Surveying",
+      "credits": 2,
+      "prereqs_immediate": [
+        "CV1003"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CV1003"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CV2001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CV2002": {
+      "name": "Fluid Mechanics",
+      "credits": 2,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CV3001",
+        "CV4009"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CV3001",
+        "CV4009",
+        "CV4011"
+      ],
+      "visual_tree": {
+        "code": "CV2002",
+        "type": "branch",
+        "children": [
+          {
+            "code": "CV3001",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "CV4009",
+            "type": "chain",
+            "children": [
+              {
+                "code": "CV4011",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "CV2003": {
+      "name": "Soil Mechanics",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CV3002",
+        "CV2005"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CV2005",
+        "CV2006",
+        "CV2009",
+        "CV3002",
+        "CV3007",
+        "CV3008",
+        "CV4003",
+        "CV4010"
+      ],
+      "visual_tree": {
+        "code": "CV2003",
+        "type": "branch",
+        "children": [
+          {
+            "code": "CV3002",
+            "type": "chain",
+            "children": [
+              {
+                "code": "CV4003",
+                "type": "chain",
+                "children": [
+                  {
+                    "code": "CV4010",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "code": "CV2005",
+            "type": "branch",
+            "children": [
+              {
+                "code": "CV2006",
+                "type": "branch",
+                "children": [
+                  {
+                    "code": "CV3008",
+                    "type": "leaf",
+                    "children": []
+                  },
+                  {
+                    "code": "CV2009",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "code": "CV3007",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "CV2005": {
+      "name": "Mechanics of Solids-I",
+      "credits": 2,
+      "prereqs_immediate": [
+        "NS1004"
+      ],
+      "postreqs_immediate": [
+        "CV2006",
+        "CV3007"
+      ],
+      "full_prereq_chain": [
+        "NS1004"
+      ],
+      "full_unlock_tree": [
+        "CV2006",
+        "CV2009",
+        "CV3007",
+        "CV3008"
+      ],
+      "visual_tree": {
+        "code": "CV2005",
+        "type": "branch",
+        "children": [
+          {
+            "code": "CV2006",
+            "type": "branch",
+            "children": [
+              {
+                "code": "CV3008",
+                "type": "leaf",
+                "children": []
+              },
+              {
+                "code": "CV2009",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "CV3007",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CV2006": {
+      "name": "Structural Analysis-I",
+      "credits": 3,
+      "prereqs_immediate": [
+        "NS1004"
+      ],
+      "postreqs_immediate": [
+        "CV3008",
+        "CV2009"
+      ],
+      "full_prereq_chain": [
+        "NS1004"
+      ],
+      "full_unlock_tree": [
+        "CV2009",
+        "CV3008"
+      ],
+      "visual_tree": {
+        "code": "CV2006",
+        "type": "branch",
+        "children": [
+          {
+            "code": "CV3008",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "CV2009",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CV2009": {
+      "name": "Civil Engineering Graphics and Construction",
+      "credits": 1,
+      "prereqs_immediate": [
+        "CV1002"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CV1002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CV2009",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CV2010": {
+      "name": "Quantity and Cost Estimation",
+      "credits": 1,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CV2010",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CV3001": {
+      "name": "Advanced Fluid Mechanics",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CV2002"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CV2002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CV3001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CV3002": {
+      "name": "Reinforced Concrete Design-I",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CV2005"
+      ],
+      "postreqs_immediate": [
+        "CV4003"
+      ],
+      "full_prereq_chain": [
+        "CV2005",
+        "NS1004"
+      ],
+      "full_unlock_tree": [
+        "CV4003",
+        "CV4010"
+      ],
+      "visual_tree": {
+        "code": "CV3002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CV4003",
+            "type": "chain",
+            "children": [
+              {
+                "code": "CV4010",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "CV3006": {
+      "name": "Environmental Engineering - I",
+      "credits": 2,
+      "prereqs_immediate": [
+        "CV2002"
+      ],
+      "postreqs_immediate": [
+        "CV4001"
+      ],
+      "full_prereq_chain": [
+        "CV2002"
+      ],
+      "full_unlock_tree": [
+        "CV4001"
+      ],
+      "visual_tree": {
+        "code": "CV3006",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CV4001",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CV3007": {
+      "name": "Mechanics of Solids-II",
+      "credits": 2,
+      "prereqs_immediate": [
+        "CV2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CV1003",
+        "CV2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CV3007",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CV3008": {
+      "name": "Structural Analysis-II",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CV2006"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CV2006",
+        "NS1004"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CV3008",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CV4001": {
+      "name": "Environmental Engineering - II",
+      "credits": 2,
+      "prereqs_immediate": [
+        "CV3006"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CV2002",
+        "CV3006"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CV4001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CV4003": {
+      "name": "Reinforced Concrete Design-II",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CV3002"
+      ],
+      "postreqs_immediate": [
+        "CV4010"
+      ],
+      "full_prereq_chain": [
+        "CV2005",
+        "CV3002",
+        "NS1004"
+      ],
+      "full_unlock_tree": [
+        "CV4010"
+      ],
+      "visual_tree": {
+        "code": "CV4003",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CV4010",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CV4004": {
+      "name": "Transportation Planning and Engineering",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CV2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CV1003",
+        "CV2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CV4004",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CV4005": {
+      "name": "Steel Structures",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CV2005"
+      ],
+      "postreqs_immediate": [
+        "CV4010"
+      ],
+      "full_prereq_chain": [
+        "CV2005",
+        "NS1004"
+      ],
+      "full_unlock_tree": [
+        "CV4010"
+      ],
+      "visual_tree": {
+        "code": "CV4005",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CV4010",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CV4008": {
+      "name": "Fundamentals of Dynamics and its Applications",
+      "credits": 2,
+      "prereqs_immediate": [
+        "CV2006"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CV2006",
+        "NS1004"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CV4008",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CV4009": {
+      "name": "Hydraulic Engineering",
+      "credits": 2,
+      "prereqs_immediate": [
+        "CV2002"
+      ],
+      "postreqs_immediate": [
+        "CV4011"
+      ],
+      "full_prereq_chain": [
+        "CV2002"
+      ],
+      "full_unlock_tree": [
+        "CV4011"
+      ],
+      "visual_tree": {
+        "code": "CV4009",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CV4011",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CV4010": {
+      "name": "Design of Structures",
+      "credits": 1,
+      "prereqs_immediate": [
+        "CV4005",
+        "CV3002"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CV2005",
+        "CV3002",
+        "CV4005",
+        "NS1004"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CV4010",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CV4011": {
+      "name": "Irrigation and Drainage Engineering",
+      "credits": 2,
+      "prereqs_immediate": [
+        "CV3009"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CV3009"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CV4011",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CV4091": {
+      "name": "Final Year Design Project - I",
+      "credits": 0,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CV4092"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CV4092"
+      ],
+      "visual_tree": {
+        "code": "CV4091",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CV4092",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CV4092": {
+      "name": "Final Year Design Project - II",
+      "credits": 0,
+      "prereqs_immediate": [
+        "CV4091"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CV4091"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CV4092",
+        "type": "leaf",
+        "children": []
+      }
+    }
+  },
+  "BBA": {
+    "AF1001": {
+      "name": "Fundamentals of Accounting",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "AF1002"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "AF1002",
+        "AF2003",
+        "AF2004",
+        "AF3001"
+      ],
+      "visual_tree": {
+        "code": "AF1001",
+        "type": "chain",
+        "children": [
+          {
+            "code": "AF1002",
+            "type": "branch",
+            "children": [
+              {
+                "code": "AF2003",
+                "type": "leaf",
+                "children": []
+              },
+              {
+                "code": "AF2004",
+                "type": "chain",
+                "children": [
+                  {
+                    "code": "AF3001",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "code": "AF3001",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "AF1002": {
+      "name": "Financial Accounting",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF1001"
+      ],
+      "postreqs_immediate": [
+        "AF2003",
+        "AF2004",
+        "AF3001"
+      ],
+      "full_prereq_chain": [
+        "AF1001"
+      ],
+      "full_unlock_tree": [
+        "AF2003",
+        "AF2004",
+        "AF3001"
+      ],
+      "visual_tree": {
+        "code": "AF1002",
+        "type": "branch",
+        "children": [
+          {
+            "code": "AF2003",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "AF2004",
+            "type": "chain",
+            "children": [
+              {
+                "code": "AF3001",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "AF3001",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MT1002": {
+      "name": "Business Math - I",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MT2004"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MG3003",
+        "MT2004"
+      ],
+      "visual_tree": {
+        "code": "MT1002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MT2004",
+            "type": "chain",
+            "children": [
+              {
+                "code": "MG3003",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MT2004": {
+      "name": "Business Math - II",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1002"
+      ],
+      "postreqs_immediate": [
+        "MG3003"
+      ],
+      "full_prereq_chain": [
+        "MT1002"
+      ],
+      "full_unlock_tree": [
+        "MG3003"
+      ],
+      "visual_tree": {
+        "code": "MT2004",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MG3003",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MG1001": {
+      "name": "Fundamentals of Management",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MG2001",
+        "MG3004"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MG2001",
+        "MG3004"
+      ],
+      "visual_tree": {
+        "code": "MG1001",
+        "type": "branch",
+        "children": [
+          {
+            "code": "MG2001",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "MG3004",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MG1002": {
+      "name": "Marketing Management",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MG2003",
+        "MG3038"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MG2003",
+        "MG3038"
+      ],
+      "visual_tree": {
+        "code": "MG1002",
+        "type": "branch",
+        "children": [
+          {
+            "code": "MG2003",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "MG3038",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "SS1016": {
+      "name": "English - I",
+      "credits": 2,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "SS1006"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "SS1006"
+      ],
+      "visual_tree": {
+        "code": "SS1016",
+        "type": "chain",
+        "children": [
+          {
+            "code": "SS1006",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "SS1006": {
+      "name": "English - II",
+      "credits": 3,
+      "prereqs_immediate": [
+        "SS1016"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "SS1016"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "SS1006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS1001": {
+      "name": "IT in Business",
+      "credits": 2,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS1001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG2001": {
+      "name": "Organizational Behaviour",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG1001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MG1001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG2001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG2003": {
+      "name": "Consumer Behaviour",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG1002"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MG1002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG2003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG2008": {
+      "name": "Data Analysis for Business I",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MG2009"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MG2009"
+      ],
+      "visual_tree": {
+        "code": "MG2008",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MG2009",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MG2009": {
+      "name": "Data Analysis for Business II",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG2008"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MG2008"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG2009",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG2010": {
+      "name": "Business Communication",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MG3014"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MG3014"
+      ],
+      "visual_tree": {
+        "code": "MG2010",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MG3014",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "AF2003": {
+      "name": "Management Accounting",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF1002"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AF2003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF2004": {
+      "name": "Business Finance",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF1002",
+        "MT1002"
+      ],
+      "postreqs_immediate": [
+        "AF3001"
+      ],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002",
+        "MT1002"
+      ],
+      "full_unlock_tree": [
+        "AF3001"
+      ],
+      "visual_tree": {
+        "code": "AF2004",
+        "type": "chain",
+        "children": [
+          {
+            "code": "AF3001",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MG3003": {
+      "name": "Basic Econometrics",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG2009"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MG2008",
+        "MG2009"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG3003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG3004": {
+      "name": "Human Resource Management",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG1001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MG1001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG3004",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG3006": {
+      "name": "Operations Management",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1002"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MT1002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG3006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG3014": {
+      "name": "Advanced Business Communication",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG2010"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MG2010"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG3014",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS3003": {
+      "name": "Management Information Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS1001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS1001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS3003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF3001": {
+      "name": "Financial Management",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF2004"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002",
+        "AF2004",
+        "MT1002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AF3001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG3038": {
+      "name": "Digital Media Marketing",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG1002"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MG1002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG3038",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "BA2006": {
+      "name": "Fundamentals of Business Analytics",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG2009",
+        "CS2016"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS2016",
+        "MG2008",
+        "MG2009"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "BA2006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG3010": {
+      "name": "Methods in Business Research",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG3010",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG4003": {
+      "name": "Strategic Management",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG1001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MG1001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG4003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG4091": {
+      "name": "Final Year Project - I",
+      "credits": 0,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MG4092"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MG4092"
+      ],
+      "visual_tree": {
+        "code": "MG4091",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MG4092",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MG4092": {
+      "name": "Final Year Project - II",
+      "credits": 0,
+      "prereqs_immediate": [
+        "MG4091"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MG4091"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG4092",
+        "type": "leaf",
+        "children": []
+      }
+    }
+  },
+  "AF": {
+    "CS1001": {
+      "name": "IT in Business",
+      "credits": 2,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS1001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF1001": {
+      "name": "Fundamentals of Accounting",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "AF1002"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "AF1002",
+        "AF2001",
+        "AF2002",
+        "AF2003",
+        "AF2004",
+        "AF3001",
+        "AF3002",
+        "AF4006",
+        "MG4527"
+      ],
+      "visual_tree": {
+        "code": "AF1001",
+        "type": "chain",
+        "children": [
+          {
+            "code": "AF1002",
+            "type": "branch",
+            "children": [
+              {
+                "code": "AF2001",
+                "type": "chain",
+                "children": [
+                  {
+                    "code": "AF2002",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "code": "AF2003",
+                "type": "leaf",
+                "children": []
+              },
+              {
+                "code": "AF2004",
+                "type": "branch",
+                "children": [
+                  {
+                    "code": "AF3001",
+                    "type": "branch",
+                    "children": [
+                      {
+                        "code": "AF4006",
+                        "type": "leaf",
+                        "children": []
+                      },
+                      {
+                        "code": "MG4527",
+                        "type": "leaf",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "code": "AF3002",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "code": "AF3002",
+                "type": "leaf",
+                "children": []
+              },
+              {
+                "code": "AF4006",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "AF1002": {
+      "name": "Financial Accounting",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF1001"
+      ],
+      "postreqs_immediate": [
+        "AF2001",
+        "AF2003",
+        "AF2004",
+        "AF3002",
+        "AF4006"
+      ],
+      "full_prereq_chain": [
+        "AF1001"
+      ],
+      "full_unlock_tree": [
+        "AF2001",
+        "AF2002",
+        "AF2003",
+        "AF2004",
+        "AF3001",
+        "AF3002",
+        "AF4006",
+        "MG4527"
+      ],
+      "visual_tree": {
+        "code": "AF1002",
+        "type": "branch",
+        "children": [
+          {
+            "code": "AF2001",
+            "type": "chain",
+            "children": [
+              {
+                "code": "AF2002",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "AF2003",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "AF2004",
+            "type": "branch",
+            "children": [
+              {
+                "code": "AF3001",
+                "type": "branch",
+                "children": [
+                  {
+                    "code": "AF4006",
+                    "type": "leaf",
+                    "children": []
+                  },
+                  {
+                    "code": "MG4527",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "code": "AF3002",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "AF3002",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "AF4006",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MT1002": {
+      "name": "Business Math - I",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MT2004"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MG3003",
+        "MT2004"
+      ],
+      "visual_tree": {
+        "code": "MT1002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MT2004",
+            "type": "chain",
+            "children": [
+              {
+                "code": "MG3003",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MT2004": {
+      "name": "Business Math - II",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1002"
+      ],
+      "postreqs_immediate": [
+        "MG3003"
+      ],
+      "full_prereq_chain": [
+        "MT1002"
+      ],
+      "full_unlock_tree": [
+        "MG3003"
+      ],
+      "visual_tree": {
+        "code": "MT2004",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MG3003",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MG1002": {
+      "name": "Marketing Management",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG1002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "SS1016": {
+      "name": "English - I",
+      "credits": 2,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "SS1006"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "SS1006"
+      ],
+      "visual_tree": {
+        "code": "SS1016",
+        "type": "chain",
+        "children": [
+          {
+            "code": "SS1006",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "SS1006": {
+      "name": "English - II",
+      "credits": 3,
+      "prereqs_immediate": [
+        "SS1016"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "SS1016"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "SS1006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG2008": {
+      "name": "Data Analysis for Business - I",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MG2009"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MG2009",
+        "MG3003"
+      ],
+      "visual_tree": {
+        "code": "MG2008",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MG2009",
+            "type": "chain",
+            "children": [
+              {
+                "code": "MG3003",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MG2009": {
+      "name": "Data Analysis for Business - II",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG2008"
+      ],
+      "postreqs_immediate": [
+        "MG3003"
+      ],
+      "full_prereq_chain": [
+        "MG2008"
+      ],
+      "full_unlock_tree": [
+        "MG3003"
+      ],
+      "visual_tree": {
+        "code": "MG2009",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MG3003",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "AF2001": {
+      "name": "Corporate Accounting - I",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF1002"
+      ],
+      "postreqs_immediate": [
+        "AF2002"
+      ],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002"
+      ],
+      "full_unlock_tree": [
+        "AF2002"
+      ],
+      "visual_tree": {
+        "code": "AF2001",
+        "type": "chain",
+        "children": [
+          {
+            "code": "AF2002",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "AF2002": {
+      "name": "Corporate Accounting - II",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF2001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002",
+        "AF2001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AF2002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF2003": {
+      "name": "Management Accounting",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF1002"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AF2003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF2004": {
+      "name": "Business Finance",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF1002",
+        "MT1002"
+      ],
+      "postreqs_immediate": [
+        "AF3001",
+        "AF3002"
+      ],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002",
+        "MT1002"
+      ],
+      "full_unlock_tree": [
+        "AF3001",
+        "AF3002",
+        "AF4006",
+        "MG4527"
+      ],
+      "visual_tree": {
+        "code": "AF2004",
+        "type": "branch",
+        "children": [
+          {
+            "code": "AF3001",
+            "type": "branch",
+            "children": [
+              {
+                "code": "AF4006",
+                "type": "leaf",
+                "children": []
+              },
+              {
+                "code": "MG4527",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "AF3002",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "AF2005": {
+      "name": "Cost and Management Accounting",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF1002"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AF2005",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG3003": {
+      "name": "Basic Econometrics",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG2009"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MG2008",
+        "MG2009"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG3003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF3001": {
+      "name": "Financial Management",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF2004"
+      ],
+      "postreqs_immediate": [
+        "AF4006",
+        "MG4527"
+      ],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002",
+        "AF2004",
+        "MT1002"
+      ],
+      "full_unlock_tree": [
+        "AF4006",
+        "MG4527"
+      ],
+      "visual_tree": {
+        "code": "AF3001",
+        "type": "branch",
+        "children": [
+          {
+            "code": "AF4006",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "MG4527",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "AF3002": {
+      "name": "Financial Statement Analysis",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF1002"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AF3002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF3004": {
+      "name": "Accounting for Decision Making",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF2005"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002",
+        "AF2005"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AF3004",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF4005": {
+      "name": "Audit and Assurance",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF1002"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AF4005",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF4006": {
+      "name": "Investment Analysis and Management",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF3001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002",
+        "AF2004",
+        "AF3001",
+        "MT1002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AF4006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF4007": {
+      "name": "Financial Risk Management",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF3001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002",
+        "AF2004",
+        "AF3001",
+        "MT1002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AF4007",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG4527": {
+      "name": "Portfolio Management",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG4527",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF4091": {
+      "name": "Final Year Project - I",
+      "credits": 0,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "AF4092"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "AF4092"
+      ],
+      "visual_tree": {
+        "code": "AF4091",
+        "type": "chain",
+        "children": [
+          {
+            "code": "AF4092",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "AF4092": {
+      "name": "Final Year Project - II",
+      "credits": 0,
+      "prereqs_immediate": [
+        "AF4091"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AF4091"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AF4092",
+        "type": "leaf",
+        "children": []
+      }
+    }
+  },
+  "BA": {
+    "CS1001": {
+      "name": "IT in Business",
+      "credits": 2,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CS2016"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "BA2006",
+        "BA3001",
+        "BA4001",
+        "CS2003",
+        "CS2016"
+      ],
+      "visual_tree": {
+        "code": "CS1001",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS2016",
+            "type": "branch",
+            "children": [
+              {
+                "code": "BA2006",
+                "type": "branch",
+                "children": [
+                  {
+                    "code": "BA3001",
+                    "type": "leaf",
+                    "children": []
+                  },
+                  {
+                    "code": "BA4001",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "code": "CS2003",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "AF1001": {
+      "name": "Fundamentals of Accounting",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "AF1002"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "AF1002",
+        "AF2004",
+        "AF3001"
+      ],
+      "visual_tree": {
+        "code": "AF1001",
+        "type": "chain",
+        "children": [
+          {
+            "code": "AF1002",
+            "type": "chain",
+            "children": [
+              {
+                "code": "AF2004",
+                "type": "chain",
+                "children": [
+                  {
+                    "code": "AF3001",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "AF1002": {
+      "name": "Financial Accounting",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF1001"
+      ],
+      "postreqs_immediate": [
+        "AF2004"
+      ],
+      "full_prereq_chain": [
+        "AF1001"
+      ],
+      "full_unlock_tree": [
+        "AF2004",
+        "AF3001"
+      ],
+      "visual_tree": {
+        "code": "AF1002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "AF2004",
+            "type": "chain",
+            "children": [
+              {
+                "code": "AF3001",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MT1002": {
+      "name": "Business Math - I",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MT2004"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MG3003",
+        "MT2004"
+      ],
+      "visual_tree": {
+        "code": "MT1002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MT2004",
+            "type": "chain",
+            "children": [
+              {
+                "code": "MG3003",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MT2004": {
+      "name": "Business Math - II",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1002"
+      ],
+      "postreqs_immediate": [
+        "MG3003"
+      ],
+      "full_prereq_chain": [
+        "MT1002"
+      ],
+      "full_unlock_tree": [
+        "MG3003"
+      ],
+      "visual_tree": {
+        "code": "MT2004",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MG3003",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MG1001": {
+      "name": "Fundamentals of Management",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MG3004"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MG3004"
+      ],
+      "visual_tree": {
+        "code": "MG1001",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MG3004",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MG1002": {
+      "name": "Marketing Management",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MG2003"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MG2003"
+      ],
+      "visual_tree": {
+        "code": "MG1002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MG2003",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "SS1016": {
+      "name": "English - I",
+      "credits": 2,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "SS1006"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "SS1006"
+      ],
+      "visual_tree": {
+        "code": "SS1016",
+        "type": "chain",
+        "children": [
+          {
+            "code": "SS1006",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "SS1006": {
+      "name": "English - II",
+      "credits": 3,
+      "prereqs_immediate": [
+        "SS1016"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "SS1016"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "SS1006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG2008": {
+      "name": "Data Analysis for Business I",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MG2009"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "BA2006",
+        "BA3001",
+        "BA4001",
+        "MG2009",
+        "MG3003"
+      ],
+      "visual_tree": {
+        "code": "MG2008",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MG2009",
+            "type": "branch",
+            "children": [
+              {
+                "code": "BA2006",
+                "type": "branch",
+                "children": [
+                  {
+                    "code": "BA3001",
+                    "type": "leaf",
+                    "children": []
+                  },
+                  {
+                    "code": "BA4001",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "code": "MG3003",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MG2009": {
+      "name": "Data Analysis for Business II",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG2008"
+      ],
+      "postreqs_immediate": [
+        "BA2006",
+        "MG3003"
+      ],
+      "full_prereq_chain": [
+        "MG2008"
+      ],
+      "full_unlock_tree": [
+        "BA2006",
+        "BA3001",
+        "BA4001",
+        "MG3003"
+      ],
+      "visual_tree": {
+        "code": "MG2009",
+        "type": "branch",
+        "children": [
+          {
+            "code": "BA2006",
+            "type": "branch",
+            "children": [
+              {
+                "code": "BA3001",
+                "type": "leaf",
+                "children": []
+              },
+              {
+                "code": "BA4001",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "MG3003",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CS2016": {
+      "name": "Programming for Business",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "BA2006",
+        "CS2003"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "BA2006",
+        "BA3001",
+        "BA4001",
+        "CS2003"
+      ],
+      "visual_tree": {
+        "code": "CS2016",
+        "type": "branch",
+        "children": [
+          {
+            "code": "BA2006",
+            "type": "branch",
+            "children": [
+              {
+                "code": "BA3001",
+                "type": "leaf",
+                "children": []
+              },
+              {
+                "code": "BA4001",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "CS2003",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "AF2004": {
+      "name": "Business Finance",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF1002",
+        "MT1002"
+      ],
+      "postreqs_immediate": [
+        "AF3001"
+      ],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002",
+        "MT1002"
+      ],
+      "full_unlock_tree": [
+        "AF3001"
+      ],
+      "visual_tree": {
+        "code": "AF2004",
+        "type": "chain",
+        "children": [
+          {
+            "code": "AF3001",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MG2003": {
+      "name": "Consumer Behaviour",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG1002"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MG1002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG2003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "BA2006": {
+      "name": "Fundamentals of Business Analytics",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG2009",
+        "CS2016"
+      ],
+      "postreqs_immediate": [
+        "BA3001",
+        "BA4001"
+      ],
+      "full_prereq_chain": [
+        "CS2016",
+        "MG2008",
+        "MG2009"
+      ],
+      "full_unlock_tree": [
+        "BA3001",
+        "BA4001"
+      ],
+      "visual_tree": {
+        "code": "BA2006",
+        "type": "branch",
+        "children": [
+          {
+            "code": "BA3001",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "BA4001",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MG3003": {
+      "name": "Basic Econometrics",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG2009"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MG2008",
+        "MG2009"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG3003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG3004": {
+      "name": "Human Resource Management",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG1001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MG1001"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG3004",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF3001": {
+      "name": "Financial Management",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF2004"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002",
+        "AF2004",
+        "MT1002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AF3001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS2003": {
+      "name": "Data Structures and Business Application",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2016"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS2016"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS2003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "BA3001": {
+      "name": "Machine Learning for Business Analytics",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2003"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS2003",
+        "CS2016"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "BA3001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "BA3002": {
+      "name": "Business Data and Text Mining",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2003"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS2003",
+        "CS2016"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "BA3002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "BA3004": {
+      "name": "Database Systems for Business",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2016"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS2016"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "BA3004",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "BA4001": {
+      "name": "Decision Science for Business",
+      "credits": 3,
+      "prereqs_immediate": [
+        "BA2006"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "BA2006",
+        "CS2016",
+        "MG2008",
+        "MG2009"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "BA4001",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "BA4002": {
+      "name": "Predictive Analytics",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "BA4002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "BA4091": {
+      "name": "Final Year Project - I",
+      "credits": 0,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "BA4092"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "BA4092"
+      ],
+      "visual_tree": {
+        "code": "BA4091",
+        "type": "chain",
+        "children": [
+          {
+            "code": "BA4092",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "BA4092": {
+      "name": "Final Year Project - II",
+      "credits": 0,
+      "prereqs_immediate": [
+        "BA4091"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "BA4091"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "BA4092",
+        "type": "leaf",
+        "children": []
+      }
+    }
+  },
+  "FT": {
+    "CS1001": {
+      "name": "IT in Business",
+      "credits": 2,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CS2016"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CS2012",
+        "CS2013",
+        "CS2016",
+        "CS3010"
+      ],
+      "visual_tree": {
+        "code": "CS1001",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS2016",
+            "type": "branch",
+            "children": [
+              {
+                "code": "CS2012",
+                "type": "chain",
+                "children": [
+                  {
+                    "code": "CS2013",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "code": "CS3010",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "AF1001": {
+      "name": "Fundamentals of Accounting",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "AF1002"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "AF1002",
+        "AF2004",
+        "AF3001",
+        "AF3009",
+        "AF3010",
+        "AF4011",
+        "AF4012"
+      ],
+      "visual_tree": {
+        "code": "AF1001",
+        "type": "chain",
+        "children": [
+          {
+            "code": "AF1002",
+            "type": "chain",
+            "children": [
+              {
+                "code": "AF2004",
+                "type": "branch",
+                "children": [
+                  {
+                    "code": "AF3001",
+                    "type": "branch",
+                    "children": [
+                      {
+                        "code": "AF4011",
+                        "type": "leaf",
+                        "children": []
+                      },
+                      {
+                        "code": "AF4012",
+                        "type": "leaf",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "code": "AF3009",
+                    "type": "chain",
+                    "children": [
+                      {
+                        "code": "AF3010",
+                        "type": "leaf",
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "AF1002": {
+      "name": "Financial Accounting",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF1001"
+      ],
+      "postreqs_immediate": [
+        "AF2004"
+      ],
+      "full_prereq_chain": [
+        "AF1001"
+      ],
+      "full_unlock_tree": [
+        "AF2004",
+        "AF3001",
+        "AF3009",
+        "AF3010",
+        "AF4011",
+        "AF4012"
+      ],
+      "visual_tree": {
+        "code": "AF1002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "AF2004",
+            "type": "branch",
+            "children": [
+              {
+                "code": "AF3001",
+                "type": "branch",
+                "children": [
+                  {
+                    "code": "AF4011",
+                    "type": "leaf",
+                    "children": []
+                  },
+                  {
+                    "code": "AF4012",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "code": "AF3009",
+                "type": "chain",
+                "children": [
+                  {
+                    "code": "AF3010",
+                    "type": "leaf",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MT1002": {
+      "name": "Business Math - I",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MT2004"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MG3003",
+        "MT2004"
+      ],
+      "visual_tree": {
+        "code": "MT1002",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MT2004",
+            "type": "chain",
+            "children": [
+              {
+                "code": "MG3003",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MT2004": {
+      "name": "Business Math - II",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MT1002"
+      ],
+      "postreqs_immediate": [
+        "MG3003"
+      ],
+      "full_prereq_chain": [
+        "MT1002"
+      ],
+      "full_unlock_tree": [
+        "MG3003"
+      ],
+      "visual_tree": {
+        "code": "MT2004",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MG3003",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MG1002": {
+      "name": "Marketing Management",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG1002",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "SS1016": {
+      "name": "English - I",
+      "credits": 2,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "SS1006"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "SS1006"
+      ],
+      "visual_tree": {
+        "code": "SS1016",
+        "type": "chain",
+        "children": [
+          {
+            "code": "SS1006",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "SS1006": {
+      "name": "English - II",
+      "credits": 3,
+      "prereqs_immediate": [
+        "SS1016"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "SS1016"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "SS1006",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG2008": {
+      "name": "Data Analysis for Business - I",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MG2009"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MG2009",
+        "MG3003"
+      ],
+      "visual_tree": {
+        "code": "MG2008",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MG2009",
+            "type": "chain",
+            "children": [
+              {
+                "code": "MG3003",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MG2009": {
+      "name": "Data Analysis for Business - II",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG2008"
+      ],
+      "postreqs_immediate": [
+        "MG3003"
+      ],
+      "full_prereq_chain": [
+        "MG2008"
+      ],
+      "full_unlock_tree": [
+        "MG3003"
+      ],
+      "visual_tree": {
+        "code": "MG2009",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MG3003",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CS2016": {
+      "name": "Programming for Business",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "CS2012",
+        "CS3010"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "CS2012",
+        "CS2013",
+        "CS3010"
+      ],
+      "visual_tree": {
+        "code": "CS2016",
+        "type": "branch",
+        "children": [
+          {
+            "code": "CS2012",
+            "type": "chain",
+            "children": [
+              {
+                "code": "CS2013",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "CS3010",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "CS2012": {
+      "name": "Introduction to Object Oriented Programming",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2016"
+      ],
+      "postreqs_immediate": [
+        "CS2013"
+      ],
+      "full_prereq_chain": [
+        "CS2016"
+      ],
+      "full_unlock_tree": [
+        "CS2013"
+      ],
+      "visual_tree": {
+        "code": "CS2012",
+        "type": "chain",
+        "children": [
+          {
+            "code": "CS2013",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "AF2004": {
+      "name": "Business Finance",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF1002",
+        "MT1002"
+      ],
+      "postreqs_immediate": [
+        "AF3001",
+        "AF3009"
+      ],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002",
+        "MT1002"
+      ],
+      "full_unlock_tree": [
+        "AF3001",
+        "AF3009",
+        "AF3010",
+        "AF4011",
+        "AF4012"
+      ],
+      "visual_tree": {
+        "code": "AF2004",
+        "type": "branch",
+        "children": [
+          {
+            "code": "AF3001",
+            "type": "branch",
+            "children": [
+              {
+                "code": "AF4011",
+                "type": "leaf",
+                "children": []
+              },
+              {
+                "code": "AF4012",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          },
+          {
+            "code": "AF3009",
+            "type": "chain",
+            "children": [
+              {
+                "code": "AF3010",
+                "type": "leaf",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "MG3003": {
+      "name": "Basic Econometrics",
+      "credits": 3,
+      "prereqs_immediate": [
+        "MG2009"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MG2008",
+        "MG2009"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG3003",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF3001": {
+      "name": "Financial Management",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF2004"
+      ],
+      "postreqs_immediate": [
+        "AF4011",
+        "AF4012"
+      ],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002",
+        "AF2004",
+        "MT1002"
+      ],
+      "full_unlock_tree": [
+        "AF4011",
+        "AF4012"
+      ],
+      "visual_tree": {
+        "code": "AF3001",
+        "type": "branch",
+        "children": [
+          {
+            "code": "AF4011",
+            "type": "leaf",
+            "children": []
+          },
+          {
+            "code": "AF4012",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "AF3009": {
+      "name": "Banking and Financial Systems",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "AF3010"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "AF3010"
+      ],
+      "visual_tree": {
+        "code": "AF3009",
+        "type": "chain",
+        "children": [
+          {
+            "code": "AF3010",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MG3012": {
+      "name": "Blockchain Technology for Business",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG3012",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS2013": {
+      "name": "Introduction to Database Systems",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2012"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS2012",
+        "CS2016"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS2013",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS3010": {
+      "name": "Web Programming",
+      "credits": 3,
+      "prereqs_immediate": [
+        "CS2016"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "CS2016"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS3010",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF3010": {
+      "name": "Banking Instruments and Procedures",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF3009"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AF3009"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AF3010",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF3008": {
+      "name": "Business Research and Data Mining",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AF3008",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "CS3017": {
+      "name": "Enterprise Systems and Applications",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "CS3017",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF4011": {
+      "name": "Investment and Portfolio Analytics",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF3001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002",
+        "AF2004",
+        "AF3001",
+        "MT1002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AF4011",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF4012": {
+      "name": "Financial Risk Analytics and Derivatives",
+      "credits": 3,
+      "prereqs_immediate": [
+        "AF3001"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "AF1001",
+        "AF1002",
+        "AF2004",
+        "AF3001",
+        "MT1002"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AF4012",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "AF4013": {
+      "name": "Artificial Intelligence in Business Decision",
+      "credits": 3,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "AF4013",
+        "type": "leaf",
+        "children": []
+      }
+    },
+    "MG4091": {
+      "name": "Final Year Project - I",
+      "credits": 0,
+      "prereqs_immediate": [],
+      "postreqs_immediate": [
+        "MG4092"
+      ],
+      "full_prereq_chain": [],
+      "full_unlock_tree": [
+        "MG4092"
+      ],
+      "visual_tree": {
+        "code": "MG4091",
+        "type": "chain",
+        "children": [
+          {
+            "code": "MG4092",
+            "type": "leaf",
+            "children": []
+          }
+        ]
+      }
+    },
+    "MG4092": {
+      "name": "Final Year Project - II",
+      "credits": 0,
+      "prereqs_immediate": [
+        "MG4091"
+      ],
+      "postreqs_immediate": [],
+      "full_prereq_chain": [
+        "MG4091"
+      ],
+      "full_unlock_tree": [],
+      "visual_tree": {
+        "code": "MG4092",
+        "type": "leaf",
+        "children": []
+      }
+    }
+  }
+}
