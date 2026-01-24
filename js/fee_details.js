@@ -2,13 +2,20 @@
     const path = window.location.pathname;
     if (!path.includes('StudentLedger') && !path.includes('FeeDetails') && !path.includes('ConsolidatedFeeReport')) return;
 
-    
+    // [DIAGRAM: Logic Flow]
+    // 1. Expand Rows -> 2. Wait -> 3. Scrape Data (Ledger Logic) -> 4. Render UI -> 5. Delegate Clicks
+
     const calculateStats = () => {
         let totalPaid = 0;
-        let totalCourses = 0;
-        let repeatedCredits = 0;
-        const courseCounts = {};
-        const allCourses = [];
+        
+        // Data Structures for logic
+        // ledger: tracks the final status of a course per semester
+        // Key: "SemesterID_CourseCode" (e.g., "1_SS2018")
+        // Value: { credits: 3, status: 'Active' | 'Dropped' }
+        const semesterLedger = {}; 
+        
+        // globalCourseCounts: tracks how many times a course was validly taken across ALL semesters
+        const globalCourseCounts = {}; 
 
         // 1. Sum up all payments
         document.querySelectorAll('#sample_CollectionDetail tbody tr').forEach(row => {
@@ -19,79 +26,120 @@
             }
         });
 
-        // 2. Count Courses & Check Repeats
-        document.querySelectorAll('[id^="tblRegisteredCoursesDetail_"] tbody tr').forEach(row => {
-            const titleFull = row.cells[1]?.innerText.trim() || '';
-            const status = row.cells[3]?.innerText.toLowerCase() || '';
+        // 2. Scan All Semester Tables (Net Status Approach)
+        const tables = document.querySelectorAll('[id^="tblRegisteredCoursesDetail_"]');
+        
+        tables.forEach(table => {
+            // Get Semester Index from ID (e.g., tblRegisteredCoursesDetail_1 -> 1)
+            const semIndex = table.id.split('_')[1];
 
-            if (status.includes('registered') || status.includes('approved')) {
-                const parts = titleFull.split('-');
-                if (parts.length >= 2) {
-                    const code = parts[0].trim();
-                    const credits = parseInt(parts[parts.length - 1]) || 3;
-                    
-                    allCourses.push({ code, credits });
-                    courseCounts[code] = (courseCounts[code] || 0) + 1;
-                    totalCourses++;
+            table.querySelectorAll('tbody tr').forEach(row => {
+                const cells = row.cells;
+                if (cells.length < 5) return;
+
+                const titleFull = cells[1].innerText.trim();     // Title
+                const type = cells[2].innerText.trim();          // Registration / Drop
+                const status = cells[3].innerText.trim();        // Approved / Pending
+
+                // Only care about Approved transactions
+                if (status !== 'Approved') return;
+
+                // Extract Code and Credits
+                // Logic: Split by dash, Code is first part. Credits is last part (if numeric)
+                let code = titleFull.split('-')[0].trim();
+                let credits = 3; // Default
+
+                // Regex to find credits at the end: "- 3" or "-3" or "(3)"
+                const creditMatch = titleFull.match(/[-|–]\s*(\d+)\s*$/) || titleFull.match(/\((\d+)\)/);
+                if (creditMatch) {
+                    credits = parseInt(creditMatch[1]);
                 }
+
+                const uniqueKey = `${semIndex}_${code}`;
+
+                // LOGIC CORE: Determine Net Status
+                if (type === 'Registration') {
+                    // Initialize or overwrite as Active
+                    semesterLedger[uniqueKey] = { credits: credits, status: 'Active' };
+                } else if (type === 'Drop') {
+                    // Mark as dropped (Even if registered previously, this kills the registration)
+                    if (semesterLedger[uniqueKey]) {
+                        semesterLedger[uniqueKey].status = 'Dropped';
+                    } else {
+                        // Edge case: Drop appears before registration or standalone
+                        semesterLedger[uniqueKey] = { credits: credits, status: 'Dropped' };
+                    }
+                }
+            });
+        });
+
+        // 3. Aggregate Final Counts
+        let totalCourses = 0;
+        let repeatedCredits = 0;
+        let repeatedCount = 0;
+
+        // Iterate through our Ledger to build global counts
+        Object.entries(semesterLedger).forEach(([key, data]) => {
+            if (data.status === 'Active') {
+                const code = key.split('_')[1]; // Extract 'SS2018' from '1_SS2018'
+                
+                totalCourses++;
+                
+                // Add to global history for repeat checking
+                if (!globalCourseCounts[code]) {
+                    globalCourseCounts[code] = { count: 0, credits: data.credits };
+                }
+                globalCourseCounts[code].count++;
             }
         });
 
-        // 3. Calculate Repeat Cost
-        Object.entries(courseCounts).forEach(([code, count]) => {
-            if (count > 1) {
-                const course = allCourses.find(c => c.code === code);
-                repeatedCredits += (count - 1) * (course ? course.credits : 3);
+        // 4. Calculate Repeats based on Global Counts
+        Object.values(globalCourseCounts).forEach(course => {
+            if (course.count > 1) {
+                repeatedCount += (course.count - 1); // 1st time is free, rest are repeats
+                repeatedCredits += (course.count - 1) * course.credits;
             }
         });
 
         return {
             totalPaid,
             totalCourses,
-            repeatedCount: Object.values(courseCounts).filter(c => c > 1).length,
+            repeatedCount,
             extraCost: repeatedCredits * 11000
         };
     };
 
-    
     const parseSemesterDetails = (htmlContent, index) => {
         const temp = document.createElement('div');
         temp.innerHTML = htmlContent;
 
-        // 1. Get Basic Stats
         const getTxt = (id) => temp.querySelector(`#${id}_${index}`)?.innerText.trim() || '0';
         const sgpa = getTxt('lbSGPA') || '-';
         const cgpa = getTxt('lbCGPA') || '-';
 
-        // 2. Parse Courses
         const courses = [];
         temp.querySelectorAll(`#tblRegisteredCoursesDetail_${index} tbody tr`).forEach(row => {
             const cells = row.cells;
             if (cells && cells.length >= 5) {
                 courses.push({
-                    title: cells[1].innerText.trim(), // Title-Credits
-                    type: cells[2].innerText.trim(),  // Regular/Repeater
-                    status: cells[3].innerText.trim(), // Registered
-                    date: cells[4].innerText.trim()    // Action Date
+                    title: cells[1].innerText.trim(),
+                    type: cells[2].innerText.trim(),
+                    status: cells[3].innerText.trim(),
+                    date: cells[4].innerText.trim()
                 });
             }
         });
 
-        // 3. Parse Financial Breakdown (Combine Due, Discount, and Sponsored lists)
         const breakdown = [];
-        
-        // Helper to extract LI text: "Tuition Fee: 10,000"
         const extractListItems = (listId, type) => {
             temp.querySelectorAll(`#${listId}_${index} li`).forEach(li => {
-                // Original code creates: <li>Title:<b>Amount</b></li>
-                // We grab raw text and split by ':'
                 const rawText = li.innerText.replace(/\s+/g, ' ').trim(); 
                 const parts = rawText.split(':');
                 if (parts.length > 1) {
                     breakdown.push({ 
                         label: parts[0].trim(), 
                         amount: parts[1].trim(),
-                        type: type // 'due', 'discount', or 'sponsor'
+                        type: type 
                     });
                 }
             });
@@ -102,9 +150,7 @@
         extractListItems('tblSponsored', 'sponsor');
 
         return {
-            sgpa, 
-            cgpa, 
-            courses, 
+            sgpa, cgpa, courses, 
             financials: {
                 arrears: getTxt('lbArrears'),
                 dueTotal: getTxt('lbDueInSem'),
@@ -117,67 +163,127 @@
         };
     };
 
-    const attachCardListeners = () => {
-        document.querySelectorAll('.semester-fee-card').forEach(card => {
-            // Remove old listeners to prevent duplicates if function runs twice
-            const newCard = card.cloneNode(true);
-            card.parentNode.replaceChild(newCard, card);
+    // FIX 1: Event Delegation helper
+    const setupEventDelegation = () => {
+        document.body.addEventListener('click', function(e) {
+            const card = e.target.closest('.semester-fee-card');
+            if (!card) return;
+
+            const index = card.getAttribute('data-index');
+            const title = card.getAttribute('data-title');
             
-            newCard.addEventListener('click', function() {
-                const index = this.getAttribute('data-index');
-                const title = this.getAttribute('data-title');
-                
-                // 1. Trigger Original Site's Logic
-                const originalBtn = document.getElementById(`BtnhideshowInternal${index}`);
-                if (originalBtn) originalBtn.click();
+            // 1. Trigger Original Site's Logic (Hidden Button)
+            const originalBtn = document.getElementById(`BtnhideshowInternal${index}`);
+            if (originalBtn) originalBtn.click();
 
-                // 2. Wait for AJAX Data
-                const sourceId = `rowStdDetail_${index}`;
-                let attempts = 0;
-                
-                // Add loading cursor
-                document.body.style.cursor = 'wait';
+            // 2. Wait for AJAX Data
+            const sourceId = `rowStdDetail_${index}`;
+            let attempts = 0;
+            document.body.style.cursor = 'wait';
 
-                const poller = setInterval(() => {
-                    attempts++;
-                    const sourceDiv = document.getElementById(sourceId);
+            const poller = setInterval(() => {
+                attempts++;
+                const sourceDiv = document.getElementById(sourceId);
+                const sgpaLabel = sourceDiv?.querySelector(`#lbSGPA_${index}`);
+                const hasData = sgpaLabel && sgpaLabel.innerText.trim().length > 0;
+
+                if (hasData || attempts > 50) {
+                    clearInterval(poller);
+                    document.body.style.cursor = 'default';
                     
-                    // CRITICAL FIX: Don't just check if div exists.
-                    // Check if the SGPA label has text inside it (indicating AJAX finished)
-                    const sgpaLabel = sourceDiv?.querySelector(`#lbSGPA_${index}`);
-                    const hasData = sgpaLabel && sgpaLabel.innerText.trim().length > 0;
-
-                    if (hasData || attempts > 50) { // 50 attempts * 100ms = 5 seconds max wait
-                        clearInterval(poller);
-                        document.body.style.cursor = 'default';
-                        
-                        if (hasData) {
-                            const parsedData = parseSemesterDetails(sourceDiv.innerHTML, index);
-                            showModernModal(title, parsedData);
+                    if (hasData) {
+                        const parsedData = parseSemesterDetails(sourceDiv.innerHTML, index);
+                        if(window.showModernModal) {
+                            window.showModernModal(title, parsedData);
                         } else {
-                            console.error("FlexRedesign: Timeout waiting for fee data.");
+                            renderFallbackModal(title, parsedData);
                         }
-                    }
-                }, 100); // Check every 100ms
-            });
+                    } 
+                }
+            }, 100);
         });
     };
-
     
+    // Internal fallback modal renderer (Responsive Table Update Applied)
+    const renderFallbackModal = (title, data) => {
+        const feeRows = data.financials.breakdown.map(f => `<div class="invoice-row"><span>${f.label}</span><span>${f.amount}</span></div>`).join('');
+        
+        // Updated Course Rows with scroll-cell class
+        const courseRows = data.courses.map(c => `
+            <tr>
+                <td class="scroll-cell">${c.title}</td>
+                <td class="scroll-cell">${c.type}</td>
+                <td class="scroll-cell">${c.status}</td>
+                <td class="scroll-cell">${c.date}</td>
+            </tr>
+        `).join('');
+        
+        // Updated Modal HTML with table-responsive wrapper and updated classes
+        const modalHTML = `
+            <div id="modern-fee-modal" class="modern-modal-overlay active">
+                <div class="modern-modal-content slide-in-up">
+                    <div class="modal-header-modern">
+                        <h2>${title}</h2>
+                        <button class="modal-close-btn">&times;</button>
+                    </div>
+                    <div class="modal-body-grid">
+                        <div class="modal-section">
+                            <h3 class="section-h3">Fees</h3>
+                            <div class="invoice-card">
+                                ${feeRows}
+                                <div class="invoice-divider"></div>
+                                <div class="invoice-row highlight">
+                                    <span>Balance</span>
+                                    <span>${data.financials.balance}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3 class="section-h3">Courses</h3>
+                            <div class="table-responsive">
+                                <table class="modern-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="scroll-cell">Course</th>
+                                            <th class="scroll-cell">Type</th>
+                                            <th class="scroll-cell">Status</th>
+                                            <th class="scroll-cell">Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${courseRows}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        const modal = document.getElementById('modern-fee-modal');
+        const close = () => modal.remove();
+        modal.querySelector('.modal-close-btn').addEventListener('click', close);
+        modal.addEventListener('click', (e) => { if(e.target === modal) close(); });
+    };
+
     const runModule = () => {
         try {
-            // 1. Check if data is ready
             const mainTable = document.querySelector('#sample_CollectionDetail tbody');
-            if (!mainTable || mainTable.children.length === 0) return false; // Not ready yet
+            if (!mainTable || mainTable.children.length === 0) return false;
 
             console.log("fee details script running");
 
-            // 2. Expand all hidden sections momentarily to scrape data
+            // FIX 2: Smart Expansion
             document.querySelectorAll('[id^="BtnhideshowInternal"]').forEach(btn => {
-                if (btn.getAttribute('onclick')) btn.click();
+                const index = btn.id.replace('BtnhideshowInternal', '');
+                const detailRow = document.getElementById(`rowStdDetail_${index}`);
+                
+                if (detailRow && (detailRow.style.display === 'none' || detailRow.innerText.trim() === '')) {
+                    btn.click();
+                }
             });
 
-            // 3. Process Data (with small delay to let expansion happen)
             setTimeout(() => {
                 const stats = calculateStats();
                 const formatCurrency = (num) => "Rs. " + num.toLocaleString();
@@ -196,7 +302,6 @@
                     });
                 });
 
-                // 4. Build HTML
                 const statsHTML = `
                     <div class="stats-row">
                         <div class="dash-card stat-card primary">
@@ -226,8 +331,8 @@
                                 <div class="sem-icon">${sem.title.substring(0, 3)}</div>
                                 <h3 class="sem-title">${sem.title}</h3>
                             </div>
-                            <div class="sem-status ${parseInt(sem.balance) > 0 ? 'outstanding' : 'cleared'}">
-                                ${parseInt(sem.balance) > 0 ? 'Pending' : 'Paid'}
+                            <div class="sem-status ${parseInt(sem.balance.replace(/,/g,'')) > 0 ? 'outstanding' : 'cleared'}">
+                                ${parseInt(sem.balance.replace(/,/g,'')) > 0 ? 'Pending' : 'Paid'}
                             </div>
                         </div>
                         <div class="sem-stats-grid">
@@ -244,69 +349,24 @@
                         <div class="semester-cards-grid">${semesterCards}</div>
                     </div>`;
 
-                // 5. Render
                 window.FlexUtils.renderInternalPage(finalHTML, "Fee Details");
                 document.querySelector('.m-portlet__body')?.classList.add('hidden-legacy-source');
+                
+                // Init the global event listener
+                setupEventDelegation();
 
-                // 6. Attach Event Listeners
-                document.querySelectorAll('.semester-fee-card').forEach(card => {
-                    card.addEventListener('click', function() {
-                        const index = this.getAttribute('data-index');
-                        const title = this.getAttribute('data-title');
-                        const sourceId = `rowStdDetail_${index}`;
-
-                        // Trigger AJAX load on legacy site
-                        document.getElementById(`BtnhideshowInternal${index}`)?.click();
-
-                        // Poll for data (Simplified)
-                        let attempts = 0;
-                        const poller = setInterval(() => {
-                            attempts++;
-                            const sourceDiv = document.getElementById(sourceId);
-                            const hasData = sourceDiv?.innerHTML.length > 50; // simple check
-
-                            if (hasData || attempts > 20) {
-                                clearInterval(poller);
-                                if (hasData) {
-                                    const data = parseSemesterData(sourceDiv.innerHTML, index);
-                                    // Generate Modal HTML (Simplified for brevity)
-                                    const feeRows = data.financials.breakdown.map(f => `<div class="invoice-row"><span>${f.label}</span><span>${f.amount}</span></div>`).join('');
-                                    const courseRows = data.courses.map(c => `<tr><td>${c.title}</td><td>${c.type}</td><td>${c.status}</td><td>${c.date}</td></tr>`).join('');
-                                    
-                                    const modalHTML = `
-                                        <div id="modern-fee-modal" class="modern-modal-overlay">
-                                            <div class="modern-modal-content slide-in-up">
-                                                <div class="modal-header-modern"><h2>${title}</h2><button class="modal-close-btn">&times;</button></div>
-                                                <div class="modal-body-grid">
-                                                    <div class="modal-section"><h3 class="section-h3">Fees</h3><div class="invoice-card">${feeRows}<div class="invoice-divider"></div><div class="invoice-row highlight"><span>Balance</span><span>${data.financials.balance}</span></div></div></div>
-                                                    <div class="modal-section"><h3 class="section-h3">Courses</h3><table class="modern-table"><thead><tr><th>Course</th><th>Type</th><th>Status</th><th>Date</th></tr></thead><tbody>${courseRows}</tbody></table></div>
-                                                </div>
-                                            </div>
-                                        </div>`;
-                                    
-                                    document.body.insertAdjacentHTML('beforeend', modalHTML);
-                                    const modal = document.getElementById('modern-fee-modal');
-                                    modal.addEventListener('click', (e) => { if(e.target.classList.contains('modern-modal-overlay') || e.target.classList.contains('modal-close-btn')) modal.remove(); });
-                                }
-                            }
-                        }, 200);
-                    });
-                });
-
-            }, 1000); // End Timeout
-            return true; // Success
+            }, 2000); 
+            return true;
         } catch (e) {
             console.error("FlexRedesign Error:", e);
             document.body.classList.remove('modern-active');
-            return true; // Stop observer on error
+            return true;
         }
     };
 
-    
-    //If runModule returns false (data not ready), watch for changes.
     if (!runModule()) {
         const observer = new MutationObserver((mutations, obs) => {
-            if (runModule()) obs.disconnect(); // Stop watching once UI is built
+            if (runModule()) obs.disconnect();
         });
         const target = document.querySelector('.m-portlet__body');
         if (target) observer.observe(target, { childList: true, subtree: true });

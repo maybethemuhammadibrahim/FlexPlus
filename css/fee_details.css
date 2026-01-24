@@ -52,11 +52,6 @@
     transition: transform var(--transition-fast);
 }
 
-.stat-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
-
 /* Background Icons */
 .stat-icon-bg {
     position: absolute;
@@ -101,15 +96,6 @@
 .stat-card.primary .stat-value { color: var(--accent-blue); }
 .stat-card.warning .stat-value { color: var(--danger-text); }
 
-/* --- EXISTING STYLES (Keep the rest from previous response) --- */
-.fee-details-view { max-width: 1200px; margin: 0 auto; padding-bottom: 40px; }
-.semester-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-.semester-fee-card { cursor: pointer; transition: all 0.2s ease; border: 1px solid var(--border-color); }
-.sem-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-.sem-title { font-size: 16px; font-weight: 700; margin: 0; color: var(--text-main); }
-.hidden-legacy-source > *:not(#modern-root) { visibility: hidden; height: 0; overflow: hidden; position: absolute; }
-
-/* Modal & Media Queries (Keep these!) */
 @media (max-width: 900px) {
     .stats-row { grid-template-columns: 1fr; }
 }
@@ -122,11 +108,9 @@
 }
 
 .semester-fee-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    /* transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); */
 }
-
-
 
 /* Header */
 .sem-card-header {
@@ -175,101 +159,208 @@
 .stat-item .val { font-size: 14px; font-weight: 700; color: var(--text-main); font-family: 'JetBrains Mono', monospace; }
 
 
-
-
-
-
-/* --- GLOBAL LAYOUT --- */
-.fee-details-view { max-width: 1200px; margin: 0 auto; padding-bottom: 40px; }
-.semester-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-
-/* --- SEMESTER CARD --- */
-.semester-fee-card { cursor: pointer; transition: all 0.2s ease; border: 1px solid var(--border-color); }
-.semester-fee-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-color: var(--accent-blue); }
-
-.sem-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-.sem-identity { display: flex; align-items: center; gap: 12px; }
-.sem-icon { width: 40px; height: 40px; background: var(--bg-hover); color: var(--accent-blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 11px; text-transform: uppercase; }
-.sem-title { font-size: 16px; font-weight: 700; margin: 0; color: var(--text-main); }
-
-.sem-status { font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; }
-.sem-status.outstanding { background: var(--danger-bg); color: var(--danger-text); }
-.sem-status.cleared { background: var(--success-bg); color: var(--success-text); }
-
-.sem-stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; padding-top: 12px; border-top: 1px dashed var(--border-color); }
-.stat-item .lbl { font-size: 10px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
-.stat-item .val { font-size: 14px; font-weight: 700; color: var(--text-main); font-family: 'JetBrains Mono', monospace; }
-
-/* --- MODERN MODAL --- */
+/* =========================================
+   1. Modern Modal Overlay
+   ========================================= */
 .modern-modal-overlay {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
-    z-index: 1000; display: flex; align-items: center; justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Slightly darker for better contrast */
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centers modal vertically */
+    padding: 10px; /* Prevents modal from touching screen edges */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
 }
 
+.modern-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =========================================
+   2. Modal Card
+   ========================================= */
 .modern-modal-content {
-    background: var(--bg-card); width: 90%; max-width: 900px; max-height: 85vh;
-    border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-    display: flex; flex-direction: column; overflow: hidden;
-    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    background: white;
+    width: 100%;           /* Start full width */
+    max-width: 600px;      /* Cap at 600px for desktop */
+    max-height: 90vh;      /* 90% of screen height */
+    border-radius: 12px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    transform: scale(0.95);
+    transition: transform 0.2s ease;
+    
+    /* CRITICAL FIX: Prevents flex child from overflowing parent */
+    overflow: hidden; 
 }
 
+.modern-modal-overlay.active .modern-modal-content {
+    transform: scale(1);
+}
+
+/* Header */
 .modal-header-modern {
-    padding: 24px; border-bottom: 1px solid var(--border-color);
-    display: flex; justify-content: space-between; align-items: flex-start;
-    background: var(--bg-main);
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    flex-shrink: 0; /* Prevents header from shrinking */
 }
 
-.modal-h2 { font-size: 20px; font-weight: 800; margin: 0; color: var(--text-main); }
-.gpa-badges { display: flex; gap: 12px; margin-top: 8px; }
-.gpa-tag { font-size: 12px; color: var(--text-muted); background: var(--bg-card); padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border-color); }
-.gpa-tag b { color: var(--accent-blue); }
+.modal-header-modern h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-.modal-close-btn { font-size: 28px; background: none; border: none; color: var(--text-muted); cursor: pointer; line-height: 1; }
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #888;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+}
 
+/* Body */
 .modal-body-grid {
-    display: grid; grid-template-columns: 1fr 1.5fr; gap: 0;
-    overflow: hidden; flex: 1;
+    padding: 15px;
+    overflow-y: auto;       /* Vertical Scroll for the whole body */
+    -webkit-overflow-scrolling: touch;
+    flex: 1;                /* Takes remaining height */
+    background: #f8f9fa;
+    
+    /* CRITICAL FIX: Allows children to shrink below content width */
+    min-height: 0;          
 }
 
-/* Financial Section (Left) */
-.financial-section { padding: 24px; background: var(--bg-main); border-right: 1px solid var(--border-color); overflow-y: auto; }
-.section-h3 { font-size: 12px; text-transform: uppercase; color: var(--text-light); margin-bottom: 16px; letter-spacing: 1px; }
+/* Sections */
+.modal-section {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 15px;
+    
+    /* CRITICAL FIX: Prevents table from forcing section width */
+    min-width: 0; 
+}
 
-.invoice-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
-.invoice-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 13px; color: var(--text-main); }
-.invoice-row.main { font-weight: 700; font-size: 14px; margin-bottom: 15px; }
-.invoice-row.highlight { font-weight: 700; font-size: 14px; margin-top: 15px; }
-.invoice-divider { height: 1px; background: var(--border-color); margin: 12px 0; border-style: dashed; }
-.invoice-balance { margin-top: 20px; padding-top: 15px; border-top: 2px solid var(--border-color); display: flex; justify-content: space-between; font-weight: 800; font-size: 16px; }
+.section-h3 {
+    margin: 0 0 10px 0;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #718096;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
 
-/* Course Section (Right) */
-.course-section { padding: 24px; background: var(--bg-card); overflow-y: auto; }
-.table-scroll-container { overflow-x: auto; }
-.modern-table { width: 100%; border-collapse: collapse; }
-.modern-table th { text-align: left; font-size: 11px; text-transform: uppercase; color: var(--text-light); padding-bottom: 12px; border-bottom: 1px solid var(--border-color); }
-.modern-table td { padding: 12px 0; border-bottom: 1px solid var(--border-light); vertical-align: middle; }
+/* =========================================
+   3. The Table (Responsive Scroll Logic)
+   ========================================= */
 
-.name-main { font-size: 13px; font-weight: 600; color: var(--text-main); }
-.name-sub { font-size: 11px; color: var(--text-muted); }
-.badge-pill { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; }
-.badge-pill.type { background: var(--bg-hover); color: var(--text-muted); }
-.badge-pill.status.approved { background: var(--success-bg); color: var(--success-text); }
-.badge-pill.status.drop { background: var(--danger-bg); color: var(--danger-text); }
-.date-cell { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); }
+/* The Wrapper */
+.table-responsive {
+    display: block;        /* Ensures it acts as a block container */
+    width: 100%;           /* Forces it to fit the section */
+    overflow-x: auto;      /* Enables Horizontal Scroll */
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid #edf2f7;
+    border-radius: 6px;
+}
+
+/* The Table */
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    white-space: nowrap;   /* Keeps content on one line */
+}
+
+.modern-table th {
+    background: #f7fafc;
+    color: #4a5568;
+    font-weight: 600;
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.modern-table td {
+    padding: 10px 12px;
+    color: #2d3748;
+    border-bottom: 1px solid #edf2f7;
+}
+
+/* Mobile Specific Tweaks */
+@media (max-width: 480px) {
+    .modern-modal-content {
+        max-height: 95vh; /* Use more height on mobile */
+    }
+
+    .modal-body-grid {
+        padding: 10px; /* Less padding on mobile */
+    }
+
+    .modal-section {
+        padding: 10px;
+    }
+    
+    /* Force table cells to have minimum width so they are readable */
+    .scroll-cell {
+        min-width: 120px; 
+    }
+    
+    /* Make date column slightly smaller */
+    .scroll-cell:nth-child(4) {
+        min-width: 90px;
+    }
+}
+
+/* =========================================
+   4. Fee Invoice Styling
+   ========================================= */
+.invoice-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.invoice-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #4a5568;
+}
+
+.invoice-divider {
+    height: 1px;
+    background: #e2e8f0;
+    margin: 4px 0;
+}
+
+.invoice-row.highlight {
+    font-weight: 700;
+    color: #2d3748;
+    font-size: 14px;
+}
 
 /* Utilities */
-.text-danger { color: var(--danger-text); }
-.text-success { color: var(--success-text); }
-.hidden-legacy-source > *:not(#modern-root) { visibility: hidden; height: 0; overflow: hidden; position: absolute; }
-
-@keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-@media (max-width: 800px) { .modal-body-grid { grid-template-columns: 1fr; } .financial-section { border-right: none; border-bottom: 1px solid var(--border-color); } }
-
 .text-success { color: var(--success-text) !important; }
 .text-danger { color: var(--danger-text) !important; }
-.text-right { text-align: right; }
-.text-center { text-align: center; }
-.font-bold { font-weight: 700; }
-.font-mono { font-family: 'JetBrains Mono', monospace; }
-.d-none { display: none !important; }
