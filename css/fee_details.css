@@ -364,3 +364,32 @@
 /* Utilities */
 .text-success { color: var(--success-text) !important; }
 .text-danger { color: var(--danger-text) !important; }
+
+@media (max-width: 900px) {
+    .stats-row { grid-template-columns: 1fr; }
+}
+
+/* Mobile Specific Tweaks */
+@media (max-width: 480px) {
+    .modern-modal-content {
+        max-height: 95vh; /* Use more height on mobile */
+    }
+
+    .modal-body-grid {
+        padding: 10px; /* Less padding on mobile */
+    }
+
+    .modal-section {
+        padding: 10px;
+    }
+    
+    /* Force table cells to have minimum width so they are readable */
+    .scroll-cell {
+        min-width: 120px; 
+    }
+    
+    /* Make date column slightly smaller */
+    .scroll-cell:nth-child(4) {
+        min-width: 90px;
+    }
+}
