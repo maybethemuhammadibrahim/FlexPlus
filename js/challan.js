@@ -52,39 +52,39 @@
                         </button>
                     </div>
                     
-                    <div class="table-modern-wrapper">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Amount</th>
-                                    <th>Status</th>
-                                    <th>Generated</th>
-                                    <th>Due Date</th>
-                                    <th class="text-right">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${rows
-                                  .map(
-                                    (r) => `
-                                    <tr>
-                                        <td class="amount-cell">${r.amount}</td>
-                                        <td><span class="status-badge valid">${r.status}</span></td>
-                                        <td class="text-muted">${r.generated}</td>
-                                        <td class="text-danger font-weight-bold">${r.due}</td>
-                                        <td class="text-right">
-                                            <div class="btn-group-modern">
-                                                <button class="btn-view action-trigger" data-id="${r.challanId}" data-type="view">View</button>
-                                                <button class="btn-print action-trigger" data-id="${r.challanId}" data-type="print">Print</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                `,
-                                  )
-                                  .join("")}
-                            </tbody>
-                        </table>
-                    </div>
+                    <div class="table-responsive"> <table class="modern-table"> <thead>
+            <tr>
+                <th class="scroll-cell">Amount</th>
+                <th class="scroll-cell">Status</th>
+                <th class="scroll-cell">Generated</th>
+                <th class="scroll-cell">Due Date</th>
+                <th class="scroll-cell text-right">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            ${rows
+                .map(
+                (r) => `
+                <tr>
+                    <td class="scroll-cell amount-cell">${r.amount}</td>
+                    <td class="scroll-cell">
+                        <span class="status-badge valid">${r.status}</span>
+                    </td>
+                    <td class="scroll-cell text-muted">${r.generated}</td>
+                    <td class="scroll-cell text-danger font-weight-bold">${r.due}</td>
+                    <td class="scroll-cell text-right">
+                        <div class="btn-group-modern">
+                            <button class="btn-view action-trigger" data-id="${r.challanId}" data-type="view">View</button>
+                            <button class="btn-print action-trigger" data-id="${r.challanId}" data-type="print">Print</button>
+                        </div>
+                    </td>
+                </tr>
+                `,
+                )
+                .join("")}
+        </tbody>
+    </table>
+</div>
                 </div>
 
                 <div id="instructionDrawer" class="outer-drawer">

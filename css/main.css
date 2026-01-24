@@ -1108,6 +1108,9 @@ details[open].dropdown-content {
     overflow-y: auto;
     flex: 1;
     background: var(--bg-card);
+
+    min-height: 150px; /* Won't get smaller than this */
+    max-height: 60vh;  /* Won't get larger than 60% of the screen height */
 }
 
 /* ---------------------------------------------------------------------------
@@ -1237,6 +1240,13 @@ details[open].dropdown-content {
     overflow-x:  auto;
     border:  1px solid var(--border-color);
     border-radius: 8px;
+}
+
+.table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    margin-bottom: 10px;
 }
 
 .modern-table {
@@ -1475,29 +1485,38 @@ details[open].dropdown-content {
 
 /* Sticky Columns for Mobile */
 @media (max-width: 768px) {
+    /* 1. The Container: This handles the scrolling */
     .table-responsive {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        margin: 0 -1px;
-        padding-bottom: 10px;
+        display: block;       /* Essential for scrolling to work */
+        width: 100%;
+        overflow-x: auto;     /* Enables the scrollbar */
+        -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+        margin-bottom: 15px;
     }
     
-    .modern-table { min-width: 500px; }
+    /* 2. The Table: Let it grow WIDER than the screen */
+    .modern-table {
+        width: max-content;   /* Key Fix: Expands table to fit content, not screen */
+        min-width: 100%;      /* Ensures it fills at least the screen */
+        table-layout: auto;   /* Removes the "forceful" equal width constraint */
+    }
 
+    /* 3. The Cells: Keep them strict */
+    .scroll-cell {
+        min-width: 120px;     /* Keeps columns wide */
+        white-space: nowrap;  /* Prevents text from wrapping/breaking */
+    }
+
+    .scroll-cell:first-child {
+        min-width: 100px;
+    }
+
+    /* 4. Reset Sticky Positioning for Mobile (Clean Scroll) */
     .modern-table th:first-child,
     .modern-table td:first-child {
-        position: sticky;
-        left: 0;
-        z-index: 2;
-        background: var(--bg-card);
-        border-right: 2px solid var(--border-color);
-        max-width: 140px;
-    }
-    .modern-table th:first-child { z-index: 3; }
-    
-    .modern-table th, .modern-table td {
-        padding: 10px 8px;
-        font-size: 12px;
+        position: static;
+        border-right: none;
+        box-shadow: none;
     }
 }
 

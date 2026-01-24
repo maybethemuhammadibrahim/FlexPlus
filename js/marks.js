@@ -339,17 +339,17 @@
                                             </div>
                                         </div>
                                         <div class="category-body">
-                                            <div class="table-responsive">
+                                            <div class="table-scroll-wrapper">
                                                 <table class="modern-table">
                                                     <thead>
                                                         <tr>
                                                             <th>Item</th>
-                                                            <th class="text-center">Weight</th>
-                                                            <th class="text-center">Total</th>
-                                                            <th class="text-center">Obt</th>
-                                                            <th class="text-center stat">Avg</th>
-                                                            <th class="text-center stat">Min</th>
-                                                            <th class="text-center stat">Max</th>
+                                                            <th class="text-center scroll-cell">Weight</th>
+                                                            <th class="text-center scroll-cell">Total</th>
+                                                            <th class="text-center scroll-cell">Obt</th>
+                                                            <th class="text-center stat scroll-cell">Avg</th>
+                                                            <th class="text-center stat scroll-cell">Min</th>
+                                                            <th class="text-center stat scroll-cell">Max</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -362,12 +362,12 @@
                                                                     ${a.name}
                                                                     ${a.isDropped ? '<span class="dropped-badge">Dropped</span>' : ""}
                                                                 </td>
-                                                                <td class="text-center">${a.weight}</td>
-                                                                <td class="text-center">${a.rawTotal}</td>
-                                                                <td class="text-center"><span class="obt-badge ${a.isDropped ? "neutral" : a.status}">${a.obtText}</span></td>
-                                                                <td class="text-center stat">${a.avg}</td>
-                                                                <td class="text-center stat">${a.min}</td>
-                                                                <td class="text-center stat">${a.max}</td>
+                                                                <td class="text-center scroll-cell">${a.weight}</td>
+                                                                <td class="text-center scroll-cell">${a.rawTotal}</td>
+                                                                <td class="text-center scroll-cell"><span class="obt-badge ${a.isDropped ? "neutral" : a.status}">${a.obtText}</span></td>
+                                                                <td class="text-center stat scroll-cell">${a.avg}</td>
+                                                                <td class="text-center stat scroll-cell">${a.min}</td>
+                                                                <td class="text-center stat scroll-cell">${a.max}</td>
                                                             </tr>
                                                         `,
                                                           )

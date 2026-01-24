@@ -181,9 +181,9 @@
                         ${courses
                           .map(
                             (c) => `
-                            <div id="modal-${c.id}" class="modal">
-                                <div class="modal-header">
-                                    <h3>${c.code} History</h3>
+                            <div id="modal-${c.id}" class="modern-modal">
+                                <div class="modern-modal-header">
+                                    <h3>${c.code} Attendance</h3>
                                     <button class="modern-close-btn" data-close="true">×</button>
                                 </div>
                                 <div class="modal-body">
@@ -245,7 +245,7 @@
             .getElementById("att-modal-overlay")
             ?.classList.remove("active");
           document
-            .querySelectorAll(".modal")
+            .querySelectorAll(".modern-modal")
             .forEach((m) => m.classList.remove("active"));
         };
 

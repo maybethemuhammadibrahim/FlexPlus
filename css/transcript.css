@@ -337,7 +337,7 @@
 }
 
 /* --- 📱 UNIFIED MOBILE OPTIMIZATION --- */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     
     /* 1. Stack Form Controls */
     .controls-row {
@@ -352,8 +352,9 @@
 
     /* 2. Grid Layout for Stats */
     .planner-stats {
-        display: grid;
-        grid-template-columns: 1fr 1fr; 
+        display: flex;
+        flex-direction: column;
+        /* grid-template-columns: 1fr 1fr;  */
         padding: 0; 
         overflow: hidden; 
     }

@@ -615,7 +615,7 @@
                 </div>
                 <div id="modal-planner" class="modern-modal">
                     <div class="modern-modal-header"><h3>Target GPA Planner</h3><button class="modern-close-btn" data-close="true">×</button></div>
-                    <div class="modern-modal-body">
+                    <div class="modern-modal-body" style="display:flex; flex-direction:column; align-items:center;">
                     </div>
                 </div>
                 <div id="trans-modal-overlay" class="modern-modal-overlay"></div>
