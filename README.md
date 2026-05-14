@@ -5,20 +5,6 @@
 **How it works:** FLEX+ operates as a **"Parasitic UI"**. It suppresses the original interface, scrapes the data as it loads, and renders a modern dashboard in its place. (Note: It may take 1-2 seconds to inject the UI upon page load).
 
 <img src="screenshots/home.gif" alt="Home" width="70%">
----
-
-> ⚠️ **DISCLAIMER & SECURITY WARNING**
->
-> **USE AT YOUR OWN RISK.**
->
-> This extension is **experimental software**. While it functions correctly **90% of the time**, it is **not completely tested** across all edge cases or campus variations. Updates to the official university portal may occasionally break functionality.
->
-> **Security Transparency:**
-> * **Client-Side Only:** This extension runs 100% within your browser. **No data** (credentials, grades, fees) is ever sent to any third-party server or cloud database.
-> * **No Background Processes:** The extension does not run in the background; it is only active when you specifically visit the portal.
-> * **Verify It Yourself:** The codebase is open-source and unminified. You are strongly encouraged to inspect `manifest.json` and the `.js` files to verify that no malicious code exists.
-
----
 
 ## ⚡ Installation
 
