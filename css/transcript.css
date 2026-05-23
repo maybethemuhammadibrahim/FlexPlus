@@ -75,9 +75,11 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.02) !important;
 }
 .tool-card:hover {
-    transform: translateY(-4px) !important;
+    /* transform: translateY(-4px) !important;
     box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1) !important;
-    border-color: var(--text-muted) !important;
+    border-color: var(--text-muted) !important; */
+    outline: 2px solid var(--text-light);
+
 }
 
 .tool-icon-box {

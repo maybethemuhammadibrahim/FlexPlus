@@ -782,9 +782,10 @@ details[open].dropdown-content {
 }
 
 .dash-header-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1);
-    border-color: var(--text-muted);
+    /* transform: translateY(-4px); */
+    /* box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1); */
+    /* border-color: var(--text-muted); */
+    outline: 2px solid var(--text-light);
 }
 
 /* ---------------------------------------------------------------------------
@@ -800,17 +801,29 @@ details[open].dropdown-content {
     display:  flex;
     flex-direction:  column;
     /* Effect Transitions */
-    transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.2s ease;
+    /* transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.2s ease; */
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 
+/* .dash-card:hover {
+  /* box-shadow:
+  rgba(0, 0, 0, 0.10) -4px 4px,
+  rgba(0, 0, 0, 0.05) -8px 8px; */
+
+   /* box-shadow:
+    rgb(from var(--text-main) r g b / 0.10) -4px 4px,
+    rgb(from var(--text-muted) r g b / 0.05) -8px 8px; */
+ 
+    /* border-color: var(--text-muted);  */
+/* }  */
 .dash-card:hover {
-    /* transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08); */
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-    border-color: var(--text-muted); /* Optional: Highlights border slightly */
+  outline: 2px solid var(--text-light);
+  
+/* 
+  box-shadow:
+    rgb(from var(--text-main) r g b / 0.08) -4px 4px,
+    rgb(from var(--text-main) r g b / 0.04) -8px 8px; */
 }
-
 .dash-card-title {
     font-size: 15px;
     font-weight:  700;
