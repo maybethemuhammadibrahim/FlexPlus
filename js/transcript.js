@@ -53,28 +53,140 @@
       F: 0.0,
     };
 
-    const getGradeOptions = (g) =>
+    const GRADE_CUTOFFS = {
+      "A+": 90,
+      A: 86,
+      "A-": 82,
+      "B+": 78,
+      B: 74,
+      "B-": 70,
+      "C+": 66,
+      C: 62,
+      "C-": 58,
+      "D+": 54,
+      D: 50,
+      F: 0,
+    };
+
+    const GRADE_DISPLAY_MODES = [
+      "Grades",
+      "Points",
+      "Weightage",
+    ];
+
+    const formatGradePoints = (points) =>
+      Number.isInteger(points) ? points.toFixed(1) : points.toFixed(2);
+
+    const getGradeLabel = (grade, mode) => {
+      if (mode === "Points") return formatGradePoints(GRADE_POINTS[grade]);
+      if (mode === "Weightage") {
+        return grade === "F" ? "<50%" : `>${GRADE_CUTOFFS[grade]}%`;
+      }
+      return grade;
+    };
+
+    const getGradeOptions = (g, mode = "Grades") =>
       Object.keys(GRADE_POINTS)
         .map(
           (k) =>
-            `<option value="${GRADE_POINTS[k]}" ${
+            `<option value="${GRADE_POINTS[k]}" data-grade="${k}" ${
               k === g ? "selected" : ""
-            }>${k}</option>`,
+            }>${getGradeLabel(k, mode)}</option>`,
         )
-        .join("") + `<option value="-1">--</option>`;
+        .join("") + `<option value="-1" data-grade="--" ${g === "--" ? "selected" : ""}>--</option>`;
 
-    const calculateSGPA = (modalBody) => {
-      let pts = 0,
-        crs = 0;
+    const getNextGradeMode = (currentMode) => {
+      const index = GRADE_DISPLAY_MODES.indexOf(currentMode);
+      return GRADE_DISPLAY_MODES[(index + 1) % GRADE_DISPLAY_MODES.length];
+    };
+
+    const renderCalcSelects = (modalBody, mode) => {
+      modalBody.querySelectorAll(".calc-select").forEach((select) => {
+        const selectedGrade =
+          select.selectedOptions[0]?.dataset.grade || "--";
+        select.innerHTML = getGradeOptions(selectedGrade, mode);
+      });
+    };
+
+    const calculateSemesterTotals = (modalBody) => {
+      let points = 0,
+        credits = 0;
       modalBody.querySelectorAll("tbody tr").forEach((row) => {
         const c = parseFloat(row.querySelector(".td-credit")?.innerText);
         const v = parseFloat(row.querySelector(".calc-select")?.value);
         if (v >= 0 && !isNaN(c)) {
-          pts += c * v;
-          crs += c;
+          points += c * v;
+          credits += c;
         }
       });
-      return crs > 0 ? (pts / crs).toFixed(2) : "0.00";
+      return {
+        points,
+        credits,
+        sgpa: credits > 0 ? (points / credits).toFixed(2) : "0.00",
+      };
+    };
+
+    const calculateSemesterTotalsFromCourses = (courses) => {
+      let points = 0,
+        credits = 0;
+
+      courses.forEach((course) => {
+        const gradePoints = GRADE_POINTS[course.grade];
+        const creditHours = parseFloat(course.credits);
+        if (typeof gradePoints === "number" && !isNaN(creditHours)) {
+          points += creditHours * gradePoints;
+          credits += creditHours;
+        }
+      });
+
+      return {
+        points,
+        credits,
+        sgpa: credits > 0 ? (points / credits).toFixed(2) : "0.00",
+      };
+    };
+
+    const calculateSimulatedCGPA = (
+      semesters,
+      activeSemesterIndex,
+      simulatedSemesterPoints,
+      simulatedSemesterCredits,
+    ) => {
+      let totalPoints = 0;
+      let totalCredits = 0;
+
+      semesters.forEach((semester, index) => {
+        const semesterTotals =
+          index === activeSemesterIndex
+            ? {
+                points: simulatedSemesterPoints,
+                credits: simulatedSemesterCredits,
+              }
+            : calculateSemesterTotalsFromCourses(semester.courses);
+
+        totalPoints += semesterTotals.points;
+        totalCredits += semesterTotals.credits;
+      });
+
+      return totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : "0.00";
+    };
+
+    const updateSimulationDisplay = (modalBody, semesterId, semesters) => {
+      const totals = calculateSemesterTotals(modalBody);
+      const cgpa = calculateSimulatedCGPA(
+        semesters,
+        Number(semesterId),
+        totals.points,
+        totals.credits,
+      );
+
+      const sgpaDisplay = document.getElementById(`sim-sgpa-${semesterId}`);
+      const cgpaDisplay = document.getElementById(`sim-cgpa-${semesterId}`);
+
+      if (sgpaDisplay) sgpaDisplay.innerText = totals.sgpa;
+      if (cgpaDisplay) cgpaDisplay.innerText = cgpa;
+
+      return { sgpa: totals.sgpa, cgpa };
     };
 
     //============
@@ -557,55 +669,122 @@
         `</div>`;
 
       //semester popup modals + calculator simulation mode
+      // const modalsHTML = semesters
+      //   .map(
+      //     (sem) => `
+      //           <div id="modal-${sem.id}" class="modern-modal">
+      //               <div class="modern-modal-header">
+      //                   <div class="modal-title-group">
+      //                       <h3>${sem.title}</h3>
+      //                       <div class="sim-score-box" id="sim-box-${
+      //                         sem.id
+      //                       }" style="display:none;">
+      //                           <div class="sim-score-row">
+      //                               <span class="sim-score-label">Simulated -&gt;</span>
+      //                               <span class="sim-score-item"><span>SGPA:</span> <b id="sim-sgpa-${
+      //                                 sem.id
+      //                               }">${sem.sgpa}</b></span>
+      //                               <span class="sim-score-sep">|</span>
+      //                               <span class="sim-score-item"><span>CGPA:</span> <b id="sim-cgpa-${
+      //                                 sem.id
+      //                               }">${sem.cgpa}</b></span>
+      //                           </div>
+      //                       </div>
+      //                       <span class="real-score" id="real-score-${
+      //                         sem.id
+      //                       }">Actual SGPA: <b>${sem.sgpa}</b></span>
+      //                   </div>
+      //                   <div class="modal-actions">
+      //                       <button class="modern-btn small calc-toggle-btn" data-id="${
+      //                         sem.id
+      //                       }"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="14"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="18" x2="16" y2="18"/><line x1="8" y1="18" x2="8" y2="18"/><line x1="12" y1="18" x2="12" y2="18"/></svg> Calculator</button>
+      //                       <button class="modern-btn small grade-mode-toggle-btn" type="button" data-mode="Grades" title="Cycle grade display" style="display:none;">Grades</button>
+      //                       <button class="modern-close-btn" data-close="true">×</button>
+      //                   </div>
+      //               </div>
+      //               <div class="modern-modal-body" id="modal-body-${sem.id}">
+      //                   <table class="modern-table">
+      //                       <thead><tr><th>Course</th><th class="text-center">Cr</th><th class="text-center">Grade</th></tr></thead>
+      //                       <tbody>${sem.courses
+      //                         .map(
+      //                           (c) =>
+      //                             `<tr><td><div style="font-weight:600;">${
+      //                               c.name
+      //                             }</div><div style="font-size:11px; color:var(--text-light);">${
+      //                               c.code
+      //                             }</div></td><td class="text-center td-credit">${
+      //                               c.credits
+      //                             }</td><td class="text-center td-grade"><span class="modern-badge grade-pill static-grade ${getGradeColor(
+      //                               c.grade,
+      //                             )}">${
+      //                               c.grade
+      //                             }</span><div class="calc-view" style="display:none;"><select class="calc-select">${getGradeOptions(
+      //                               c.grade,
+      //                                 "Grades",
+      //                                 )}</select></div></td></tr>`,
+      //                         )
+      //                         .join("")}</tbody>
+      //                   </table>
+      //               </div>
+      //           </div>`,
+      //   )
+      //   .join("");
       const modalsHTML = semesters
-        .map(
-          (sem) => `
-                <div id="modal-${sem.id}" class="modern-modal">
-                    <div class="modern-modal-header">
-                        <div class="modal-title-group">
-                            <h3>${sem.title}</h3>
-                            <div class="sim-score-box" id="sim-box-${
-                              sem.id
-                            }" style="display:none;"><span>Simulated:</span><b id="sim-val-${
-                              sem.id
-                            }">${sem.sgpa}</b></div>
-                            <span class="real-score" id="real-score-${
-                              sem.id
-                            }">Actual SGPA: <b>${sem.sgpa}</b></span>
+  .map(
+    (sem) => `
+        <div id="modal-${sem.id}" class="modern-modal">
+            <div class="modern-modal-header">
+                
+                <div class="modal-header-left">
+                    <h3 class="modal-title">${sem.title}</h3>
+                    
+                    <div class="score-container">
+                        <div class="badge real-score" id="real-score-${sem.id}">
+                            Actual SGPA: <b>${sem.sgpa}</b>
                         </div>
-                        <div class="modal-actions">
-                            <button class="modern-btn small calc-toggle-btn" data-id="${
-                              sem.id
-                            }"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="14"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="18" x2="16" y2="18"/><line x1="8" y1="18" x2="8" y2="18"/><line x1="12" y1="18" x2="12" y2="18"/></svg> Calculator</button>
-                            <button class="modern-close-btn" data-close="true">×</button>
+
+                        <div class="badge sim-score-box" id="sim-box-${sem.id}" style="display:none;">
+                            <span class="sim-badge-label">Simulated</span>
+                            <span class="sim-score-item">SGPA: <b id="sim-sgpa-${sem.id}">${sem.sgpa}</b></span>
+                            <div class="sim-score-divider"></div>
+                            <span class="sim-score-item">CGPA: <b id="sim-cgpa-${sem.id}">${sem.cgpa}</b></span>
                         </div>
                     </div>
-                    <div class="modern-modal-body" id="modal-body-${sem.id}">
-                        <table class="modern-table">
-                            <thead><tr><th>Course</th><th class="text-center">Cr</th><th class="text-center">Grade</th></tr></thead>
-                            <tbody>${sem.courses
-                              .map(
-                                (c) =>
-                                  `<tr><td><div style="font-weight:600;">${
-                                    c.name
-                                  }</div><div style="font-size:11px; color:var(--text-light);">${
-                                    c.code
-                                  }</div></td><td class="text-center td-credit">${
-                                    c.credits
-                                  }</td><td class="text-center td-grade"><span class="modern-badge grade-pill static-grade ${getGradeColor(
-                                    c.grade,
-                                  )}">${
-                                    c.grade
-                                  }</span><div class="calc-view" style="display:none;"><select class="calc-select">${getGradeOptions(
-                                    c.grade,
-                                  )}</select></div></td></tr>`,
-                              )
-                              .join("")}</tbody>
-                        </table>
-                    </div>
-                </div>`,
-        )
-        .join("");
+                </div>
+
+                <div class="modal-actions">
+                    <button class="modern-btn small calc-toggle-btn" data-id="${sem.id}">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="4" y="2" width="16" height="20" rx="2"/>
+                            <line x1="8" y1="6" x2="16" y2="6"/>
+                            <line x1="16" y1="14" x2="16" y2="14"/>
+                            <line x1="8" y1="14" x2="8" y2="14"/>
+                            <line x1="12" y1="14" x2="12" y2="14"/>
+                            <line x1="16" y1="18" x2="16" y2="18"/>
+                            <line x1="8" y1="18" x2="8" y2="18"/>
+                            <line x1="12" y1="18" x2="12" y2="18"/>
+                        </svg> 
+                        Calculator
+                    </button>
+                    <button class="modern-btn small grade-mode-toggle-btn" type="button" data-mode="Grades" title="Cycle grade display" style="display:none;">Grades</button>
+                    <button class="modern-close-btn" data-close="true">×</button>
+                </div>
+            </div>
+
+            <div class="modern-modal-body" id="modal-body-${sem.id}">
+                <table class="modern-table">
+                    <thead><tr><th>Course</th><th class="text-center">Cr</th><th class="text-center">Grade</th></tr></thead>
+                    <tbody>${sem.courses
+                      .map(
+                        (c) =>
+                          `<tr><td><div style="font-weight:600;">${c.name}</div><div style="font-size:11px; color:var(--text-light);">${c.code}</div></td><td class="text-center td-credit">${c.credits}</td><td class="text-center td-grade"><span class="modern-badge grade-pill static-grade ${getGradeColor(c.grade)}">${c.grade}</span><div class="calc-view" style="display:none;"><select class="calc-select">${getGradeOptions(c.grade, "Grades")}</select></div></td></tr>`
+                      )
+                      .join("")}</tbody>
+                </table>
+            </div>
+        </div>`
+  )
+  .join("");
 
       const toolModalsHTML = `
                 <div id="modal-prereq" class="modern-modal" style="max-width: 850px; width:95%;">
@@ -645,7 +824,7 @@
       const currentCGPA = parseFloat(latestSem.cgpa) || 0;
       const currentCredits = parseInt(latestSem.crEarned) || 0;
 
-      //idk the logic behind max semesters but ok
+      //idk the logic behind max semesters 
       //showing 8 sems for UI, but allowing planning up to 12 sems(like I think max 6 years are allowed)
       const semestersCompleted = completedSemData.length;
       const standardDegreeSems = 8;
@@ -798,12 +977,31 @@
         };
 
         document
-          .querySelectorAll(".modern-btn")
+          .querySelectorAll(".modern-btn[data-id]")
           .forEach((b) =>
             b.addEventListener("click", (e) =>
               openModal(`modal-${e.target.closest("button").dataset.id}`),
             ),
           );
+
+        document.querySelectorAll(".grade-mode-toggle-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const modal = btn.closest(".modern-modal");
+            const modalBody = modal?.querySelector(".modern-modal-body");
+            if (!modal || !modalBody) return;
+
+            const nextMode = getNextGradeMode(btn.dataset.mode || "Grades");
+            btn.dataset.mode = nextMode;
+            btn.textContent = nextMode;
+            renderCalcSelects(modalBody, nextMode);
+
+            const calcBtn = modal.querySelector(".calc-toggle-btn");
+            if (calcBtn?.classList.contains("active-calc")) {
+              const id = calcBtn.dataset.id;
+              updateSimulationDisplay(modalBody, id, semesters);
+            }
+          });
+        });
 
         document.querySelectorAll(".calc-toggle-btn").forEach((btn) => {
           btn.addEventListener("click", () => {
@@ -811,8 +1009,16 @@
             const modalBody = document.getElementById(`modal-body-${id}`);
             const simBox = document.getElementById(`sim-box-${id}`);
             const realScore = document.getElementById(`real-score-${id}`);
+            const modeButton = btn
+              .closest(".modern-modal")
+              ?.querySelector(".grade-mode-toggle-btn");
+            const currentMode = modeButton?.dataset.mode || "Grades";
 
             const isActive = btn.classList.toggle("active-calc");
+
+            renderCalcSelects(modalBody, currentMode);
+
+            if (modeButton) modeButton.style.display = isActive ? "inline-flex" : "none";
 
             modalBody.querySelectorAll("tr").forEach((row) => {
               const staticPill = row.querySelector(".static-grade");
@@ -830,9 +1036,7 @@
             if (isActive) {
               const selects = modalBody.querySelectorAll(".calc-select");
               const updateCalc = () => {
-                const val = calculateSGPA(modalBody);
-                const display = document.getElementById(`sim-val-${id}`);
-                if (display) display.innerText = val;
+                updateSimulationDisplay(modalBody, id, semesters);
               };
 
               selects.forEach((s) => (s.onchange = updateCalc));
