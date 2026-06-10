@@ -33,7 +33,7 @@
       };
     };
 
-    const calculateCategoryStats = (categoryName, items) => {
+    const calculateCategoryStats = (categoryName, items, selectionMode = { type: "all" }) => {
       //normalize data
       //normalizing means calculating each item's contribution to the final grade based on its weight
       const processedItems = items.map((item) => {
@@ -49,15 +49,10 @@
         };
       });
 
-      //determine best-n limit
-      //for quizzes/assignments counting best 3, for labs best 10, else all
-      let limit = Infinity;
-      const nameLower = categoryName.toLowerCase();
-      if (nameLower.includes("quiz") || nameLower.includes("assignment")) {
-        limit = 3;
-      } else if (nameLower.includes("lab")) {
-        limit = 10;
-      }
+      const limit =
+        selectionMode.type === "best"
+          ? Math.max(0, Math.min(selectionMode.count || 0, processedItems.length))
+          : processedItems.length;
 
       //sort best to worst
       const sortedIndices = processedItems
@@ -124,15 +119,14 @@
         let courseTotalObtained = 0;
         let courseTotalMin = 0;
         let courseTotalMax = 0;
-
         const cards = pane.querySelectorAll(".card");
 
         cards.forEach((card) => {
           //extract category name
           const btn = card.querySelector(".card-header button");
           let categoryName = btn ? btn.innerText.trim() : "Other";
-          if (categoryName.includes("-"))
-            categoryName = categoryName.split("-").pop().trim();
+          // if (categoryName.includes("-"))
+          //   categoryName = categoryName.split("-").pop().trim();
           if (categoryName.includes("Grand Total")) return;
 
           const rows = card.querySelectorAll(".calculationrow");
@@ -174,16 +168,17 @@
           });
 
           if (rawItems.length > 0) {
-            const stats = calculateCategoryStats(categoryName, rawItems);
+            const baseStats = calculateCategoryStats(categoryName, rawItems, {
+              type: "all",
+            });
             categories.push({
               name: categoryName,
-              assessments: stats.items,
-              total: stats.total,
+              assessments: rawItems,
             });
-            courseTotalWeight += stats.total.weight;
-            courseTotalObtained += stats.total.obtained;
-            courseTotalMin += stats.total.classMin;
-            courseTotalMax += stats.total.classMax;
+            courseTotalWeight += baseStats.total.weight;
+            courseTotalObtained += baseStats.total.obtained;
+            courseTotalMin += baseStats.total.classMin;
+            courseTotalMax += baseStats.total.classMax;
           }
         });
 
@@ -207,6 +202,33 @@
 
     const semesterData = extractSemesterData();
     const { error, courses } = scrapeData();
+    const marksState = {
+      activeCourseId: courses[0]?.id || null,
+      categoryModes: {},
+      categoryCollapsed: {},
+    };
+
+    const getCategoryKey = (courseId, categoryIndex) =>
+      `${courseId}::${categoryIndex}`;
+
+    const parseSelectionValue = (value) => {
+      if (!value || value === "all") return { type: "all" };
+      const match = value.match(/^best-(\d+)$/);
+      return match
+        ? { type: "best", count: parseInt(match[1], 10) || 0 }
+        : { type: "all" };
+    };
+
+    const shouldShowCountSelector = (categoryName) => {
+      const name = categoryName.toLowerCase();
+      return !(
+        name.includes("mid term") ||
+        name.includes("midterm") ||
+        name.includes("sessional") ||
+        name.includes("final") ||
+        name.includes("project")
+      );
+    };
 
     //==================
     //html generators
@@ -255,12 +277,107 @@
         { val: 90, l: "A+" },
       ];
 
-      return courses
+        return courses
         .map((c, idx) => {
-          const totalObtained = c.grandTotal.obtained;
-          const totalWeight = c.grandTotal.weight;
-          const classMin = c.grandTotal.classMin;
-          const classMax = c.grandTotal.classMax;
+          let courseTotalWeight = 0;
+          let courseTotalObtained = 0;
+          let courseTotalMin = 0;
+          let courseTotalMax = 0;
+
+          const categoryBlocks = c.categories.map((cat, i) => {
+          const categoryKey = getCategoryKey(c.id, i);
+            const showCountSelector = shouldShowCountSelector(cat.name);
+          const selectedMode = marksState.categoryModes[categoryKey] || {
+            type: "all",
+          };
+            const stats = calculateCategoryStats(
+              cat.name,
+              cat.assessments,
+              showCountSelector ? selectedMode : { type: "all" },
+            );
+
+          courseTotalWeight += stats.total.weight;
+          courseTotalObtained += stats.total.obtained;
+          courseTotalMin += stats.total.classMin;
+          courseTotalMax += stats.total.classMax;
+
+          const isCollapsed = marksState.categoryCollapsed[categoryKey] ?? i !== 0;
+          const bestOptions = Array.from(
+            { length: Math.max(0, cat.assessments.length - 1) },
+            (_, optionIndex) => optionIndex + 1,
+          )
+            .map(
+            (count) =>
+              `<option value="best-${count}" ${selectedMode.type === "best" && selectedMode.count === count ? "selected" : ""}>Best of ${count}</option>`,
+            )
+            .join("");
+
+          return `
+                      <div class="category-group ${isCollapsed ? "collapsed" : ""}" data-category-key="${categoryKey}">
+                        <div class="category-header">
+                          <div class="category-header-left">
+                            <span class="cat-title">${cat.name}</span>
+                          </div>
+                          <div class="category-header-right">
+                              ${showCountSelector ? `
+                              <div class="category-count-controls">
+                                <select class="category-count-select" data-course-id="${c.id}" data-category-index="${i}" data-category-key="${categoryKey}" aria-label="Choose how to count ${cat.name}">
+                                  <option value="all" ${selectedMode.type === "all" ? "selected" : ""}>All</option>
+                                  ${bestOptions}
+                                </select>
+                              </div>
+                              ` : ""}
+                            <div class="cat-score">
+                              <span>${stats.total.obtained.toFixed(2)}</span> / ${stats.total.weight}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="category-body">
+                          <div class="table-scroll-wrapper">
+                            <table class="modern-table">
+                              <thead>
+                                <tr>
+                                  <th>Item</th>
+                                  <th class="text-center scroll-cell">Weight</th>
+                                  <th class="text-center scroll-cell">Total</th>
+                                  <th class="text-center scroll-cell">Obt</th>
+                                  <th class="text-center stat scroll-cell">Avg</th>
+                                  <th class="text-center stat scroll-cell">Min</th>
+                                  <th class="text-center stat scroll-cell">Max</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                ${stats.items
+                                  .map(
+                                  (a) => `
+                                  <tr class="${a.isDropped ? "row-dropped" : ""}">
+                                    <td>
+                                      <span class="status-dot ${a.isDropped ? "neutral" : a.status}"></span> 
+                                      ${a.name}
+                                      ${a.isDropped ? '<span class="dropped-badge">Dropped</span>' : ""}
+                                    </td>
+                                    <td class="text-center scroll-cell">${a.weight}</td>
+                                    <td class="text-center scroll-cell">${a.rawTotal}</td>
+                                    <td class="text-center scroll-cell"><span class="obt-badge ${a.isDropped ? "neutral" : a.status}">${a.obtText}</span></td>
+                                    <td class="text-center stat scroll-cell">${a.avg}</td>
+                                    <td class="text-center stat scroll-cell">${a.min}</td>
+                                    <td class="text-center stat scroll-cell">${a.max}</td>
+                                  </tr>
+                                `,
+                                  )
+                                  .join("")}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    `;
+          });
+
+          const totalObtained = Math.ceil(courseTotalObtained);
+          const totalWeight = Math.ceil(courseTotalWeight);
+          const classMin = parseFloat(courseTotalMin.toFixed(2));
+          const classMax = parseFloat(courseTotalMax.toFixed(2));
 
           //clamping for visual timeline
           const userPct = Math.min(Math.max(totalObtained, 0), 100);
@@ -280,13 +397,13 @@
             .join("");
 
           return `
-                <div class="course-pane ${idx === 0 ? "active" : ""}" id="pane-${c.id}">
+                <div class="course-pane ${c.id === marksState.activeCourseId || (!marksState.activeCourseId && idx === 0) ? "active" : ""}" id="pane-${c.id}">
                     <div class="course-card">
                         <div class="course-header">
                             <h3 class="course-title">${c.title}</h3>
                             <div class="course-summary">
-                                <div class="sum-item"><span class="lbl">Total Weight</span><span class="val">${c.grandTotal.weight}</span></div>
-                                <div class="sum-item"><span class="lbl">Obtained</span><span class="val ${c.grandTotal.obtained < 50 ? "fail" : "pass"}">${c.grandTotal.obtained}</span></div>
+                            <div class="sum-item"><span class="lbl">Total Weight</span><span class="val">${totalWeight}</span></div>
+                            <div class="sum-item"><span class="lbl">Obtained</span><span class="val ${totalObtained < 50 ? "fail" : "pass"}">${totalObtained}</span></div>
                             </div>
                         </div>
 
@@ -324,65 +441,8 @@
 
                         ${
                           c.categories.length > 0
-                            ? `
-                            <div class="categories-list">
-                                ${c.categories
-                                  .map(
-                                    (cat, i) => `
-                                    <div class="category-group ${i === 0 ? "" : "collapsed"}">
-                                        <div class="category-header">
-                                            <div style="display:flex; align-items:center; gap:12px;">
-                                                <span class="cat-title">${cat.name}</span>
-                                            </div>
-                                            <div class="cat-score">
-                                                <span>${cat.total.obtained.toFixed(2)}</span> / ${cat.total.weight}
-                                            </div>
-                                        </div>
-                                        <div class="category-body">
-                                            <div class="table-scroll-wrapper">
-                                                <table class="modern-table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Item</th>
-                                                            <th class="text-center scroll-cell">Weight</th>
-                                                            <th class="text-center scroll-cell">Total</th>
-                                                            <th class="text-center scroll-cell">Obt</th>
-                                                            <th class="text-center stat scroll-cell">Avg</th>
-                                                            <th class="text-center stat scroll-cell">Min</th>
-                                                            <th class="text-center stat scroll-cell">Max</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        ${cat.assessments
-                                                          .map(
-                                                            (a) => `
-                                                            <tr class="${a.isDropped ? "row-dropped" : ""}">
-                                                                <td>
-                                                                    <span class="status-dot ${a.isDropped ? "neutral" : a.status}"></span> 
-                                                                    ${a.name}
-                                                                    ${a.isDropped ? '<span class="dropped-badge">Dropped</span>' : ""}
-                                                                </td>
-                                                                <td class="text-center scroll-cell">${a.weight}</td>
-                                                                <td class="text-center scroll-cell">${a.rawTotal}</td>
-                                                                <td class="text-center scroll-cell"><span class="obt-badge ${a.isDropped ? "neutral" : a.status}">${a.obtText}</span></td>
-                                                                <td class="text-center stat scroll-cell">${a.avg}</td>
-                                                                <td class="text-center stat scroll-cell">${a.min}</td>
-                                                                <td class="text-center stat scroll-cell">${a.max}</td>
-                                                            </tr>
-                                                        `,
-                                                          )
-                                                          .join("")}
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                `,
-                                  )
-                                  .join("")}
-                            </div>
-                        `
-                            : `<div style="padding:20px; text-align:center; color:#999;">No marks uploaded yet.</div>`
+                          ? `<div class="categories-list">${categoryBlocks.join("")}</div>`
+                          : `<div style="padding:20px; text-align:center; color:#999;">No marks uploaded yet.</div>`
                         }
                     </div>
                 </div>
@@ -390,6 +450,12 @@
         })
         .join("");
     };
+
+              const renderCourseContent = () => {
+                const wrapper = document.querySelector(".courses-wrapper");
+                if (!wrapper) return;
+                wrapper.innerHTML = buildCourseContent();
+              };
 
     //==================
     //render & events
@@ -403,6 +469,7 @@
         const btn = e.target.closest(".course-tab-btn");
         if (!btn) return;
         const targetId = btn.getAttribute("data-id");
+        marksState.activeCourseId = targetId;
         document
           .querySelectorAll(".course-tab-btn")
           .forEach((b) => b.classList.remove("active"));
@@ -417,11 +484,28 @@
     //collapse logic
     const wrapper = document.querySelector(".courses-wrapper");
     if (wrapper) {
+      wrapper.addEventListener("change", (e) => {
+        const select = e.target.closest(".category-count-select");
+        if (!select) return;
+
+        const courseId = select.getAttribute("data-course-id");
+        const categoryIndex = select.getAttribute("data-category-index");
+        const categoryKey = getCategoryKey(courseId, categoryIndex);
+        marksState.categoryModes[categoryKey] = parseSelectionValue(select.value);
+
+        renderCourseContent();
+      });
+
       wrapper.addEventListener("click", (e) => {
+        if (e.target.closest(".category-count-controls")) return;
         const header = e.target.closest(".category-header");
         if (!header) return;
         const group = header.closest(".category-group");
-        if (group) group.classList.toggle("collapsed");
+        if (!group) return;
+
+        const categoryKey = group.getAttribute("data-category-key");
+        const isCollapsed = group.classList.toggle("collapsed");
+        if (categoryKey) marksState.categoryCollapsed[categoryKey] = isCollapsed;
       });
     }
   } catch (e) {
