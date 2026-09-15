@@ -96,7 +96,7 @@
     const scrapeData = () => {
       const errorAlert = document.querySelector(".alert-danger");
       if (errorAlert && errorAlert.innerText.includes("No Record"))
-        return { error: "No records found." };
+        return { error: "NO_RECORD", courses: [] };
 
       const courses = [];
       const tabs = document.querySelectorAll(".nav-tabs .nav-link");
@@ -201,7 +201,7 @@
     };
 
     const semesterData = extractSemesterData();
-    const { error, courses } = scrapeData();
+    const { error, courses = [] } = scrapeData();
     const marksState = {
       activeCourseId: courses[0]?.id || null,
       categoryModes: {},
@@ -257,10 +257,30 @@
       return `<div class="course-tabs-container">${btns}</div>`;
     };
 
+    //shown when flex has nothing for the selected session - without this the module
+    //used to throw and hand the user back the raw flex page
+    const buildEmptyState = () => {
+      const activeSemester =
+        semesterData?.options.find((o) => o.selected)?.text || "";
+      const semesterLabel = activeSemester
+        ? `<strong>${activeSemester}</strong>`
+        : "this session";
+
+      return `
+        <div class="marks-empty">
+            <div class="marks-empty-icon">
+                <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-4"></path><path d="M12 2v13"></path><path d="M8 7l4-4 4 4"></path></svg>
+            </div>
+            <h3 class="marks-empty-title">No marks uploaded yet</h3>
+            <p class="marks-empty-text">
+                Your instructors haven't uploaded any marks for ${semesterLabel} so far.
+                Check back later, or pick a different session above.
+            </p>
+        </div>`;
+    };
+
     const buildCourseContent = () => {
-      if (error) return `<div class="empty-state"><h3>${error}</h3></div>`;
-      if (courses.length === 0)
-        return `<div class="empty-state"><h3>No Data</h3></div>`;
+      if (error || courses.length === 0) return buildEmptyState();
 
       //static threshold
       const gradeThresholds = [

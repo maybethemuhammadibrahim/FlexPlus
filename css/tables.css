@@ -616,3 +616,49 @@
 }
 
 /* Table Styles moved to main.css */
+
+/* ---------------------------------------------------------------------------
+   EMPTY STATE - shown when Flex has no marks for the selected session
+   --------------------------------------------------------------------------- */
+.marks-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 56px 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+
+.marks-empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    background: var(--bg-hover);
+    color: var(--text-muted);
+}
+
+.marks-empty-title {
+    margin: 0 0 8px 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.marks-empty-text {
+    margin: 0;
+    max-width: 420px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+
+.marks-empty-text strong {
+    color: var(--text-main);
+    font-weight: 700;
+}

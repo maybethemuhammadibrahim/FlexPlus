@@ -2,6 +2,8 @@
 .feedback-view {
     max-width: 1000px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
     gap: 24px;
 }
 
@@ -99,4 +101,354 @@
 /* Responsive */
 @media (max-width: 600px) {
     .table-modern-wrapper table { min-width: 600px; }
+}
+/* ═══════════════════════════════════════════════════════════════════════════
+   COURSE FEEDBACK - LIST PAGE EXTRAS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fb-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.fb-summary-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 18px 20px;
+    text-align: center;
+}
+
+.fb-summary-val {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.1;
+}
+
+.fb-summary-val.text-pending { color: var(--danger-text); }
+.fb-summary-val.text-done { color: var(--success-text); }
+
+.fb-summary-lbl {
+    margin-top: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
+
+.fb-no-action {
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COURSE FEEDBACK - QUESTIONS PAGE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.fb-questions-view {
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 120px;
+}
+
+/* --- Course header --- */
+.fb-course-card {
+    padding: 20px 24px !important;
+}
+
+.fb-course-meta {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
+
+.fb-course-name {
+    margin-top: 6px;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+/* --- Quick fill --- */
+.fb-autofill-card .dash-card-title {
+    margin-bottom: 16px;
+}
+
+.fb-hint {
+    margin: 0 0 16px 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.fb-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.fb-chip {
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.fb-chip:hover {
+    background: var(--bg-hover);
+    color: var(--text-main);
+    border-color: var(--text-light);
+}
+
+.fb-chip.selected {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: #fff;
+}
+
+.fb-autofill-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.fb-autofill-actions .modern-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* --- Question cards --- */
+.fb-questions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.fb-q-card {
+    padding: 20px 24px !important;
+    scroll-margin-top: 90px;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.fb-q-card.unanswered {
+    border-color: var(--danger-text);
+}
+
+.fb-q-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.fb-q-num {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-hover);
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.fb-q-num.optional {
+    background: transparent;
+    border: 1px dashed var(--border-color);
+    color: var(--text-light);
+}
+
+.fb-q-text {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--text-main);
+}
+
+.fb-optional-tag {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: var(--bg-hover);
+    color: var(--text-light);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+/* --- Answer options --- */
+.fb-options {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+}
+
+.fb-opt {
+    padding: 10px 8px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-main);
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.fb-opt:hover {
+    background: var(--bg-hover);
+    color: var(--text-main);
+    border-color: var(--text-light);
+}
+
+.fb-opt.selected {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: #fff;
+}
+
+/* --- Comment boxes --- */
+.fb-textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.6;
+    resize: vertical;
+    transition: var(--transition-fast);
+}
+
+.fb-textarea:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    background: var(--bg-card);
+}
+
+.fb-textarea::placeholder {
+    color: var(--text-light);
+}
+
+/* --- Sticky submit bar --- */
+.fb-submit-bar {
+    position: sticky;
+    bottom: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 4px;
+    padding: 16px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--bg-card);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.fb-progress {
+    flex: 1;
+    min-width: 0;
+}
+
+.fb-progress-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.fb-progress-track {
+    height: 6px;
+    border-radius: 20px;
+    background: var(--timeline-track);
+    overflow: hidden;
+}
+
+.fb-progress-fill {
+    height: 100%;
+    width: 0;
+    border-radius: 20px;
+    background: var(--accent-blue);
+    transition: width 0.25s ease;
+}
+
+.fb-submit-bar.complete .fb-progress-fill {
+    background: var(--success-text);
+}
+
+.fb-submit-btn {
+    flex-shrink: 0;
+    padding: 10px 22px;
+}
+
+.fb-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* --- Confirm modal --- */
+.fb-confirm-text {
+    margin: 0 0 20px 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+
+.fb-confirm-text strong {
+    color: var(--text-main);
+}
+
+.fb-confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .fb-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .fb-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .fb-submit-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .fb-submit-btn {
+        width: 100%;
+    }
+
+    .fb-autofill-actions .modern-btn {
+        flex: 1 1 auto;
+    }
 }

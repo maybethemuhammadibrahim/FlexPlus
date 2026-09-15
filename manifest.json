@@ -57,7 +57,10 @@
       "run_at": "document_end"
     },
     {
-      "matches": ["*://flexstudent.nu.edu.pk/Student/CourseFeedback*"],
+      "matches": [
+        "*://flexstudent.nu.edu.pk/Student/CourseFeedback*",
+        "*://flexstudent.nu.edu.pk/Student/FeedBackQuestions*"
+      ],
       "css": ["css/main.css", "css/feedback.css"],
       "js": ["js/utils.js", "js/feedback.js"],
       "run_at": "document_end"
