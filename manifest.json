@@ -3,11 +3,15 @@
   "name": "Flex+",
   "version": "3.7",
   "description": "Reimagined and enhanced user interface for Flex Student Portal of NUCES.",
-  "permissions": ["storage"],
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
   "host_permissions": ["*://flexstudent.nu.edu.pk/*"],
   "web_accessible_resources": [
     {
-      "resources": ["css/*.css", "js/*.js", "json/*.json", "assets/*"],
+      "resources": ["css/transcript.css", "json/degree_prereqs.json"],
       "matches": ["*://flexstudent.nu.edu.pk/*"]
     }
   ],
