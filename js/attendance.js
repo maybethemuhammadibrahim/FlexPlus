@@ -129,7 +129,7 @@
       const inps = data.inputs
         .map((i) => `<input type="hidden" name="${esc(i.name)}" value="${esc(i.value)}">`)
         .join("");
-      return `<div class="semester-card"><form action="${esc(data.action)}" method="${esc(data.method)}">${inps}<label>Academic Session</label><select name="${esc(data.selectName)}" class="sem-select" onchange="this.form.submit()">${opts}</select></form></div>`;
+      return `<div class="semester-card"><form action="${esc(data.action)}" method="${esc(data.method)}">${inps}<label>Academic Session</label><select name="${esc(data.selectName)}" class="sem-select">${opts}</select></form></div>`;
     };
 
     //==================
@@ -221,6 +221,11 @@
 
         const finalHTML = `${buildSemesterForm(semesterData)}${mainContent}${modalContent}`;
         window.FlexUtils.renderInternalPage(finalHTML, "Attendance Overview");
+
+        //picking a session posts the rebuilt form, same as the portal's own dropdown
+        document
+          .querySelector(".sem-select")
+          ?.addEventListener("change", (e) => e.target.form.submit());
 
         //==================
         // event binding

@@ -54,6 +54,7 @@ That catch-and-fall-back is for *unexpected* errors only. "Flex has no data for 
 - `FlexUtils.ICONS` — inline SVG strings; use these instead of adding icon files.
 - Theme engine: 5 themes cycled by `toggleTheme()`, stored in `localStorage` under `flex-theme`, applied as `body.<theme>-mode` (light is the bare `:root` default, no class). With nothing stored, `initTheme()` follows `prefers-color-scheme` (dark/light) without saving it.
 - `cleanText` / `safeText(selector, parent)` — null-safe scraping helpers that return `"-"`.
+- `FlexUtils.setHTML(el, html)` / `appendHTML(el, html)` — the **only** string-to-DOM path. Never assign `innerHTML` / call `insertAdjacentHTML` in a module: AMO's linter flags every such site, and `REVIEWER_NOTES.md` promises the reviewer that `parseHTML` in `utils.js` is the single one. Re-run `npx addons-linter` on the `build.sh` zip before shipping; expect exactly 1 warning.
 
 Injected HTML is built with template literals, so **inline `onclick` never works** (extension CSP). Always `addEventListener` after the render call, or use delegation on `document.body`.
 

@@ -17,6 +17,19 @@ window.FlexUtils.escapeHTML = (value) =>
     ? ""
     : String(value).replace(/[&<>"']/g, (c) => HTML_ESCAPES[c]);
 
+//the one place FLEX+ turns an HTML string into DOM. Every string handed in is
+//markup the extension generated itself, with scraped values already passed
+//through escapeHTML at interpolation. Routing every insertion through here keeps
+//that contract auditable in one spot - don't assign innerHTML anywhere else.
+//The string is parsed inside a <template>, whose content is inert until moved.
+const parseHTML = (html) => {
+  const tpl = document.createElement("template");
+  tpl.innerHTML = html;
+  return tpl.content;
+};
+window.FlexUtils.setHTML = (el, html) => el.replaceChildren(parseHTML(html));
+window.FlexUtils.appendHTML = (el, html) => el.append(parseHTML(html));
+
 //clean text(ai)
 window.FlexUtils.cleanText = (text) =>
   text ? text.trim().replace(/\s+/g, " ") : "-";
@@ -81,10 +94,10 @@ function updateThemeIcons(theme) {
   const svg = window.FlexUtils.ICONS[iconKey];
 
   const deskBtn = document.getElementById("theme-toggle-btn");
-  if (deskBtn) deskBtn.innerHTML = svg;
+  if (deskBtn) window.FlexUtils.setHTML(deskBtn, svg);
 
   const mobBtn = document.getElementById("theme-toggle-mobile");
-  if (mobBtn) mobBtn.innerHTML = svg;
+  if (mobBtn) window.FlexUtils.setHTML(mobBtn, svg);
 }
 
 //theme logic
@@ -272,7 +285,10 @@ window.FlexUtils.renderInternalPage = function (mainContentHTML, pageTitle) {
 
     const root = document.createElement("div");
     root.id = "modern-root";
-    root.innerHTML = `${mobileHeaderHTML}${sidebarHTML}<main class="modern-main"><div class="header-row"><h1 class="page-title">${pageTitle}</h1></div>${mainContentHTML}</main>`;
+    window.FlexUtils.setHTML(
+      root,
+      `${mobileHeaderHTML}${sidebarHTML}<main class="modern-main"><div class="header-row"><h1 class="page-title">${pageTitle}</h1></div>${mainContentHTML}</main>`,
+    );
 
     const oldRoot = document.getElementById("modern-root");
     if (oldRoot) oldRoot.remove();

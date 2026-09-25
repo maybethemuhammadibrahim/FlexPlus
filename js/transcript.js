@@ -10,6 +10,7 @@
     console.log("transcript script loaded");
 
     const esc = window.FlexUtils.escapeHTML;
+    const setHTML = window.FlexUtils.setHTML;
 
     //============
     //inject css
@@ -146,7 +147,7 @@
       modalBody.querySelectorAll(".calc-select").forEach((select) => {
         const selectedGrade =
           select.selectedOptions[0]?.dataset.grade || "--";
-        select.innerHTML = getGradeOptions(selectedGrade, mode);
+        setHTML(select, getGradeOptions(selectedGrade, mode));
       });
     };
 
@@ -300,14 +301,14 @@
 
       // 1. Fetch JSON if not loaded
       if (!fullPrereqData) {
-        container.innerHTML = `<div class="loading-spinner" style="padding:20px; text-align:center; color:var(--text-muted);">Loading Course Data...</div>`;
+        setHTML(container, `<div class="loading-spinner" style="padding:20px; text-align:center; color:var(--text-muted);">Loading Course Data...</div>`);
         try {
           const url = chrome.runtime.getURL("json/degree_prereqs.json");
           const res = await fetch(url);
           fullPrereqData = await res.json();
         } catch (e) {
           console.error(e);
-          container.innerHTML = `<div class="error-msg" style="color:var(--danger-text); text-align:center;">Failed to load Prereq Data. Please check extension files.</div>`;
+          setHTML(container, `<div class="error-msg" style="color:var(--danger-text); text-align:center;">Failed to load Prereq Data. Please check extension files.</div>`);
           return;
         }
       }
@@ -350,7 +351,7 @@
                     </div>
                 </div>
             `;
-      container.innerHTML = html;
+      setHTML(container, html);
 
       document
         .getElementById("degree-select")
@@ -358,8 +359,10 @@
           selectedDegree = e.target.value;
           //clearssearch box when degree changes
           document.getElementById("course-search").value = "";
-          document.getElementById("chain-visualizer").innerHTML =
-            '<div class="empty-chain-state">Select a course to visualize.</div>';
+          setHTML(
+            document.getElementById("chain-visualizer"),
+            '<div class="empty-chain-state">Select a course to visualize.</div>',
+          );
         });
 
       const searchInput = document.getElementById("course-search");
@@ -387,15 +390,18 @@
         .slice(0, 5);
 
       if (matches.length > 0) {
-        resultsBox.innerHTML = matches
-          .map(
-            (code) => `
+        setHTML(
+          resultsBox,
+          matches
+            .map(
+              (code) => `
                     <div class="search-item" data-code="${esc(code)}">
                         <b>${esc(code)}</b> - ${esc(degreeData[code].name)}
                     </div>
                 `,
-          )
-          .join("");
+            )
+            .join(""),
+        );
         resultsBox.style.display = "block";
 
         //event listeners for items
@@ -473,7 +479,7 @@
       const targetCourse = degreeData[targetCode];
 
       if (!targetCourse) {
-        visualizer.innerHTML = `<div class="empty-chain-state">Data not found for ${esc(targetCode)}</div>`;
+        setHTML(visualizer, `<div class="empty-chain-state">Data not found for ${esc(targetCode)}</div>`);
         return;
       }
 
@@ -539,13 +545,13 @@
         futureTreeHTML,
       );
 
-      visualizer.innerHTML = `
+      setHTML(visualizer, `
             <div class="tree-diagram-container">
                 <div class="tf-wrapper">
                     ${finalHTML}
                 </div>
             </div>
-        `;
+        `);
     };
 
     //AI GENERATED
@@ -854,7 +860,7 @@
       );
 
       if (!semesters || semesters.length === 0) {
-        container.innerHTML = `<div class="empty-state">No transcript data available to plan.</div>`;
+        setHTML(container, `<div class="empty-state">No transcript data available to plan.</div>`);
         return;
       }
 
@@ -880,7 +886,7 @@
       );
       const internalRemaining = Math.max(0, maxSemesters - semestersCompleted);
 
-      container.innerHTML = `
+      setHTML(container, `
         
             <div class="planner-stats">
                 <div>
@@ -927,7 +933,7 @@
                 <div id="planner-graph-container"></div>
             </div>
        
-    `;
+    `);
 
       //binding
       document.getElementById("btn-calc-plan").addEventListener("click", () => {
@@ -977,7 +983,7 @@
                 <br><span style="font-size:11px; color:var(--text-muted);">(Calculated based on ~16 credits per semester)</span>
             `;
         }
-        textBox.innerHTML = html;
+        setHTML(textBox, html);
 
         if (!impossible) {
           const futureSems = [];
@@ -987,9 +993,9 @@
               sgpa: Math.max(0, requiredSGPA).toFixed(2),
             });
           }
-          graphBox.innerHTML = generateGraphHTML([...semesters, ...futureSems]);
+          setHTML(graphBox, generateGraphHTML([...semesters, ...futureSems]));
         } else {
-          graphBox.innerHTML = "";
+          graphBox.replaceChildren();
         }
       });
     };
@@ -1115,7 +1121,7 @@
                 ?.dataset.mode || "Grades";
             clearSimGrades(semesters.find((s) => String(s.id) === id)?.title);
             modalBody.querySelectorAll(".calc-select").forEach((s) => {
-              s.innerHTML = getGradeOptions(s.dataset.actual, mode);
+              setHTML(s, getGradeOptions(s.dataset.actual, mode));
             });
             updateSimulationDisplay(modalBody, id, semesters);
           });

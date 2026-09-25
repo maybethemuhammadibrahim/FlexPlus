@@ -111,9 +111,8 @@
         };
     };
 
-    const parseSemesterDetails = (htmlContent, index) => {
-        const temp = document.createElement('div');
-        temp.innerHTML = htmlContent;
+    // reads straight from the (hidden) legacy row - no need to serialise and re-parse it
+    const parseSemesterDetails = (temp, index) => {
 
         const getTxt = (id) => temp.querySelector(`#${id}_${index}`)?.innerText.trim() || '0';
         const sgpa = getTxt('lbSGPA') || '-';
@@ -194,7 +193,7 @@
                     document.body.style.cursor = 'default';
                     
                     if (hasData) {
-                        const parsedData = parseSemesterDetails(sourceDiv.innerHTML, index);
+                        const parsedData = parseSemesterDetails(sourceDiv, index);
                         if(window.showModernModal) {
                             window.showModernModal(title, parsedData);
                         } else {
@@ -262,7 +261,7 @@
                 </div>
             </div>`;
         
-        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        window.FlexUtils.appendHTML(document.body, modalHTML);
         const modal = document.getElementById('modern-fee-modal');
         const close = () => modal.remove();
         modal.querySelector('.modal-close-btn').addEventListener('click', close);

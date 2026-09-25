@@ -245,7 +245,7 @@
       const inputs = semesterData.inputs
         .map((i) => `<input type="hidden" name="${esc(i.name)}" value="${esc(i.value)}">`)
         .join("");
-      return `<div class="semester-card"><form action="${esc(semesterData.action)}" method="${esc(semesterData.method)}">${inputs}<label>Academic Session</label><select name="${esc(semesterData.selectName)}" class="sem-select" onchange="this.form.submit()">${options}</select></form></div>`;
+      return `<div class="semester-card"><form action="${esc(semesterData.action)}" method="${esc(semesterData.method)}">${inputs}<label>Academic Session</label><select name="${esc(semesterData.selectName)}" class="sem-select">${options}</select></form></div>`;
     };
 
     const buildCourseTabs = () => {
@@ -476,13 +476,18 @@
               const renderCourseContent = () => {
                 const wrapper = document.querySelector(".courses-wrapper");
                 if (!wrapper) return;
-                wrapper.innerHTML = buildCourseContent();
+                window.FlexUtils.setHTML(wrapper, buildCourseContent());
               };
 
     //==================
     //render & events
     const finalHTML = `${buildSemesterForm()}${buildCourseTabs()}<div class="courses-wrapper">${buildCourseContent()}</div>`;
     window.FlexUtils.renderInternalPage(finalHTML, "Marks & Grades");
+
+    //picking a session posts the rebuilt form, same as the portal's own dropdown
+    document
+      .querySelector(".sem-select")
+      ?.addEventListener("change", (e) => e.target.form.submit());
 
     //tab switching logic
     const tabsContainer = document.querySelector(".course-tabs-container");

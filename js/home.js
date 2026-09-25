@@ -50,8 +50,7 @@
     const profileHTML = `
             <div class="dash-header-card">
                 <div class="dash-avatar">
-                    <img src="/Login/GetImage" alt="${esc(name)}" 
-                         onerror="this.parentElement.innerHTML='<span>${esc(name.charAt(0))}</span>'">
+                    <img src="/Login/GetImage" alt="${esc(name)}">
                 </div>
                 <div class="dash-identity">
                     <h2 class="student-name">${esc(name)}</h2>
@@ -126,6 +125,16 @@
         `;
 
     window.FlexUtils.renderInternalPage(finalHTML, "Student Dashboard");
+
+    //no photo on file: fall back to the student's initial. A listener, not an
+    //inline onerror - inline handlers are blocked in injected markup, and would
+    //put a scraped value inside a JS string where escapeHTML doesn't protect it
+    const avatarImg = document.querySelector(".dash-avatar img");
+    avatarImg?.addEventListener("error", () => {
+      const initial = document.createElement("span");
+      initial.textContent = name.charAt(0);
+      avatarImg.replaceWith(initial);
+    });
   } catch (e) {
     console.error("Home Module Error:", e);
     document.body.classList.remove("modern-active");

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Flex+",
-  "version": "3.8",
+  "version": "3.9",
   "description": "Reimagined and enhanced user interface for Flex Student Portal of NUCES.",
   "icons": {
     "16": "assets/icon16.png",

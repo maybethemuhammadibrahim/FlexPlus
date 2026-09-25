@@ -42,11 +42,23 @@ changed by this add-on.
 - Declared in the manifest as
   `browser_specific_settings.gecko.data_collection_permissions.required: ["none"]`.
 
-## About the `innerHTML` warnings
+## About the `innerHTML` warning
 
-`addons-linter` reports 15 `UNSAFE_VAR_ASSIGNMENT` warnings (and no errors). These are inherent
-to the architecture described above — each module composes its replacement UI as
-an HTML string and assigns it once. We would like to save you time on these:
+`addons-linter` reports exactly one `UNSAFE_VAR_ASSIGNMENT` warning (and no
+errors): `js/utils.js`, inside `parseHTML`. That is deliberate. Each module
+composes its replacement UI as an HTML string, and **every** string-to-DOM
+insertion in the add-on goes through that one function via
+`FlexUtils.setHTML(el, html)` / `FlexUtils.appendHTML(el, html)`. There is no
+other `innerHTML` assignment, `insertAdjacentHTML`, `outerHTML` or
+`document.write` in the package:
+
+```
+grep -nE 'innerHTML\s*=|insertAdjacentHTML|outerHTML|document\.write' js/*.js
+# -> only js/utils.js (tpl.innerHTML = html)
+```
+
+The string is parsed into a `<template>` element, whose content is inert, and
+then moved into place. What makes the strings safe is described below:
 
 **Every value interpolated into those strings is escaped.**
 `js/utils.js` exports `FlexUtils.escapeHTML`, and it is applied at 119
