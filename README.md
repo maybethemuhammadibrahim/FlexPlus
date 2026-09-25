@@ -8,13 +8,25 @@
 
 ## ⚡ Installation
 
-Since this is a developer extension, you will install it via Chrome's "Load Unpacked" feature.
+First, clone this repository or download the ZIP and extract it to a folder (e.g., `FlexPlus`).
 
-1.  **Download:** Clone this repository or download the ZIP and extract it to a folder (e.g., `Reflex-Extension`).
-2.  **Open Extensions:** Go to `chrome://extensions/` in your browser.
-3.  **Enable Developer Mode:** Toggle the switch in the top-right corner.
-4.  **Load:** Click **"Load unpacked"** and select the folder containing `manifest.json`.
-5.  **Run:** Visit the [Flex Student Portal](https://flexstudent.nu.edu.pk/) and login. The new UI will activate automatically.
+### Chrome / Edge / Brave
+
+1.  **Open Extensions:** Go to `chrome://extensions/`.
+2.  **Enable Developer Mode:** Toggle the switch in the top-right corner.
+3.  **Load:** Click **"Load unpacked"** and select the folder containing `manifest.json`.
+4.  **Run:** Visit the [Flex Student Portal](https://flexstudent.nu.edu.pk/) and log in. The new UI activates automatically.
+
+### Firefox
+
+1.  **Open Debugging:** Go to `about:debugging#/runtime/this-firefox`.
+2.  **Load:** Click **"Load Temporary Add-on…"** and select `manifest.json` in the folder. Temporary add-ons are removed when Firefox restarts.
+3.  **Allow the site:** Firefox lets you choose which sites an extension may run on. Click the Extensions (puzzle-piece) button in the toolbar, click the ⚙ next to FLEX+, and choose **"Always allow on flexstudent.nu.edu.pk"** (or enable it under `about:addons` → FLEX+ → **Permissions**).
+4.  **Run:** Visit the [Flex Student Portal](https://flexstudent.nu.edu.pk/) and log in.
+
+> **FLEX+ only works after you click its icon?** That means the site isn't set to "Always allow" — see step 3.
+
+The login page is intentionally left as the portal's original page, so its Cloudflare check works normally. FLEX+ takes over once you're signed in.
 
 ---
 
@@ -25,11 +37,12 @@ FLEX+ goes beyond a simple visual overhaul by adding data-driven tools that the 
 ### 🎨 Theming Engine
 * **5-State Toggle:** Cycle through **Light, Dark, Midnight, Forest,** and **Sunset** modes.
 * **Persistence:** Your preference is saved locally and applies instantly on every page load.
+* **Follows your system:** Until you pick a theme, FLEX+ uses Dark or Light to match your operating system's setting.
 
 ---
 
 ### 🎓 Transcript Power-Tools (Priority Feature)
-* **GPA Planner / Simulator:** Enter hypothetical grades for current courses to see how they impact your final CGPA.
+* **GPA Planner / Simulator:** Enter hypothetical grades for current courses to see how they impact your final CGPA. Your picks are remembered across reloads (stored only in your browser); **Reset** puts a semester back to its actual grades.
 * **Prerequisite Checker:** Visualizes course dependencies (e.g., visual warnings if you haven't passed a prerequisite).
 * **Smart GPA:** Auto-calculates SGPA excluding "Withdrawn" or "Non-Credit" courses for better accuracy.
 
@@ -63,11 +76,11 @@ We have also redesigned the core daily drivers:
 
 ## ⚙️ How It Works
 
-Reflex operates using a **"Shadow DOM"** technique to ensure compatibility with the university's legacy system.
+FLEX+ operates as a **"Parasitic UI"** to stay compatible with the university's legacy system.
 
-1.  **Hide:** The original `.m-portlet` grids are set to `visibility: hidden` and `height: 0`. They remain in the DOM so the site's internal ASP.NET scripts don't crash.
-2.  **Scrape:** The extension reads text, links, and data attributes from these hidden elements.
-3.  **Render:** A new container (`#modern-root`) is appended to the `<body>` where the clean UI is drawn.
+1.  **Scrape:** The extension reads text, links, and data attributes from the original page.
+2.  **Render:** A new container (`#modern-root`) is appended to the `<body>` where the clean UI is drawn.
+3.  **Hide:** A `modern-active` class on `<body>` hides the original page with CSS. It is never removed from the DOM, so the site's own ASP.NET and jQuery scripts keep working — buttons in the new UI simply click their hidden originals.
 
 ### The "AJAX Bridge"
 For pages like **Fee Details** that load data asynchronously:

@@ -8,19 +8,17 @@
   try {
     console.log("login script loaded");
 
-    // Grab existing form fields before we nuke the DOM
+    // Grab existing form fields before we hide the legacy page
     const usernameInput = document.querySelector('input[name="username"]');
     const passwordInput = document.querySelector('input[name="password"]');
     const rememberInput = document.querySelector('input[name="remember"]');
-    const recaptchaEl   = document.querySelector(".g-recaptcha");
+    const turnstileEl   = document.querySelector(".cf-turnstile");
     const formAction    = document.querySelector("#frmlogin")?.action || "/Login/login";
 
-    const savedUser    = usernameInput?.value || "";
-    const savedPass    = passwordInput?.value || "";
+    const esc = window.FlexUtils.escapeHTML;
+    const savedUser    = esc(usernameInput?.value || "");
+    const savedPass    = esc(passwordInput?.value || "");
     const savedRemember = rememberInput?.checked || false;
-
-    // Clone recaptcha — Google needs the original DOM node to stay alive
-    const recaptchaClone = recaptchaEl ? recaptchaEl.cloneNode(true) : null;
 
     const loginHTML = `
       <div class="fl-login-wrapper">
@@ -36,7 +34,7 @@
           <h2 class="fl-heading">Welcome back</h2>
           <p class="fl-subheading">Sign in to your student portal</p>
 
-          <form id="frmlogin" action="${formAction}" method="post" class="fl-form" autocomplete="on">
+          <form id="fl_frmlogin" action="${esc(formAction)}" method="post" class="fl-form" autocomplete="on">
 
             <div class="fl-field">
               <label class="fl-label" for="fl_username">Roll Number</label>
@@ -76,7 +74,7 @@
               </div>
             </div>
 
-            <div id="fl-recaptcha-mount" class="fl-recaptcha"></div>
+            <div id="fl-turnstile-mount" class="fl-turnstile"></div>
 
             <div class="fl-form-footer">
               <label class="fl-checkbox">
@@ -87,7 +85,7 @@
               <button type="button" class="fl-link" id="fl_forgot">Forgot password?</button>
             </div>
 
-            <button type="submit" id="m_login_signin_submit" class="fl-btn-primary">
+            <button type="submit" id="fl_signin_submit" class="fl-btn-primary">
               Sign In
             </button>
 
@@ -241,7 +239,8 @@
 
         .fl-toggle-pass:hover { color: #4f63d2; }
 
-        .fl-recaptcha { margin-top: 4px; }
+        .fl-turnstile { margin-top: 4px; }
+        .fl-turnstile:empty { display: none; }
 
         .fl-form-footer {
           display: flex;
@@ -356,13 +355,22 @@
     // Inject styles
     document.head.insertAdjacentHTML("beforeend", styles);
 
-    // Replace body content (banner gone)
-    document.body.innerHTML = loginHTML;
+    // Append instead of replacing body: the legacy page stays in the DOM
+    // (hidden via .m-page above) so the Cloudflare Turnstile widget survives.
+    document.body.insertAdjacentHTML("beforeend", loginHTML);
 
-    // Re-mount recaptcha
-    const recaptchaMount = document.getElementById("fl-recaptcha-mount");
-    if (recaptchaMount && recaptchaClone) {
-      recaptchaMount.appendChild(recaptchaClone);
+    // Move the live Turnstile container into our form. A clone would be dead
+    // (Turnstile tracks the original node), and its hidden
+    // cf-turnstile-response input must sit inside the form we submit.
+    // moveBefore keeps an already-rendered iframe alive; appendChild would
+    // reload it and break the challenge, so it is only a fallback.
+    const turnstileMount = document.getElementById("fl-turnstile-mount");
+    if (turnstileMount && turnstileEl) {
+      try {
+        turnstileMount.moveBefore(turnstileEl, null);
+      } catch (_) {
+        turnstileMount.appendChild(turnstileEl);
+      }
     }
 
     // Password visibility toggle

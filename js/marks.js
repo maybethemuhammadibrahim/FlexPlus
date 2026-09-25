@@ -8,6 +8,8 @@
   try {
     console.log("Marks script loaded"); //for debug
 
+    const esc = window.FlexUtils.escapeHTML;
+
     //==================
     // logic & helpers
     const extractSemesterData = () => {
@@ -237,13 +239,13 @@
       const options = semesterData.options
         .map(
           (o) =>
-            `<option value="${o.value}" ${o.selected ? "selected" : ""}>${o.text}</option>`,
+            `<option value="${esc(o.value)}" ${o.selected ? "selected" : ""}>${esc(o.text)}</option>`,
         )
         .join("");
       const inputs = semesterData.inputs
-        .map((i) => `<input type="hidden" name="${i.name}" value="${i.value}">`)
+        .map((i) => `<input type="hidden" name="${esc(i.name)}" value="${esc(i.value)}">`)
         .join("");
-      return `<div class="semester-card"><form action="${semesterData.action}" method="${semesterData.method}">${inputs}<label>Academic Session</label><select name="${semesterData.selectName}" class="sem-select" onchange="this.form.submit()">${options}</select></form></div>`;
+      return `<div class="semester-card"><form action="${esc(semesterData.action)}" method="${esc(semesterData.method)}">${inputs}<label>Academic Session</label><select name="${esc(semesterData.selectName)}" class="sem-select" onchange="this.form.submit()">${options}</select></form></div>`;
     };
 
     const buildCourseTabs = () => {
@@ -251,7 +253,7 @@
       const btns = courses
         .map(
           (c, i) =>
-            `<button class="course-tab-btn ${i === 0 ? "active" : ""}" data-id="${c.id}">${c.code}</button>`,
+            `<button class="course-tab-btn ${i === 0 ? "active" : ""}" data-id="${c.id}">${esc(c.code)}</button>`,
         )
         .join("");
       return `<div class="course-tabs-container">${btns}</div>`;
@@ -263,7 +265,7 @@
       const activeSemester =
         semesterData?.options.find((o) => o.selected)?.text || "";
       const semesterLabel = activeSemester
-        ? `<strong>${activeSemester}</strong>`
+        ? `<strong>${esc(activeSemester)}</strong>`
         : "this session";
 
       return `
@@ -336,12 +338,12 @@
                       <div class="category-group ${isCollapsed ? "collapsed" : ""}" data-category-key="${categoryKey}">
                         <div class="category-header">
                           <div class="category-header-left">
-                            <span class="cat-title">${cat.name}</span>
+                            <span class="cat-title">${esc(cat.name)}</span>
                           </div>
                           <div class="category-header-right">
                               ${showCountSelector ? `
                               <div class="category-count-controls">
-                                <select class="category-count-select" data-course-id="${c.id}" data-category-index="${i}" data-category-key="${categoryKey}" aria-label="Choose how to count ${cat.name}">
+                                <select class="category-count-select" data-course-id="${c.id}" data-category-index="${i}" data-category-key="${categoryKey}" aria-label="Choose how to count ${esc(cat.name)}">
                                   <option value="all" ${selectedMode.type === "all" ? "selected" : ""}>All</option>
                                   ${bestOptions}
                                 </select>
@@ -373,15 +375,15 @@
                                   <tr class="${a.isDropped ? "row-dropped" : ""}">
                                     <td>
                                       <span class="status-dot ${a.isDropped ? "neutral" : a.status}"></span> 
-                                      ${a.name}
+                                      ${esc(a.name)}
                                       ${a.isDropped ? '<span class="dropped-badge">Dropped</span>' : ""}
                                     </td>
-                                    <td class="text-center scroll-cell">${a.weight}</td>
-                                    <td class="text-center scroll-cell">${a.rawTotal}</td>
-                                    <td class="text-center scroll-cell"><span class="obt-badge ${a.isDropped ? "neutral" : a.status}">${a.obtText}</span></td>
-                                    <td class="text-center stat scroll-cell">${a.avg}</td>
-                                    <td class="text-center stat scroll-cell">${a.min}</td>
-                                    <td class="text-center stat scroll-cell">${a.max}</td>
+                                    <td class="text-center scroll-cell">${esc(a.weight)}</td>
+                                    <td class="text-center scroll-cell">${esc(a.rawTotal)}</td>
+                                    <td class="text-center scroll-cell"><span class="obt-badge ${a.isDropped ? "neutral" : a.status}">${esc(a.obtText)}</span></td>
+                                    <td class="text-center stat scroll-cell">${esc(a.avg)}</td>
+                                    <td class="text-center stat scroll-cell">${esc(a.min)}</td>
+                                    <td class="text-center stat scroll-cell">${esc(a.max)}</td>
                                   </tr>
                                 `,
                                   )
@@ -420,7 +422,7 @@
                 <div class="course-pane ${c.id === marksState.activeCourseId || (!marksState.activeCourseId && idx === 0) ? "active" : ""}" id="pane-${c.id}">
                     <div class="course-card">
                         <div class="course-header">
-                            <h3 class="course-title">${c.title}</h3>
+                            <h3 class="course-title">${esc(c.title)}</h3>
                             <div class="course-summary">
                             <div class="sum-item"><span class="lbl">Total Weight</span><span class="val">${totalWeight}</span></div>
                             <div class="sum-item"><span class="lbl">Obtained</span><span class="val ${totalObtained < 50 ? "fail" : "pass"}">${totalObtained}</span></div>

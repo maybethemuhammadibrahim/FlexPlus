@@ -7,6 +7,8 @@
   try {
     console.log("attendance script loaded"); //for debug
 
+    const esc = window.FlexUtils.escapeHTML;
+
     //==================
     //wait for dom content(ai)
     //faced a bug where new html was loaded and data was not present yet
@@ -121,13 +123,13 @@
       const opts = data.options
         .map(
           (o) =>
-            `<option value="${o.value}" ${o.selected ? "selected" : ""}>${o.text}</option>`,
+            `<option value="${esc(o.value)}" ${o.selected ? "selected" : ""}>${esc(o.text)}</option>`,
         )
         .join("");
       const inps = data.inputs
-        .map((i) => `<input type="hidden" name="${i.name}" value="${i.value}">`)
+        .map((i) => `<input type="hidden" name="${esc(i.name)}" value="${esc(i.value)}">`)
         .join("");
-      return `<div class="semester-card"><form action="${data.action}" method="${data.method}">${inps}<label>Academic Session</label><select name="${data.selectName}" class="sem-select" onchange="this.form.submit()">${opts}</select></form></div>`;
+      return `<div class="semester-card"><form action="${esc(data.action)}" method="${esc(data.method)}">${inps}<label>Academic Session</label><select name="${esc(data.selectName)}" class="sem-select" onchange="this.form.submit()">${opts}</select></form></div>`;
     };
 
     //==================
@@ -158,10 +160,10 @@
                   return `
                         <div class="dash-card att-card">
                             <div class="att-header">
-                                <div class="code">${c.code}</div>
+                                <div class="code">${esc(c.code)}</div>
                                 <div class="percent" style="color:${color}">${c.attendance}%</div>
                             </div>
-                            <div class="name" title="${c.name}">${c.name}</div>
+                            <div class="name" title="${esc(c.name)}">${esc(c.name)}</div>
                             <div class="att-bar">
                                 <div class="att-fill" style="width:${c.attendance}%; background:${color}"></div>
                             </div>
@@ -183,7 +185,7 @@
                             (c) => `
                             <div id="modal-${c.id}" class="modern-modal">
                                 <div class="modern-modal-header">
-                                    <h3>${c.code} Attendance</h3>
+                                    <h3>${esc(c.code)} Attendance</h3>
                                     <button class="modern-close-btn" data-close="true">×</button>
                                 </div>
                                 <div class="modal-body">
@@ -194,10 +196,10 @@
                                               .map(
                                                 (row) => `
                                                 <tr>
-                                                    <td>${row.date}</td>
+                                                    <td>${esc(row.date)}</td>
                                                     <td>
                                                         <span class="modern-badge ${row.status.includes("P") ? "success" : row.status.includes("A") ? "danger" : "warning"}">
-                                                            ${row.status}
+                                                            ${esc(row.status)}
                                                         </span>
                                                     </td>
                                                 </tr>

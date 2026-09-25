@@ -1,27 +1,42 @@
 {
   "manifest_version": 3,
   "name": "Flex+",
-  "version": "3.7",
+  "version": "3.8",
   "description": "Reimagined and enhanced user interface for Flex Student Portal of NUCES.",
   "icons": {
     "16": "assets/icon16.png",
     "48": "assets/icon48.png",
     "128": "assets/icon128.png"
   },
-  "host_permissions": ["*://flexstudent.nu.edu.pk/*"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "flexplus@maybethemuhammadibrahim.github.io",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    },
+    "gecko_android": {
+      "strict_min_version": "142.0"
+    }
+  },
+  "host_permissions": [
+    "*://flexstudent.nu.edu.pk/*"
+  ],
   "web_accessible_resources": [
     {
-      "resources": ["css/transcript.css", "json/degree_prereqs.json"],
-      "matches": ["*://flexstudent.nu.edu.pk/*"]
+      "resources": [
+        "css/transcript.css",
+        "json/degree_prereqs.json"
+      ],
+      "matches": [
+        "*://flexstudent.nu.edu.pk/*"
+      ]
     }
   ],
   "content_scripts": [
-    {
-      "matches": ["*://flexstudent.nu.edu.pk/Login*"],
-      "css": ["css/main.css", "css/login.css"],
-      "js": ["js/utils.js", "js/login.js"],
-      "run_at": "document_end"
-    },
     {
       "matches": [
         "*://flexstudent.nu.edu.pk/*",
@@ -32,32 +47,70 @@
         "*://flexstudent.nu.edu.pk/Student/*",
         "*://flexstudent.nu.edu.pk/ConsolidatedFeeReport/*"
       ],
-      "css": ["css/main.css", "css/home.css"],
-      "js": ["js/utils.js", "js/home.js"],
+      "css": [
+        "css/main.css",
+        "css/home.css"
+      ],
+      "js": [
+        "js/utils.js",
+        "js/home.js"
+      ],
       "run_at": "document_end"
     },
     {
-      "matches": ["*://flexstudent.nu.edu.pk/Student/StudentAttendance*"],
-      "css": ["css/main.css", "css/attendance.css"],
-      "js": ["js/utils.js", "js/attendance.js"],
+      "matches": [
+        "*://flexstudent.nu.edu.pk/Student/StudentAttendance*"
+      ],
+      "css": [
+        "css/main.css",
+        "css/attendance.css"
+      ],
+      "js": [
+        "js/utils.js",
+        "js/attendance.js"
+      ],
       "run_at": "document_end"
     },
     {
-      "matches": ["*://flexstudent.nu.edu.pk/Student/Transcript*"],
-      "css": ["css/main.css", "css/transcript.css"],
-      "js": ["js/utils.js", "js/transcript.js"],
+      "matches": [
+        "*://flexstudent.nu.edu.pk/Student/Transcript*"
+      ],
+      "css": [
+        "css/main.css",
+        "css/transcript.css"
+      ],
+      "js": [
+        "js/utils.js",
+        "js/transcript.js"
+      ],
       "run_at": "document_end"
     },
     {
-      "matches": ["*://flexstudent.nu.edu.pk/Student/StudentMarks*"],
-      "css": ["css/main.css", "css/tables.css"],
-      "js": ["js/utils.js", "js/marks.js"],
+      "matches": [
+        "*://flexstudent.nu.edu.pk/Student/StudentMarks*"
+      ],
+      "css": [
+        "css/main.css",
+        "css/tables.css"
+      ],
+      "js": [
+        "js/utils.js",
+        "js/marks.js"
+      ],
       "run_at": "document_end"
     },
     {
-      "matches": ["*://flexstudent.nu.edu.pk/Student/CourseRegistration*"],
-      "css": ["css/main.css", "css/registration.css"],
-      "js": ["js/utils.js", "js/registration.js"],
+      "matches": [
+        "*://flexstudent.nu.edu.pk/Student/CourseRegistration*"
+      ],
+      "css": [
+        "css/main.css",
+        "css/registration.css"
+      ],
+      "js": [
+        "js/utils.js",
+        "js/registration.js"
+      ],
       "run_at": "document_end"
     },
     {
@@ -65,26 +118,56 @@
         "*://flexstudent.nu.edu.pk/Student/CourseFeedback*",
         "*://flexstudent.nu.edu.pk/Student/FeedBackQuestions*"
       ],
-      "css": ["css/main.css", "css/feedback.css"],
-      "js": ["js/utils.js", "js/feedback.js"],
+      "css": [
+        "css/main.css",
+        "css/feedback.css"
+      ],
+      "js": [
+        "js/utils.js",
+        "js/feedback.js"
+      ],
       "run_at": "document_end"
     },
     {
-      "matches": ["*://flexstudent.nu.edu.pk/Student/Challan*"],
-      "css": ["css/main.css", "css/challan.css"],
-      "js": ["js/utils.js", "js/challan.js"],
+      "matches": [
+        "*://flexstudent.nu.edu.pk/Student/Challan*"
+      ],
+      "css": [
+        "css/main.css",
+        "css/challan.css"
+      ],
+      "js": [
+        "js/utils.js",
+        "js/challan.js"
+      ],
       "run_at": "document_end"
     },
     {
-      "matches": ["*://flexstudent.nu.edu.pk/ConsolidatedFeeReport/ConsolidatedStdFeeReport*"],
-      "css": ["css/main.css", "css/fee_details.css"],
-      "js": ["js/utils.js", "js/fee_details.js"],
+      "matches": [
+        "*://flexstudent.nu.edu.pk/ConsolidatedFeeReport/ConsolidatedStdFeeReport*"
+      ],
+      "css": [
+        "css/main.css",
+        "css/fee_details.css"
+      ],
+      "js": [
+        "js/utils.js",
+        "js/fee_details.js"
+      ],
       "run_at": "document_end"
     },
     {
-      "matches": ["*://flexstudent.nu.edu.pk/Student/TentativeStudyPlan*"],
-      "css": ["css/main.css", "css/study_plan.css"],
-      "js": ["js/utils.js", "js/study_plan.js"],
+      "matches": [
+        "*://flexstudent.nu.edu.pk/Student/TentativeStudyPlan*"
+      ],
+      "css": [
+        "css/main.css",
+        "css/study_plan.css"
+      ],
+      "js": [
+        "js/utils.js",
+        "js/study_plan.js"
+      ],
       "run_at": "document_end"
     }
   ]

@@ -8,6 +8,8 @@
   try {
     console.log("fee challan script loaded");
 
+    const esc = window.FlexUtils.escapeHTML;
+
     const originalTable = document.querySelector(".m-section__content table table",);
     if (!originalTable) {
       console.warn("Challan table not found");
@@ -66,12 +68,12 @@
                 .map(
                 (r) => `
                 <tr>
-                    <td class="scroll-cell amount-cell">${r.amount}</td>
+                    <td class="scroll-cell amount-cell">${esc(r.amount)}</td>
                     <td class="scroll-cell">
-                        <span class="status-badge valid">${r.status}</span>
+                        <span class="status-badge valid">${esc(r.status)}</span>
                     </td>
-                    <td class="scroll-cell text-muted">${r.generated}</td>
-                    <td class="scroll-cell text-danger font-weight-bold">${r.due}</td>
+                    <td class="scroll-cell text-muted">${esc(r.generated)}</td>
+                    <td class="scroll-cell text-danger font-weight-bold">${esc(r.due)}</td>
                     <td class="scroll-cell text-right">
                         <div class="btn-group-modern">
                             <button class="btn-view action-trigger" data-id="${r.challanId}" data-type="view">View</button>

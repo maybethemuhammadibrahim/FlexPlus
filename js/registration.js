@@ -8,6 +8,8 @@
   try {
     console.log("registration script loaded");//only for debug
 
+    const esc = window.FlexUtils.escapeHTML;
+
     const getVal = (selector, index = 0) => {
       const el = document.querySelectorAll(selector)[index];
       return el ? el.innerText.split(":").pop().trim() : "-";
@@ -41,13 +43,13 @@
                 <span class="dash-label">Profile</span>
             </div>
             <div class="section-body">
-                <div class="dash-value primary-text">${data.name}</div>
+                <div class="dash-value primary-text">${esc(data.name)}</div>
                 <div class="metadata-row">
-                    <span class="meta-tag sub-text">${data.roll}</span>
-                    <span class="meta-tag sub-text">${data.program}</span>
+                    <span class="meta-tag sub-text">${esc(data.roll)}</span>
+                    <span class="meta-tag sub-text">${esc(data.program)}</span>
                 </div>
                 <div class="metadata-row secondary">
-                    <span>${data.section}</span> • <span>${data.batch}</span>
+                    <span>${esc(data.section)}</span> • <span>${esc(data.batch)}</span>
                 </div>
             </div>
         </div>
@@ -132,7 +134,7 @@
                         <span class="lbl">Selected:</span>
                         <span id="custom-pill-count">0</span>
                         <span class="divider">/</span>
-                        <span>${data.limit}</span>
+                        <span>${esc(data.limit)}</span>
                     </div>
                     <button id="customSubmit" class="pill-btn">Confirm Registration</button>
                 </div>

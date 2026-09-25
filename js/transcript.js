@@ -9,6 +9,8 @@
   try {
     console.log("transcript script loaded");
 
+    const esc = window.FlexUtils.escapeHTML;
+
     //============
     //inject css
     const link = document.createElement("link");
@@ -73,6 +75,46 @@
       "Points",
       "Weightage",
     ];
+
+    //calculator picks survive a reload. Keyed by semester title, then course
+    //code, so a new semester appearing on the transcript can't shift them.
+    //Only picks that differ from the actual grade are kept.
+    const SIM_STORAGE_KEY = "flex-sim-grades";
+
+    const loadSimGrades = () => {
+      try {
+        return JSON.parse(localStorage.getItem(SIM_STORAGE_KEY)) || {};
+      } catch (_) {
+        return {};
+      }
+    };
+
+    const writeSimGrades = (all) => {
+      try {
+        localStorage.setItem(SIM_STORAGE_KEY, JSON.stringify(all));
+      } catch (_) {}
+    };
+
+    const saveSimGrade = (semTitle, code, grade, actualGrade) => {
+      const all = loadSimGrades();
+      const sem = all[semTitle] || {};
+      if (grade === actualGrade) delete sem[code];
+      else sem[code] = grade;
+      if (Object.keys(sem).length) all[semTitle] = sem;
+      else delete all[semTitle];
+      writeSimGrades(all);
+    };
+
+    const clearSimGrades = (semTitle) => {
+      const all = loadSimGrades();
+      delete all[semTitle];
+      writeSimGrades(all);
+    };
+
+    const pickSimGrade = (savedSem, course) => {
+      const g = savedSem?.[course.code];
+      return g === "--" || Object.hasOwn(GRADE_POINTS, g) ? g : course.grade;
+    };
 
     const formatGradePoints = (points) =>
       Number.isInteger(points) ? points.toFixed(1) : points.toFixed(2);
@@ -348,8 +390,8 @@
         resultsBox.innerHTML = matches
           .map(
             (code) => `
-                    <div class="search-item" data-code="${code}">
-                        <b>${code}</b> - ${degreeData[code].name}
+                    <div class="search-item" data-code="${esc(code)}">
+                        <b>${esc(code)}</b> - ${esc(degreeData[code].name)}
                     </div>
                 `,
           )
@@ -362,7 +404,7 @@
             const code = item.dataset.code;
             const name = degreeData[code].name;
             document.getElementById("course-search").value =
-              `${code} - ${name}`;
+              `${esc(code)} - ${esc(name)}`;
             resultsBox.style.display = "none";
             visualizeChain(code);
           });
@@ -391,9 +433,9 @@
         <div class="tf-node ${isPassed ? "passed" : ""} ${
           isMissing ? "missing" : ""
         } ${isRoot ? "current-target" : ""}" 
-             title="${name}">
-            <div class="node-code">${code}</div>
-            <div class="node-name">${name}</div>
+             title="${esc(name)}">
+            <div class="node-code">${esc(code)}</div>
+            <div class="node-name">${esc(name)}</div>
         </div>
     `;
 
@@ -431,7 +473,7 @@
       const targetCourse = degreeData[targetCode];
 
       if (!targetCourse) {
-        visualizer.innerHTML = `<div class="empty-chain-state">Data not found for ${targetCode}</div>`;
+        visualizer.innerHTML = `<div class="empty-chain-state">Data not found for ${esc(targetCode)}</div>`;
         return;
       }
 
@@ -453,11 +495,11 @@
             const isPassed = passedCourses.has(cCode);
             return `
                     <div class="tf-wrapper">
-                        <div class="tf-node ${
+                        <div class="tf-node history ${
                           isPassed ? "passed" : ""
-                        }" style="transform:scale(0.9); opacity:0.8;">
-                            <div class="node-code">${cCode}</div>
-                            <div class="node-name">${cData.name || ""}</div>
+                        }">
+                            <div class="node-code">${esc(cCode)}</div>
+                            <div class="node-name">${esc(cData.name || "")}</div>
                         </div>
                         <div class="tf-children chain">
                 `;
@@ -659,8 +701,8 @@
             (sem) => `
                 <div class="dash-card sem-card">
                     <div class="sem-header">
-                        <div class="sem-top-row"><h3 class="sem-title">${sem.title}</h3><div class="modern-badge neutral"><span>SGPA:</span> ${sem.sgpa}</div></div>
-                        <div class="sem-stats"><div class="stat-item">Credits: <b>${sem.crEarned}</b> / ${sem.crAtt}</div><div class="stat-item">CGPA: <b>${sem.cgpa}</b></div></div>
+                        <div class="sem-top-row"><h3 class="sem-title">${esc(sem.title)}</h3><div class="modern-badge neutral"><span>SGPA:</span> ${esc(sem.sgpa)}</div></div>
+                        <div class="sem-stats"><div class="stat-item">Credits: <b>${esc(sem.crEarned)}</b> / ${esc(sem.crAtt)}</div><div class="stat-item">CGPA: <b>${esc(sem.cgpa)}</b></div></div>
                     </div>
                     <button class="modern-btn" style="border:none; border-top:1px solid var(--border-color); width:100%; border-radius:0;" data-id="${sem.id}">View Details / Calculate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
                 </div>`,
@@ -675,7 +717,7 @@
       //           <div id="modal-${sem.id}" class="modern-modal">
       //               <div class="modern-modal-header">
       //                   <div class="modal-title-group">
-      //                       <h3>${sem.title}</h3>
+      //                       <h3>${esc(sem.title)}</h3>
       //                       <div class="sim-score-box" id="sim-box-${
       //                         sem.id
       //                       }" style="display:none;">
@@ -683,16 +725,16 @@
       //                               <span class="sim-score-label">Simulated -&gt;</span>
       //                               <span class="sim-score-item"><span>SGPA:</span> <b id="sim-sgpa-${
       //                                 sem.id
-      //                               }">${sem.sgpa}</b></span>
+      //                               }">${esc(sem.sgpa)}</b></span>
       //                               <span class="sim-score-sep">|</span>
       //                               <span class="sim-score-item"><span>CGPA:</span> <b id="sim-cgpa-${
       //                                 sem.id
-      //                               }">${sem.cgpa}</b></span>
+      //                               }">${esc(sem.cgpa)}</b></span>
       //                           </div>
       //                       </div>
       //                       <span class="real-score" id="real-score-${
       //                         sem.id
-      //                       }">Actual SGPA: <b>${sem.sgpa}</b></span>
+      //                       }">Actual SGPA: <b>${esc(sem.sgpa)}</b></span>
       //                   </div>
       //                   <div class="modal-actions">
       //                       <button class="modern-btn small calc-toggle-btn" data-id="${
@@ -729,6 +771,7 @@
       //           </div>`,
       //   )
       //   .join("");
+      const savedSims = loadSimGrades();
       const modalsHTML = semesters
   .map(
     (sem) => `
@@ -736,18 +779,18 @@
             <div class="modern-modal-header">
                 
                 <div class="modal-header-left">
-                    <h3 class="modal-title">${sem.title}</h3>
+                    <h3 class="modal-title">${esc(sem.title)}</h3>
                     
                     <div class="score-container">
                         <div class="badge real-score" id="real-score-${sem.id}">
-                            Actual SGPA: <b>${sem.sgpa}</b>
+                            Actual SGPA: <b>${esc(sem.sgpa)}</b>
                         </div>
 
                         <div class="badge sim-score-box" id="sim-box-${sem.id}" style="display:none;">
                             <span class="sim-badge-label">Simulated</span>
-                            <span class="sim-score-item">SGPA: <b id="sim-sgpa-${sem.id}">${sem.sgpa}</b></span>
+                            <span class="sim-score-item">SGPA: <b id="sim-sgpa-${sem.id}">${esc(sem.sgpa)}</b></span>
                             <div class="sim-score-divider"></div>
-                            <span class="sim-score-item">CGPA: <b id="sim-cgpa-${sem.id}">${sem.cgpa}</b></span>
+                            <span class="sim-score-item">CGPA: <b id="sim-cgpa-${sem.id}">${esc(sem.cgpa)}</b></span>
                         </div>
                     </div>
                 </div>
@@ -767,6 +810,7 @@
                         Calculator
                     </button>
                     <button class="modern-btn small grade-mode-toggle-btn" type="button" data-mode="Grades" title="Cycle grade display" style="display:none;">Grades</button>
+                    <button class="modern-btn small calc-reset-btn" type="button" data-id="${sem.id}" title="Reset to actual grades" style="display:none;">Reset</button>
                     <button class="modern-close-btn" data-close="true">×</button>
                 </div>
             </div>
@@ -777,7 +821,7 @@
                     <tbody>${sem.courses
                       .map(
                         (c) =>
-                          `<tr><td><div style="font-weight:600;">${c.name}</div><div style="font-size:11px; color:var(--text-light);">${c.code}</div></td><td class="text-center td-credit">${c.credits}</td><td class="text-center td-grade"><span class="modern-badge grade-pill static-grade ${getGradeColor(c.grade)}">${c.grade}</span><div class="calc-view" style="display:none;"><select class="calc-select">${getGradeOptions(c.grade, "Grades")}</select></div></td></tr>`
+                          `<tr><td><div style="font-weight:600;">${esc(c.name)}</div><div style="font-size:11px; color:var(--text-light);">${esc(c.code)}</div></td><td class="text-center td-credit">${esc(c.credits)}</td><td class="text-center td-grade"><span class="modern-badge grade-pill static-grade ${getGradeColor(c.grade)}">${esc(c.grade)}</span><div class="calc-view" style="display:none;"><select class="calc-select" data-code="${esc(c.code)}" data-actual="${esc(c.grade)}">${getGradeOptions(pickSimGrade(savedSims[sem.title], c), "Grades")}</select></div></td></tr>`
                       )
                       .join("")}</tbody>
                 </table>
@@ -924,7 +968,7 @@
         } else if (requiredSGPA <= currentCGPA && target <= currentCGPA) {
           html = `
                 <div style="color:var(--success-text); font-weight:bold;">Goal Already Met</div>
-                Your current CGPA is already <b>${currentCGPA}</b>. You just need to maintain your current performance.
+                Your current CGPA is already <b>${esc(currentCGPA)}</b>. You just need to maintain your current performance.
             `;
         } else {
           html = `
@@ -961,7 +1005,7 @@
           : "-";
         window.FlexUtils.renderInternalPage(
           renderHTML(semesters),
-          `Transcript <span style="font-size:14px; font-weight:400; color:var(--text-muted); margin-left:10px;">CGPA: ${latestCGPA}</span>`,
+          `Transcript <span style="font-size:14px; font-weight:400; color:var(--text-muted); margin-left:10px;">CGPA: ${esc(latestCGPA)}</span>`,
         );
 
         const overlay = document.getElementById("trans-modal-overlay");
@@ -1019,6 +1063,10 @@
             renderCalcSelects(modalBody, currentMode);
 
             if (modeButton) modeButton.style.display = isActive ? "inline-flex" : "none";
+            const resetButton = btn
+              .closest(".modern-modal")
+              ?.querySelector(".calc-reset-btn");
+            if (resetButton) resetButton.style.display = isActive ? "inline-flex" : "none";
 
             modalBody.querySelectorAll("tr").forEach((row) => {
               const staticPill = row.querySelector(".static-grade");
@@ -1039,10 +1087,37 @@
                 updateSimulationDisplay(modalBody, id, semesters);
               };
 
-              selects.forEach((s) => (s.onchange = updateCalc));
+              const semTitle = semesters.find((s) => String(s.id) === id)?.title;
+              selects.forEach(
+                (s) =>
+                  (s.onchange = () => {
+                    saveSimGrade(
+                      semTitle,
+                      s.dataset.code,
+                      s.selectedOptions[0]?.dataset.grade || "--",
+                      s.dataset.actual,
+                    );
+                    updateCalc();
+                  }),
+              );
 
               updateCalc();
             }
+          });
+        });
+
+        document.querySelectorAll(".calc-reset-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const id = btn.dataset.id;
+            const modalBody = document.getElementById(`modal-body-${id}`);
+            const mode =
+              btn.closest(".modern-modal")?.querySelector(".grade-mode-toggle-btn")
+                ?.dataset.mode || "Grades";
+            clearSimGrades(semesters.find((s) => String(s.id) === id)?.title);
+            modalBody.querySelectorAll(".calc-select").forEach((s) => {
+              s.innerHTML = getGradeOptions(s.dataset.actual, mode);
+            });
+            updateSimulationDisplay(modalBody, id, semesters);
           });
         });
 

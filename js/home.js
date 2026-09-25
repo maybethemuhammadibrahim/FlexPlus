@@ -8,6 +8,7 @@
   try {
     console.log("home script loaded"); //only for debug
 
+    const esc = window.FlexUtils.escapeHTML;
     const infoMap = {};
     for (const p of document.querySelectorAll(".m-portlet__body p")) {
       const label = p
@@ -35,7 +36,7 @@
 
     function getVal(k) {
       if (infoMap[k]) {
-        return infoMap[k];
+        return esc(infoMap[k]);
       } else {
         return "-";
       }
@@ -49,11 +50,11 @@
     const profileHTML = `
             <div class="dash-header-card">
                 <div class="dash-avatar">
-                    <img src="/Login/GetImage" alt="${name}" 
-                         onerror="this.parentElement.innerHTML='<span>${name.charAt(0)}</span>'">
+                    <img src="/Login/GetImage" alt="${esc(name)}" 
+                         onerror="this.parentElement.innerHTML='<span>${esc(name.charAt(0))}</span>'">
                 </div>
                 <div class="dash-identity">
-                    <h2 class="student-name">${name}</h2>
+                    <h2 class="student-name">${esc(name)}</h2>
                     <div class="student-meta">
                         ${groups.profile
                           .map(

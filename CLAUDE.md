@@ -36,6 +36,8 @@ So copying a legacy cell's `innerHTML` into `#modern-root` produces a button tha
 
 `manifest.json` registers one content-script entry per portal URL pattern. Patterns are the *whole* story: a page with no matching entry gets no script at all (the home catch-all excludes `/Student/*`), which is why the feedback entry has to list both `/Student/CourseFeedback*` and its POST target `/Student/FeedBackQuestions*`. Each entry loads `css/main.css` + a page-specific stylesheet and `js/utils.js` + a page-specific script. The catch-all `*://flexstudent.nu.edu.pk/*` entry (home) uses `exclude_matches` to avoid double-injecting on `/Student/*`, `/ConsolidatedFeeReport/*`, and `/Login*`. **Adding a new page means editing three places: a new manifest entry, `js/<page>.js`, `css/<page>.css`.**
 
+The login page is deliberately **not** wired: `/Login` carries a Cloudflare Turnstile challenge that must stay on the original page. `js/login.js` / `css/login.css` remain in the repo but are unreferenced, and `build.sh` excludes them from the store zip.
+
 ### Module contract
 
 Every `js/<page>.js` is an IIFE that:
@@ -50,7 +52,7 @@ That catch-and-fall-back is for *unexpected* errors only. "Flex has no data for 
 - `FlexUtils.renderInternalPage(html, title)` — builds the sidebar + mobile topbar + `<main>`, replaces any existing `#modern-root`, sets `modern-active`, and wires theme/mobile-menu listeners.
 - `FlexUtils.scrapeSidebar()` — reads `.m-menu__link` elements and sorts them into named buckets by link text (`home`, `attendance`, `marks`, …, `others`). Unrecognized links go to `others` and are rendered *disabled* with a "disable the extension to visit these pages" warning.
 - `FlexUtils.ICONS` — inline SVG strings; use these instead of adding icon files.
-- Theme engine: 5 themes cycled by `toggleTheme()`, stored in `localStorage` under `flex-theme`, applied as `body.<theme>-mode` (light is the bare `:root` default, no class).
+- Theme engine: 5 themes cycled by `toggleTheme()`, stored in `localStorage` under `flex-theme`, applied as `body.<theme>-mode` (light is the bare `:root` default, no class). With nothing stored, `initTheme()` follows `prefers-color-scheme` (dark/light) without saving it.
 - `cleanText` / `safeText(selector, parent)` — null-safe scraping helpers that return `"-"`.
 
 Injected HTML is built with template literals, so **inline `onclick` never works** (extension CSP). Always `addEventListener` after the render call, or use delegation on `document.body`.
@@ -85,7 +87,7 @@ Poll loops must resolve a status (`success` / `error` / `timeout`) and render an
 
 The most complex module. It holds the grading domain model — `GRADE_POINTS` (A+ 4.0 … F 0.0) and `GRADE_CUTOFFS` (percentage thresholds) — plus:
 
-- **GPA simulator**: per-semester grade `<select>`s recompute SGPA and a simulated CGPA live. A three-way toggle (`GRADE_DISPLAY_MODES`: Grades / Points / Weightage) re-labels the same options.
+- **GPA simulator**: per-semester grade `<select>`s recompute SGPA and a simulated CGPA live. A three-way toggle (`GRADE_DISPLAY_MODES`: Grades / Points / Weightage) re-labels the same options. Picks that differ from the real grade persist in `localStorage["flex-sim-grades"]` (`{semesterTitle: {courseCode: grade}}`); a per-semester Reset clears them. `PRIVACY.md` and `REVIEWER_NOTES.md` enumerate every stored key — update both if you add one.
 - **Prerequisite visualizer**: lazily fetches `json/degree_prereqs.json` via `chrome.runtime.getURL`. That file is keyed by degree (`CS`, …) then course code, with `prereqs_immediate`, `postreqs_immediate`, `full_prereq_chain`, `full_unlock_tree`, and a `visual_tree` of `{code, type: chain|branch|leaf, children[]}` that `renderTreeRecursive` walks. It is generated data — edit it as data, not by hand-patching one course.
 - **CGPA/SGPA graph** is hand-rolled inline SVG (`generateGraphHTML`), no charting library.
 

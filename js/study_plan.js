@@ -8,6 +8,8 @@
   try {
     console.log("study plan script loaded"); //only for debug
 
+    const esc = window.FlexUtils.escapeHTML;
+
     const slugify = (value, index) =>
       `${value
         .toLowerCase()
@@ -55,14 +57,14 @@
           <div class="semester-header toggle-trigger" data-semester-id="${sem.id}" role="button" tabindex="0">
                     <div class="header-content">
                         <div class="sem-title-group">
-                            <h3 class="dash-card-title no-border mb-0">${sem.title}</h3>
-                            <span class="meta-tag session-tag">${sem.session.replace(/[()]/g, "")}</span>
+                            <h3 class="dash-card-title no-border mb-0">${esc(sem.title)}</h3>
+                            <span class="meta-tag session-tag">${esc(sem.session.replace(/[()]/g, ""))}</span>
                         </div>
                         <div class="sem-subtitle">${sem.courses.length} Courses</div>
                         <div class="sem-course-pills">
                             ${sem.courses
                               .map(
-                                (c) => `<span class="course-id-pill">${c.code}</span>`,
+                                (c) => `<span class="course-id-pill">${esc(c.code)}</span>`,
                               )
                               .join("")}
                         </div>
@@ -79,12 +81,12 @@
         (sem) => `
             <div id="modal-${sem.id}" class="modern-modal">
                 <div class="modern-modal-header">
-                    <h3 class="modern-modal-title">${sem.title}</h3>
+                    <h3 class="modern-modal-title">${esc(sem.title)}</h3>
                     <button class="modern-close-btn" data-close="true" aria-label="Close modal">×</button>
                 </div>
                 <div class="modern-modal-body">
                     <div class="semester-modal-summary">
-                        <span class="meta-tag session-tag">${sem.session.replace(/[()]/g, "")}</span>
+                        <span class="meta-tag session-tag">${esc(sem.session.replace(/[()]/g, ""))}</span>
                         <span class="sem-subtitle">${sem.courses.length} Courses</span>
                     </div>
                     <div class="course-list">
@@ -94,13 +96,13 @@
                             <div class="sp-course-item">
                                 <div class="sp-icon-box">${c.code.substring(0, 2)}</div>
                                 <div class="sp-details">
-                                    <div class="sp-name">${c.name}</div>
+                                    <div class="sp-name">${esc(c.name)}</div>
                                     <div class="sp-sub">
-                                        <span class="code-pill">${c.code}</span>
-                                        <span class="type-pill ${c.type.toLowerCase()}">${c.type}</span>
+                                        <span class="code-pill">${esc(c.code)}</span>
+                                        <span class="type-pill ${c.type.toLowerCase()}">${esc(c.type)}</span>
                                     </div>
                                 </div>
-                                <div class="sp-credits">${c.credits} Cr</div>
+                                <div class="sp-credits">${esc(c.credits)} Cr</div>
                             </div>
                         `,
                           )

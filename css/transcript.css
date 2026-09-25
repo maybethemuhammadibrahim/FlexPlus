@@ -503,7 +503,8 @@
 .node-code { font-weight: bold; font-size: 14px; margin-bottom: 4px; color: inherit; }
 .node-name {
     font-size: 11px; color: var(--text-muted);
-    line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    line-height: 1.25; overflow: hidden;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
 }
 
 .tf-node.passed .node-name,
@@ -511,18 +512,66 @@
     color: inherit; opacity: 0.9;
 }
 
-.tf-children { display: flex; margin-top: 20px; position: relative; }
-.tf-children.branch { flex-direction: row; gap: 20px; justify-content: center; }
-.tf-children.chain { 
-    flex-direction: column; gap: 20px; align-items: center; 
-    padding-top: 20px; 
+/* Connectors (org-chart style). Every vertical line sits on its box's centre
+   line via calc(50% - 1px); a node is always centred over its .tf-children,
+   so parent stem, bus and child drops meet exactly.
+   chain:  parent stem runs the full gap straight into the only child.
+   branch: parent stem runs half the gap to a horizontal bus; each child draws
+           its own slice of the bus plus a drop, and the outer two round the
+           corners. Siblings are spaced with padding, not gap, so the bus has
+           no holes. */
+.tree-diagram-container { --tf-gap: 28px; --tf-line: var(--text-light); --tf-radius: 8px; }
+
+.tf-children { display: flex; position: relative; padding-top: var(--tf-gap); }
+.tf-children.chain { flex-direction: column; align-items: center; }
+.tf-children.branch {
+    flex-direction: row; justify-content: center; align-items: flex-start;
+    padding-top: calc(var(--tf-gap) / 2); /* children's own padding adds the other half */
 }
 
 .tf-children::before {
-    content: ''; position: absolute; top: -20px; left: 50%;
-    width: 2px; height: 20px;
-    background: var(--border-color); z-index: 1;
+    content: ''; position: absolute; top: 0; left: calc(50% - 1px);
+    width: 2px; height: var(--tf-gap);
+    background: var(--tf-line); z-index: 1;
 }
+.tf-children.branch::before { height: calc(var(--tf-gap) / 2); }
+
+.tf-children.branch > .tf-wrapper {
+    padding: calc(var(--tf-gap) / 2) 10px 0;
+}
+
+/* bus slice */
+.tf-children.branch > .tf-wrapper::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    border-top: 2px solid var(--tf-line);
+}
+
+/* drop from the bus to the node */
+.tf-children.branch > .tf-wrapper::after {
+    content: ''; position: absolute; top: 0; left: calc(50% - 1px);
+    width: 2px; height: calc(var(--tf-gap) / 2);
+    background: var(--tf-line);
+}
+
+/* outer children: bus stops at their centre and turns down with a rounded elbow */
+.tf-children.branch > .tf-wrapper:first-child::before {
+    left: calc(50% - 1px);
+    height: calc(var(--tf-gap) / 2);
+    border-left: 2px solid var(--tf-line);
+    border-top-left-radius: var(--tf-radius);
+}
+.tf-children.branch > .tf-wrapper:last-child::before {
+    right: calc(50% - 1px);
+    height: calc(var(--tf-gap) / 2);
+    border-right: 2px solid var(--tf-line);
+    border-top-right-radius: var(--tf-radius);
+}
+.tf-children.branch > .tf-wrapper:first-child::after,
+.tf-children.branch > .tf-wrapper:last-child::after { display: none; }
+
+/* prerequisites above the target: de-emphasised, but not scaled - a transform
+   would shrink the box away from the connector and leave a gap */
+.tf-node.history { opacity: 0.8; }
 
 /* ==========================================================================
    8. MOBILE RESPONSIVE QUERIES

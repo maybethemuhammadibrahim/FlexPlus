@@ -14,18 +14,7 @@
   //helpers
   //innerText is empty once the legacy grid is hidden, so scrape with textContent
   const clean = (t) => (t ? String(t).replace(/\s+/g, " ").trim() : "");
-  const esc = (t) =>
-    String(t ?? "").replace(
-      /[&<>"']/g,
-      (c) =>
-        ({
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#39;",
-        })[c],
-    );
+  const esc = window.FlexUtils.escapeHTML;
 
   //==================
   //LIST PAGE (/Student/CourseFeedback)

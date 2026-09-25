@@ -2,6 +2,8 @@
     const path = window.location.pathname;
     if (!path.includes('StudentLedger') && !path.includes('FeeDetails') && !path.includes('ConsolidatedFeeReport')) return;
 
+    const esc = window.FlexUtils.escapeHTML;
+
     // [DIAGRAM: Logic Flow]
     // 1. Expand Rows -> 2. Wait -> 3. Scrape Data (Ledger Logic) -> 4. Render UI -> 5. Delegate Clicks
 
@@ -206,15 +208,15 @@
     
     // Internal fallback modal renderer (Responsive Table Update Applied)
     const renderFallbackModal = (title, data) => {
-        const feeRows = data.financials.breakdown.map(f => `<div class="invoice-row"><span>${f.label}</span><span>${f.amount}</span></div>`).join('');
+        const feeRows = data.financials.breakdown.map(f => `<div class="invoice-row"><span>${esc(f.label)}</span><span>${esc(f.amount)}</span></div>`).join('');
         
         // Updated Course Rows with scroll-cell class
         const courseRows = data.courses.map(c => `
             <tr>
-                <td class="scroll-cell">${c.title}</td>
-                <td class="scroll-cell">${c.type}</td>
-                <td class="scroll-cell">${c.status}</td>
-                <td class="scroll-cell">${c.date}</td>
+                <td class="scroll-cell">${esc(c.title)}</td>
+                <td class="scroll-cell">${esc(c.type)}</td>
+                <td class="scroll-cell">${esc(c.status)}</td>
+                <td class="scroll-cell">${esc(c.date)}</td>
             </tr>
         `).join('');
         
@@ -223,7 +225,7 @@
             <div id="modern-fee-modal" class="modern-modal-overlay active">
                 <div class="modern-modal-content slide-in-up">
                     <div class="modal-header-modern">
-                        <h2>${title}</h2>
+                        <h2>${esc(title)}</h2>
                         <button class="modal-close-btn">&times;</button>
                     </div>
                     <div class="modal-body-grid">
@@ -234,7 +236,7 @@
                                 <div class="invoice-divider"></div>
                                 <div class="invoice-row highlight">
                                     <span>Balance</span>
-                                    <span>${data.financials.balance}</span>
+                                    <span>${esc(data.financials.balance)}</span>
                                 </div>
                             </div>
                         </div>
@@ -325,20 +327,20 @@
                     </div>`;
 
                 const semesterCards = semesters.map(sem => `
-                    <div class="dash-card semester-fee-card" data-index="${sem.index}" data-title="${sem.title}">
+                    <div class="dash-card semester-fee-card" data-index="${sem.index}" data-title="${esc(sem.title)}">
                         <div class="sem-card-header">
                             <div class="sem-identity">
                                 <div class="sem-icon">${sem.title.substring(0, 3)}</div>
-                                <h3 class="sem-title">${sem.title}</h3>
+                                <h3 class="sem-title">${esc(sem.title)}</h3>
                             </div>
                             <div class="sem-status ${parseInt(sem.balance.replace(/,/g,'')) > 0 ? 'outstanding' : 'cleared'}">
                                 ${parseInt(sem.balance.replace(/,/g,'')) > 0 ? 'Pending' : 'Paid'}
                             </div>
                         </div>
                         <div class="sem-stats-grid">
-                            <div class="stat-item"><div class="lbl">Due</div><div class="val">${sem.due}</div></div>
-                            <div class="stat-item"><div class="lbl">Paid</div><div class="val text-success">${sem.paid}</div></div>
-                            <div class="stat-item"><div class="lbl">Balance</div><div class="val text-danger">${sem.balance}</div></div>
+                            <div class="stat-item"><div class="lbl">Due</div><div class="val">${esc(sem.due)}</div></div>
+                            <div class="stat-item"><div class="lbl">Paid</div><div class="val text-success">${esc(sem.paid)}</div></div>
+                            <div class="stat-item"><div class="lbl">Balance</div><div class="val text-danger">${esc(sem.balance)}</div></div>
                         </div>
                     </div>`).join('');
 

@@ -2,6 +2,21 @@
 window.FlexUtils = {};
 
 //helper functions
+//every module builds its UI as an HTML string, so any value scraped out of the legacy
+//page must go through this before it is interpolated. Generated markup is passed
+//through raw - only scraped text and attribute values get escaped.
+const HTML_ESCAPES = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;",
+};
+window.FlexUtils.escapeHTML = (value) =>
+  value === null || value === undefined
+    ? ""
+    : String(value).replace(/[&<>"']/g, (c) => HTML_ESCAPES[c]);
+
 //clean text(ai)
 window.FlexUtils.cleanText = (text) =>
   text ? text.trim().replace(/\s+/g, " ") : "-";
@@ -41,9 +56,16 @@ const THEME_ICONS = {
   sunset: "sunset",
 };
 
-//loads saved theme by user during last visit or defaults to light
+//loads saved theme by user during last visit; with nothing saved, follows the
+//OS dark/light preference (not written back, so it keeps following the OS
+//until the user picks a theme themselves)
 window.FlexUtils.initTheme = function () {
-  const saved = localStorage.getItem("flex-theme") || "light";
+  const stored = localStorage.getItem("flex-theme");
+  const saved = THEMES.includes(stored)
+    ? stored
+    : window.matchMedia?.("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
 
   for (const t of THEMES) {
     document.body.classList.remove(t + "-mode");
@@ -162,10 +184,12 @@ window.FlexUtils.renderInternalPage = function (mainContentHTML, pageTitle) {
     }
     const currentIconKey = THEME_ICONS[currentTheme];
 
+    const esc = window.FlexUtils.escapeHTML;
+
     const buildLink = (link, icon, labelOverride) =>
       link
-        ? `<a href="${link.href}" class="nav-link ${link.isActive ? "active" : ""}">
-                <div class="nav-icon">${icon || ""}</div>${labelOverride || link.text}
+        ? `<a href="${esc(link.href)}" class="nav-link ${link.isActive ? "active" : ""}">
+                <div class="nav-icon">${icon || ""}</div>${esc(labelOverride || link.text)}
             </a>`
         : "";
 
@@ -180,7 +204,7 @@ window.FlexUtils.renderInternalPage = function (mainContentHTML, pageTitle) {
                         <div class="arrow-icon">${ICONS.chevron}</div>
                     </summary>
                     <div class="dropdown-content">
-                        ${items.map((l) => (l ? `<a href="${l.href}" class="nav-link sub-link ${l.isActive ? "active" : ""}">${l.text}</a>` : "")).join("")}
+                        ${items.map((l) => (l ? `<a href="${esc(l.href)}" class="nav-link sub-link ${l.isActive ? "active" : ""}">${esc(l.text)}</a>` : "")).join("")}
                     </div>
                 </details>`;
     };
@@ -232,7 +256,7 @@ window.FlexUtils.renderInternalPage = function (mainContentHTML, pageTitle) {
                         </summary>
                         <div class="dropdown-content">
                             <div class="sidebar-warning">Please disable the extension to visit these pages.</div>
-                            ${buckets.others.map((l) => `<div class="nav-link sub-link disabled-link">${l.text}</div>`).join("")}
+                            ${buckets.others.map((l) => `<div class="nav-link sub-link disabled-link">${esc(l.text)}</div>`).join("")}
                         </div>
                     </details>
                     <div style="margin-top:auto;"></div>
@@ -240,8 +264,8 @@ window.FlexUtils.renderInternalPage = function (mainContentHTML, pageTitle) {
                 </div>
                 
                 <div class="user-footer">
-                    <img src="${userImg}" class="user-img" id="sidebar-user-img">
-                    <div class="user-name">${userName}</div>
+                    <img src="${esc(userImg)}" class="user-img" id="sidebar-user-img">
+                    <div class="user-name">${esc(userName)}</div>
                 </div>
             </aside>
         `;
