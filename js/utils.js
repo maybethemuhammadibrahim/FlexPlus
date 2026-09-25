@@ -178,6 +178,16 @@ window.FlexUtils.scrapeSidebar = function () {
       buckets.others.push(linkObj);
   }
 
+  //the portal's logout isn't a sidebar menu link - it's a plain GET link in the
+  //topbar user dropdown (and its mobile copy), so it is looked up separately
+  buckets.logout ||= {
+    text: "Logout",
+    href:
+      document.querySelector('a[href*="/Login/logout" i]')?.href ||
+      "/Login/logout",
+    isActive: false,
+  };
+
   const userImg = document.querySelector(".m-topbar__userpic img")?.src || "";
   const userName =
     window.FlexUtils.safeText(".m-topbar__username") || "Student";
@@ -272,13 +282,12 @@ window.FlexUtils.renderInternalPage = function (mainContentHTML, pageTitle) {
                             ${buckets.others.map((l) => `<div class="nav-link sub-link disabled-link">${esc(l.text)}</div>`).join("")}
                         </div>
                     </details>
-                    <div style="margin-top:auto;"></div>
-                    ${buildLink(buckets.logout, ICONS.power)}
                 </div>
                 
                 <div class="user-footer">
                     <img src="${esc(userImg)}" class="user-img" id="sidebar-user-img">
-                    <div class="user-name">${esc(userName)}</div>
+                    <div class="user-name" title="${esc(userName)}">${esc(userName)}</div>
+                    <a href="${esc(buckets.logout.href)}" class="logout-btn" title="Log out" aria-label="Log out">${ICONS.power}</a>
                 </div>
             </aside>
         `;

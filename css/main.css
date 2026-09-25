@@ -605,6 +605,35 @@ details[open].dropdown-content {
     font-size:  13px; 
     font-weight: 600; 
     color: var(--text-main); 
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* bottom-right of the sidebar; the sidebar is the same element on mobile
+   (off-canvas), so this one button covers both */
+.logout-btn {
+    margin-left: auto;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-muted);
+    transition: background .15s, color .15s, border-color .15s;
+}
+
+.logout-btn svg { width: 16px; height: 16px; }
+
+.logout-btn:hover,
+.logout-btn:focus-visible {
+    background: var(--danger-bg);
+    border-color: var(--danger-bg);
+    color: var(--danger-text);
 }
 
 
