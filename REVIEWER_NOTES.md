@@ -30,9 +30,11 @@ payload is changed by this add-on.
 ## Data handling: none
 
 - No backend, no analytics, no telemetry, no third-party services.
-- No network request to any server. The single `fetch()` call in the codebase
-  (`js/transcript.js`) reads `json/degree_prereqs.json`, a static file bundled
-  in this package, via `chrome.runtime.getURL`.
+- The add-on sends nothing to any server. The single `fetch()` call in the
+  codebase (`js/transcript.js`) reads `json/degree_prereqs.json`, a static file
+  bundled in this package, via `chrome.runtime.getURL`. The only other requests
+  are the portal's own (the user's profile photo, a semester switch, the
+  logout link), made exactly as the original pages make them.
 - No remote code. Everything executed ships inside the package.
 - The only persisted values are in the portal origin's `localStorage`, and
   neither is ever transmitted:
@@ -63,11 +65,11 @@ The string is parsed into a `<template>` element, whose content is inert, and
 then moved into place. What makes the strings safe is described below:
 
 **Every value interpolated into those strings is escaped.**
-`js/utils.js` exports `FlexUtils.escapeHTML`, and it is applied at 119
+`js/utils.js` exports `FlexUtils.escapeHTML`, and it is applied at 120
 interpolation sites across all ten modules. You can verify quickly:
 
 ```
-grep -o '\${esc(' js/*.js | wc -l      # 119
+grep -o '\${esc(' js/*.js | wc -l      # 120
 grep -n 'esc(' js/*.js | grep -v '\${esc('   # only the 1 escape-at-source site
 ```
 
@@ -82,7 +84,8 @@ Deliberately **not** escaped, and safe:
   — markup the extension generated itself, not scraped input. Every title is a
   string literal except the transcript's, which embeds the CGPA through `esc()`
   at the call site (`js/transcript.js`).
-- `FlexUtils.ICONS` — a frozen set of inline SVG string literals.
+- `FlexUtils.ICONS` — a fixed set of inline SVG string literals defined in
+  `js/utils.js`; nothing scraped is ever added to it.
 - Numeric values, and DOM ids derived through `replace(/[^a-zA-Z0-9]/g, "")`
   or a numeric regex match.
 
