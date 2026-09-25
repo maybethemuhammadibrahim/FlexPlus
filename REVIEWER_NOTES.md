@@ -20,17 +20,19 @@ The technique is deliberate and consistent across every module:
    CSS — **the original DOM is never removed**, because the site's own ASP.NET
    and jQuery code depends on it.
 
-Interactive controls in the new UI are proxies: they call the page's own
-functions or programmatically click the original (now hidden) control, so all
-form posts remain the site's own. No form action, endpoint, or payload is
-changed by this add-on.
+Interactive controls in the new UI are proxies: they programmatically click
+the original (now hidden) control, so form posts remain the site's own. The one
+exception is the semester dropdown on the attendance and marks pages, which is
+re-rendered as a `<form>` copying the original's `action`, `method`, hidden
+inputs and select `name`, and submitted on change. No form action, endpoint, or
+payload is changed by this add-on.
 
 ## Data handling: none
 
 - No backend, no analytics, no telemetry, no third-party services.
 - No network request to any server. The single `fetch()` call in the codebase
   (`js/transcript.js`) reads `json/degree_prereqs.json`, a static file bundled
-  in this package, via `browser.runtime.getURL`.
+  in this package, via `chrome.runtime.getURL`.
 - No remote code. Everything executed ships inside the package.
 - The only persisted values are in the portal origin's `localStorage`, and
   neither is ever transmitted:

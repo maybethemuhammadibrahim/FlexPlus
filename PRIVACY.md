@@ -8,8 +8,9 @@ FLEX+ does not collect, transmit, sell or share any personal data. The only
 things it saves are two preferences, kept in your own browser.
 
 The extension has no backend, no analytics, no telemetry and no third-party
-services. It makes no network requests to any server. Nothing you do in FLEX+
-leaves your own computer.
+services. It sends nothing to any server of its own or anyone else's — the only
+requests the redesigned pages make are the portal's own (loading your profile
+photo, switching semester, and so on), exactly as the original pages do.
 
 ## What the extension does
 

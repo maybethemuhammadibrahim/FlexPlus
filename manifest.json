@@ -39,8 +39,7 @@
   "content_scripts": [
     {
       "matches": [
-        "*://flexstudent.nu.edu.pk/*",
-        "*://flexstudent.nu.edu.pk/Home*"
+        "*://flexstudent.nu.edu.pk/*"
       ],
       "exclude_matches": [
         "*://flexstudent.nu.edu.pk/Login*",
